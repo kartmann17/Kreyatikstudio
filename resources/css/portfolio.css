@@ -1,0 +1,439 @@
+:root {
+    --primary: #0099cc;
+    --accent: #ffd700;
+    --light: #f9f9f9;
+    --dark: #1e1e1e;
+}
+
+/* Styles pour améliorer la visibilité du texte dans les cartes portfolio */
+.portfolio-card {
+    position: relative;
+    height: 100%;
+}
+
+.portfolio-content {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.portfolio-content h3 {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.portfolio-content p {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    line-height: 1.6;
+    font-weight: 500;
+}
+
+.portfolio-technologies h4 {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.portfolio-technologies span {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    font-weight: 600;
+    backdrop-filter: blur(10px);
+}
+
+/* Uniformisation de la hauteur des cartes */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+@media (min-width: 1024px) {
+    .portfolio-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.portfolio-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.portfolio-card > div {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.portfolio-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.portfolio-content header {
+    flex: 1;
+}
+
+.portfolio-content .portfolio-technologies {
+    flex-shrink: 0;
+}
+
+.portfolio-content > div:last-child {
+    margin-top: auto;
+    flex-shrink: 0;
+}
+
+/* Amélioration de la responsivité */
+@media (max-width: 1024px) {
+    .portfolio-grid {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+    }
+    
+    .portfolio-card {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-section h1 {
+        font-size: 3rem !important;
+        line-height: 1.1 !important;
+    }
+    
+    .hero-section p {
+        font-size: 1.1rem !important;
+        padding: 0 1rem;
+    }
+    
+    .portfolio-section h2 {
+        font-size: 2.5rem !important;
+        line-height: 1.2 !important;
+    }
+    
+    .portfolio-section p {
+        font-size: 1rem !important;
+        padding: 0 1rem;
+    }
+    
+    .expertise-section h2 {
+        font-size: 2.5rem !important;
+        line-height: 1.2 !important;
+    }
+    
+    .expertise-section p {
+        font-size: 1rem !important;
+        padding: 0 1rem;
+    }
+    
+    .cta-section h2 {
+        font-size: 2.5rem !important;
+        line-height: 1.2 !important;
+    }
+    
+    .cta-section p {
+        font-size: 1.1rem !important;
+        padding: 0 1rem;
+    }
+    
+    .portfolio-content {
+        padding: 1.5rem !important;
+    }
+    
+    .portfolio-content h3 {
+        font-size: 1.5rem !important;
+        margin-bottom: 0.75rem !important;
+    }
+    
+    .portfolio-content p {
+        font-size: 1rem !important;
+        line-height: 1.5 !important;
+    }
+    
+    .portfolio-technologies {
+        margin-bottom: 1.5rem !important;
+    }
+    
+    .portfolio-technologies h4 {
+        font-size: 0.875rem !important;
+        margin-bottom: 0.75rem !important;
+    }
+    
+    .portfolio-technologies .flex {
+        gap: 0.5rem !important;
+    }
+    
+    .portfolio-technologies span {
+        font-size: 0.75rem !important;
+        padding: 0.5rem 0.75rem !important;
+    }
+    
+    .expertise-card {
+        padding: 1.5rem !important;
+    }
+    
+    .expertise-card h3 {
+        font-size: 1.125rem !important;
+        margin-bottom: 0.75rem !important;
+    }
+    
+    .expertise-card p {
+        font-size: 0.875rem !important;
+        line-height: 1.5 !important;
+    }
+    
+    .cta-section .flex {
+        flex-direction: column !important;
+        gap: 1rem !important;
+    }
+    
+    .cta-section a {
+        width: 100% !important;
+        max-width: 300px !important;
+        margin: 0 auto !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-section h1 {
+        font-size: 2.5rem !important;
+    }
+    
+    .hero-section p {
+        font-size: 1rem !important;
+    }
+    
+    .portfolio-section h2 {
+        font-size: 2rem !important;
+    }
+    
+    .expertise-section h2 {
+        font-size: 2rem !important;
+    }
+    
+    .cta-section h2 {
+        font-size: 2rem !important;
+    }
+    
+    .portfolio-content {
+        padding: 1rem !important;
+    }
+    
+    .portfolio-content h3 {
+        font-size: 1.25rem !important;
+    }
+    
+    .portfolio-content p {
+        font-size: 0.875rem !important;
+    }
+    
+    .expertise-card {
+        padding: 1rem !important;
+    }
+    
+    .expertise-card h3 {
+        font-size: 1rem !important;
+    }
+    
+    .expertise-card p {
+        font-size: 0.75rem !important;
+    }
+    
+    .stat-item {
+        margin-bottom: 1rem;
+    }
+    
+    .stat-item .text-3xl {
+        font-size: 1.5rem !important;
+    }
+    
+    .stat-item .text-sm {
+        font-size: 0.75rem !important;
+    }
+}
+
+/* Amélioration de la lisibilité du texte blanc */
+.text-white {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Amélioration du contraste pour les cartes */
+.portfolio-card .bg-white\/10 {
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    backdrop-filter: blur(10px);
+}
+
+.portfolio-card .border-white\/20 {
+    border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Amélioration de la visibilité des technologies */
+.portfolio-technologies span {
+    background-color: rgba(255, 255, 255, 0.25) !important;
+    border-color: rgba(255, 255, 255, 0.4) !important;
+    backdrop-filter: blur(10px);
+}
+
+.portfolio-technologies span:hover {
+    background-color: rgba(255, 215, 0, 0.3) !important;
+    border-color: rgba(255, 215, 0, 0.6) !important;
+}
+
+/* Amélioration de la visibilité des stats */
+.stat-item .text-3xl {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.stat-item .text-sm {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Amélioration de la visibilité des cartes d'expertise */
+.expertise-card .bg-white\/10 {
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    backdrop-filter: blur(10px);
+}
+
+.expertise-card .border-white\/20 {
+    border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Styles pour l'ancienne version (conservés pour compatibilité) */
+.portfolio-header {
+    background: linear-gradient(135deg, #0099CC, #00A86B);
+    color: white;
+    padding: 80px 20px 40px;
+    text-align: center;
+}
+
+.portfolio-header h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.portfolio-header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.portfolio-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 60px 20px;
+    max-width: 1400px;
+    margin: auto;
+}
+
+.portfolio-item {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.portfolio-item:hover {
+    transform: translateY(-5px);
+}
+
+.portfolio-item img,
+.portfolio-item video {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.portfolio-item video {
+    object-fit: cover;
+    aspect-ratio: 16 / 9;
+}
+
+.portfolio-caption {
+    padding: 20px;
+    text-align: center;
+}
+
+.portfolio-caption h3 {
+    margin: 0 0 10px;
+    font-size: 1.2rem;
+    color: var(--primary);
+}
+
+.portfolio-caption p {
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.portfolio-media {
+    aspect-ratio: 16/9;
+    background: #111;
+    overflow: hidden;
+    border-bottom: 1px solid #eee;
+}
+
+.portfolio-media img,
+.portfolio-media video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+@media (max-width: 576px) {
+    .portfolio-header h1 {
+        font-size: 2rem;
+    }
+
+    .portfolio-header p {
+        font-size: 1rem;
+    }
+
+    .portfolio-item video {
+        height: auto;
+        aspect-ratio: auto;
+    }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(180deg); }
+}
+
+@keyframes float-delayed {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(-180deg); }
+}
+
+@keyframes float-slow {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(90deg); }
+}
+
+@keyframes gradient {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.animate-float {
+    animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+    animation: float-delayed 8s ease-in-out infinite;
+}
+
+.animate-float-slow {
+    animation: float-slow 10s ease-in-out infinite;
+}
+
+.animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient 3s ease infinite;
+}
+
+.floating-element {
+    filter: blur(1px);
+}

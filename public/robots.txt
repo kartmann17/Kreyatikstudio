@@ -1,0 +1,74 @@
+User-agent: *
+Allow: /
+
+# Pages prioritaires
+Allow: /NosOffres
+Allow: /Portfolio
+Allow: /Contact
+Allow: /blog
+Allow: /ConditionTarifaire
+Allow: /a-propos
+Allow: /methode-travail
+Allow: /temoignages-clients
+
+# Bloquer admin et auth
+Disallow: /admin/
+Disallow: /client/
+Disallow: /login
+Disallow: /register
+Disallow: /password/
+Disallow: /home
+
+# Bloquer système Laravel
+Disallow: /api/
+Disallow: /vendor/
+Disallow: /bootstrap/
+Disallow: /config/
+Disallow: /database/
+Disallow: /routes/
+Disallow: /tests/
+Disallow: /resources/
+Disallow: /app/
+Disallow: /artisan
+
+# Fichiers système
+Disallow: /*.log
+Disallow: /*.sql
+Disallow: /.env
+Disallow: /composer.*
+Disallow: /package*.json
+Disallow: /*mix.js
+Disallow: /vite.config.js
+
+# Ressources autorisées
+Allow: /css/
+Allow: /js/
+Allow: /images/
+Allow: /build/
+Allow: /storage/
+
+# Crawl delays optimisés
+User-agent: Googlebot
+Crawl-delay: 0.5
+
+User-agent: Bingbot
+Crawl-delay: 1
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+# Bloquer scrapers agressifs
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+# Sitemap principal
+Sitemap: https://kreyatikstudio.fr/sitemap.xml

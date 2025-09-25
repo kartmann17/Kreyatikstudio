@@ -1,0 +1,139 @@
+# .htaccess optimisé pour SEO parfait - Kreyatik Studio
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
+
+    RewriteEngine On
+
+    # ========== REDIRECTIONS SEO CRITIQUES ==========
+    
+    # 1. Redirection sous-domaine mail vers domaine principal (URGENT SEO)
+    RewriteCond %{HTTP_HOST} ^mail\.kreyatikstudio\.fr$ [NC]
+    RewriteRule ^(.*)$ https://kreyatikstudio.fr/$1 [R=301,L]
+
+    # 2. Redirection www vers non-www (canonicalization prioritaire)
+    RewriteCond %{HTTP_HOST} ^www\.kreyatikstudio\.fr$ [NC]
+    RewriteRule ^(.*)$ https://kreyatikstudio.fr/$1 [R=301,L]
+
+    # 3. Redirection HTTPS forcée (après canonicalization)
+    RewriteCond %{HTTPS} off
+    RewriteCond %{HTTP_HOST} ^kreyatikstudio\.fr$ [NC]
+    RewriteRule ^(.*)$ https://kreyatikstudio.fr/$1 [L,R=301]
+
+    # Handle Authorization Header
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    # Redirect Trailing Slashes If Not A Folder...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} (.+)/$
+    RewriteRule ^ %1 [L,R=301]
+
+    # Send Requests To Front Controller...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+</IfModule>
+
+# Protection des fichiers sensibles
+<FilesMatch "^\.env">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Désactiver l'affichage du contenu des répertoires
+Options -Indexes
+
+# Protection contre l'accès aux fichiers .htaccess
+<Files .htaccess>
+    Order allow,deny
+    Deny from all
+</Files>
+
+# ==================================================
+# OPTIMISATIONS SEO ET PERFORMANCES WEB CORE VITALS
+# ==================================================
+
+# Compression GZIP pour améliorer LCP
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE text/javascript
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE image/svg+xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/json
+    SetOutputFilter DEFLATE
+</IfModule>
+
+# Cache Headers pour optimiser les performances
+<IfModule mod_expires.c>
+    ExpiresActive On
+    
+    # Images - Cache 1 an
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/avif "access plus 1 year"
+    ExpiresByType image/x-icon "access plus 1 year"
+    
+    # CSS et JS - Cache 1 an
+    ExpiresByType text/css "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType application/x-javascript "access plus 1 year"
+    ExpiresByType text/javascript "access plus 1 year"
+    
+    # Fonts - Cache 1 an
+    ExpiresByType application/x-font-ttf "access plus 1 year"
+    ExpiresByType application/x-font-woff "access plus 1 year"
+    ExpiresByType application/x-font-woff2 "access plus 1 year"
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType font/ttf "access plus 1 year"
+    
+    # HTML - Pas de cache pour contenu dynamique
+    ExpiresByType text/html "access plus 0 seconds"
+    ExpiresByType application/json "access plus 0 seconds"
+</IfModule>
+
+# Headers de sécurité et performance
+<IfModule mod_headers.c>
+    # Sécurité
+    Header always set X-Content-Type-Options nosniff
+    Header always set X-Frame-Options DENY
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    
+    # Performance
+    Header set Vary "Accept-Encoding"
+    Header set Access-Control-Allow-Origin "*"
+    
+    # Cache immutable pour ressources statiques
+    <FilesMatch "\.(css|js|woff|woff2|ttf|otf|jpg|jpeg|png|gif|webp|avif|svg)$">
+        Header set Cache-Control "max-age=31536000, public, immutable"
+    </FilesMatch>
+</IfModule>
+
+# Types MIME pour formats modernes
+<IfModule mod_mime.c>
+    AddType image/webp .webp
+    AddType image/avif .avif
+    AddType font/woff2 .woff2
+    AddType font/woff .woff
+    AddType application/font-woff .woff
+    AddType application/font-woff2 .woff2
+</IfModule>
+
+# Protection du dossier storage
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
