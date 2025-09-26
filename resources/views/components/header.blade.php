@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    
+
     @if(isset($SEOData))
         <title>{{ $SEOData->title }} | {{ config('app.name') }}</title>
         <meta name="description" content="{{ $SEOData->description }}">
@@ -48,88 +48,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    
-    <!-- Schema.org LocalBusiness - Développeur Web Freelance -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "ProfessionalService",
-        "name": "Kréyatik Studio",
-        "description": "Développeur web freelance spécialisé Laravel, SaaS et CRM sur-mesure à Rochefort",
-        "url": "{{ url('/') }}",
-        "image": "{{ asset('images/Studiosansfond.png') }}",
-        "telephone": "+33695800663",
-        "email": "kreyatik@gmail.com",
-        "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "2 Rue du petit port marchand",
-            "addressLocality": "Rochefort",
-            "postalCode": "17300",
-            "addressRegion": "Charente-Maritime",
-            "addressCountry": "FR"
-        },
-        "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": 45.9377,
-            "longitude": -0.9609
-        },
-        "areaServed": {
-            "@type": "GeoCircle",
-            "geoMidpoint": {
-                "@type": "GeoCoordinates",
-                "latitude": 45.9377,
-                "longitude": -0.9609
-            },
-            "geoRadius": 50000
-        },
-        "serviceType": [
-            "Développement web",
-            "Création de sites internet",
-            "Applications SaaS",
-            "CRM sur-mesure",
-            "Développement Laravel",
-            "E-commerce"
-        ],
-        "priceRange": "€€",
-        "openingHours": "Mo-Sa 09:00-19:00",
-        "founder": {
-            "@type": "Person",
-            "name": "Développeur Kréyatik Studio"
-        },
-        "sameAs": [],
-        "hasOfferCatalog": {
-            "@type": "OfferCatalog",
-            "name": "Services développement web",
-            "itemListElement": [
-                {
-                    "@type": "Offer",
-                    "itemOffered": {
-                        "@type": "Service",
-                        "name": "Création site internet",
-                        "description": "Sites vitrine et e-commerce sur-mesure"
-                    }
-                },
-                {
-                    "@type": "Offer", 
-                    "itemOffered": {
-                        "@type": "Service",
-                        "name": "Applications SaaS",
-                        "description": "Développement d'applications web SaaS avec Laravel"
-                    }
-                },
-                {
-                    "@type": "Offer",
-                    "itemOffered": {
-                        "@type": "Service", 
-                        "name": "CRM sur-mesure",
-                        "description": "Systèmes de gestion client personnalisés"
-                    }
-                }
-            ]
-        }
-    }
-    </script>
-    
+
     <style>
         /* Hide public navigation on admin/client pages */
         body.admin-page .navbar,
@@ -138,7 +57,7 @@
         .admin-layout .mobile-nav {
             display: none !important;
         }
-        
+
         /* Override existing navbar styles and make it responsive */
         .site-wrapper .navbar {
             position: fixed !important;
@@ -155,7 +74,7 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2) !important;
             animation: none !important;
         }
-        
+
         .site-wrapper .navbar-container {
             display: flex !important;
             justify-content: space-between !important;
@@ -166,31 +85,31 @@
             min-height: 60px !important;
             box-sizing: border-box !important;
         }
-        
+
         /* Override default.css navbar padding */
         .site-wrapper .navbar {
             padding: 0 !important;
         }
-        
+
         /* Calculate exact navbar heights */
         .site-wrapper {
             /* Mobile: 0.875rem * 2 + min 32px content = ~46px, round to 48px */
             padding-top: 48px !important;
         }
-        
+
         /* Ensure no extra spacing */
         .site-wrapper > .site-content,
         .site-wrapper .main-page {
             margin-top: 0 !important;
             padding-top: 0 !important;
         }
-        
+
         /* Navbar scroll effect */
         .site-wrapper .navbar.scrolled {
             background: rgba(0, 0, 0, 0.95) !important;
             box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3) !important;
         }
-        
+
         /* Desktop navbar adjustments */
         @media (min-width: 1024px) {
             .site-wrapper .navbar-container {
@@ -198,12 +117,12 @@
                 height: 64px !important;
                 box-sizing: border-box !important;
             }
-            
+
             .site-wrapper {
                 /* Desktop: 1rem * 2 + content = 64px exact */
                 padding-top: 64px !important;
             }
-            
+
             /* Ensure desktop content starts immediately after navbar */
             .site-wrapper > .site-content,
             .site-wrapper .main-page,
@@ -213,7 +132,7 @@
                 padding-top: 0 !important;
             }
         }
-        
+
         /* Mobile elements */
         .site-wrapper .mobile-logo,
         .site-wrapper .mobile-menu-toggle {
@@ -221,7 +140,7 @@
             cursor: pointer;
             z-index: 50;
         }
-        
+
         /* Desktop navigation */
         .site-wrapper .desktop-nav {
             display: none;
@@ -232,34 +151,34 @@
             list-style: none;
             padding: 0;
         }
-        
+
         /* Mobile - show mobile elements, hide desktop nav */
         @media (max-width: 1023px) {
             .site-wrapper .navbar-container {
                 justify-content: space-between !important;
             }
-            
+
             .site-wrapper .mobile-logo,
             .site-wrapper .mobile-menu-toggle {
                 display: block !important;
             }
-            
+
             .site-wrapper .desktop-nav {
                 display: none !important;
             }
         }
-        
+
         /* Desktop - show centered desktop nav, hide mobile elements */
         @media (min-width: 1024px) {
             .site-wrapper .navbar-container {
                 justify-content: center !important;
             }
-            
+
             .site-wrapper .mobile-logo,
             .site-wrapper .mobile-menu-toggle {
                 display: none !important;
             }
-            
+
             .site-wrapper .desktop-nav {
                 display: flex !important;
                 gap: 2rem !important;
@@ -268,7 +187,7 @@
                 margin: 0 auto !important;
             }
         }
-        
+
         /* Ensure public mobile nav is properly scoped */
         .site-wrapper .mobile-nav {
             position: fixed;
@@ -282,15 +201,15 @@
             transform: translateY(-100%);
             transition: transform 0.3s ease-in-out;
         }
-        
+
         .site-wrapper .mobile-nav.active {
             transform: translateY(0);
         }
-        
+
         .site-wrapper .mobile-nav.hidden {
             transform: translateY(-100%);
         }
-        
+
         /* Only show mobile nav on small screens */
         @media (min-width: 1024px) {
             .site-wrapper .mobile-nav {
@@ -307,7 +226,7 @@
             script.async = true;
             script.src = 'https://www.googletagmanager.com/gtag/js?id=G-5WGQCL5M8S';
             document.head.appendChild(script);
-            
+
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
@@ -365,7 +284,31 @@
             </div>
         </div>
 
-        <div class="site-content">{!! $slot ?? '' !!}
-        
+        <div class="site-content">{!! $slot ?? '' !!}</div>
+
         <!-- Modern Cookie Consent -->
         <x-cookie-consent />
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile menu toggle
+        if (document.getElementById('menuToggle')) {
+            document.getElementById('menuToggle').addEventListener('click', function() {
+                const mobileMenu = document.getElementById('mobileMenu');
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                const mobileMenu = document.getElementById('mobileMenu');
+                if (mobileMenu) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
