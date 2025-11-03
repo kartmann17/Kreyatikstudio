@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 use RalphJSmit\Laravel\SEO\Support\HasSEO;
 use RalphJSmit\Laravel\SEO\Support\SEOData;
 
@@ -37,7 +38,7 @@ class Article extends Model
     public function getDynamicSEOData(): SEOData
     {
         $excerpt = $this->excerpt ?: strip_tags(substr($this->content, 0, 160));
-        
+
         return new SEOData(
             title: $this->title . ' - Blog',
             description: $this->meta_description ?: $excerpt,
@@ -50,8 +51,27 @@ class Article extends Model
         );
     }
 
-    public function getExcerptAttribute($value)
+    public function setContentAttribute($value): void
     {
-        return $value ?: strip_tags(substr($this->content, 0, 160)) . '...';
+        $this->attributes['content'] = html_entity_decode($value ?? '', ENT_QUOTES | ENT_HTML5, 'UTF-8');
     }
+
+    public function getPlainTextAttribute(): string
+    {
+        $decoded = html_entity_decode($this->attributes['content'] ?? '', ENT_QUOTES | ENT_HTML5, 'UTF-8');
+        $decoded = str_replace("\xC2\xA0", ' ', $decoded); // NBSP → espace normal
+        return trim(strip_tags($decoded));
+    }
+
+    public function getExcerptAttribute($value): string
+    {
+        if (!empty($value)) {
+            // Si tu as saisi un excerpt manuel en BO
+            $manual = html_entity_decode($value, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+            return Str::limit(str_replace("\xC2\xA0", ' ', strip_tags($manual)), 160);
+        }
+
+        return Str::limit($this->plain_text, 160);
+    }
+
 }

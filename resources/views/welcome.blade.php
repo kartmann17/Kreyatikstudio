@@ -1,4 +1,4 @@
-<x-header>
+<x-header :seoData="$SEOData ?? null">
 <x-slot name="slot">
 <main class="main-page">
 

@@ -84,9 +84,49 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
+     * Récupère les projets dont l'utilisateur est responsable
+     */
+    public function projects()
+    {
+        return $this->hasMany(Project::class);
+    }
+
+    /**
+     * Récupère les tâches assignées à l'utilisateur
+     */
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
+
+    /**
+     * Récupère les entrées de temps de l'utilisateur
+     */
+    public function timeLogs()
+    {
+        return $this->hasMany(TimeLog::class);
+    }
+
+    /**
+     * Récupère les tickets créés par l'utilisateur
+     */
+    public function createdTickets()
+    {
+        return $this->hasMany(Ticket::class, 'created_by');
+    }
+
+    /**
+     * Récupère les tickets assignés à l'utilisateur
+     */
+    public function assignedTickets()
+    {
+        return $this->hasMany(Ticket::class, 'assigned_to');
+    }
+
+    /**
      * Retourne l'URL de l'image de profil
      */
-    public function getAvatarUrl()
+    public function getAvatarUrl(): string
     {
         // Utiliser une URL d'avatar générique de UI Avatars
         return 'https://ui-avatars.com/api/?name=' . urlencode($this->name) . '&color=7F9CF5&background=EBF4FF';

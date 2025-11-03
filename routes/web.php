@@ -20,6 +20,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\PortfolioPublicController;
 use App\Http\Controllers\LegalController;
+use App\Http\Controllers\ContestController;
 
 // Contrôleurs d'administration
 use App\Http\Controllers\Admin\DashboardController;
@@ -37,6 +38,7 @@ use App\Http\Controllers\Admin\TicketController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ArticleController;
+use App\Http\Controllers\Admin\ContestSubmissionController;
 
 // Route API pour publication d'article depuis n8n
 use App\Http\Controllers\Api\ArticleController as ApiArticleController;
@@ -84,6 +86,13 @@ Route::get('/Contact', [LegalController::class, 'contact'])->name('contact');
 Route::post('/contact/send', [ContactController::class, 'send'])
     ->middleware('throttle:3,60') // 3 tentatives par heure par IP
     ->name('send.email');
+
+// Concours (actif du 13/10/2025 au 18/11/2025)
+Route::get('/concours', [ContestController::class, 'index'])->name('concours');
+Route::post('/concours', [ContestController::class, 'store'])->name('concours.store');
+
+// Résultat du concours (visible à partir du 17/11/2025)
+Route::get('/concours/resultat', [ContestController::class, 'results'])->name('concours.resultat');
 
 // Pages E-E-A-T
 Route::get('/a-propos', [LegalController::class, 'aPropos'])->name('a-propos');
@@ -353,6 +362,18 @@ Route::middleware(['auth', 'verified', 'role:admin,staff'])->prefix('admin')->na
         Route::post('/{id}/status', [TicketController::class, 'changeStatus'])->name('status.change');
         Route::post('/{id}/assign', [TicketController::class, 'assign'])->name('assign');
     });
+
+    /*
+    |--------------------------------------------------------------------------
+    | GESTION DES PARTICIPATIONS AU CONCOURS
+    |--------------------------------------------------------------------------
+    */
+    Route::prefix('contest-submissions')->name('contest-submissions.')->group(function () {
+        Route::get('/', [ContestSubmissionController::class, 'index'])->name('index');
+        Route::get('/export', [ContestSubmissionController::class, 'export'])->name('export');
+        Route::get('/{id}', [ContestSubmissionController::class, 'show'])->name('show');
+        Route::delete('/{id}', [ContestSubmissionController::class, 'destroy'])->name('destroy');
+    });
 });
 
 /*
@@ -361,7 +382,7 @@ Route::middleware(['auth', 'verified', 'role:admin,staff'])->prefix('admin')->na
 |--------------------------------------------------------------------------
 */
 
-Route::middleware(['auth', 'verified', 'role:client'])->prefix('client')->name('client.')->group(function () {
+Route::middleware(['auth', 'verified', 'role:client', 'ensure.client'])->prefix('client')->name('client.')->group(function () {
 
     // Dashboard client
     Route::get('/dashboard', [App\Http\Controllers\Client\DashboardController::class, 'index'])->name('dashboard');
@@ -399,7 +420,6 @@ Route::middleware(['auth', 'verified', 'role:client'])->prefix('client')->name('
         Route::post('/', [App\Http\Controllers\Client\TicketController::class, 'store'])->name('store');
         Route::get('/{id}', [App\Http\Controllers\Client\TicketController::class, 'show'])->name('show');
         Route::post('/{id}/comment', [App\Http\Controllers\Client\TicketController::class, 'addComment'])->name('comment.add');
-        Route::post('/{id}/reply', [App\Http\Controllers\Client\TicketController::class, 'addComment'])->name('reply');
         Route::post('/{id}/close', [App\Http\Controllers\Client\TicketController::class, 'close'])->name('close');
         Route::get('/attachment/{id}', [App\Http\Controllers\Client\TicketController::class, 'downloadAttachment'])->name('attachment.download');
     });
@@ -412,7 +432,7 @@ Route::middleware(['auth', 'verified', 'role:client'])->prefix('client')->name('
     */
 Route::get('/sitemap.xml', [SitemapController::class, 'index']);
 
-// Route API pour publication d'article depuis n8n - SÉCURISÉE
+// Route API pour publication d'article depuis n8n - SÉCURISÉE (admin/staff uniquement)
 Route::post('/api/articles/publish', [ApiArticleController::class, 'publish'])
-    ->middleware(['throttle:10,1', 'auth:sanctum'])
+    ->middleware(['throttle:10,1', 'auth:sanctum', 'role:admin,staff'])
     ->name('api.articles.publish');

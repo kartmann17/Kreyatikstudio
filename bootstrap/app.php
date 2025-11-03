@@ -5,6 +5,8 @@ use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use App\Http\Middleware\CheckRole;
 use App\Http\Middleware\SecurityHeaders;
+use App\Http\Middleware\EnsureUserHasClient;
+use App\Http\Middleware\PerformanceHeaders;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -16,11 +18,14 @@ return Application::configure(basePath: dirname(__DIR__))
         // Middleware global de sécurité
         $middleware->web(append: [
             SecurityHeaders::class,
+            // PerformanceHeaders désactivé en local (conflit compression avec Nginx/Apache)
         ]);
-        
+
         $middleware->alias([
             'role' => CheckRole::class,
             'security.headers' => SecurityHeaders::class,
+            'ensure.client' => EnsureUserHasClient::class,
+            'performance.headers' => PerformanceHeaders::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

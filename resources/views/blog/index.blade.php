@@ -1,4 +1,4 @@
-<x-header />
+<x-header :seoData="$SEOData ?? null" />
 
 <main class="min-h-screen flex flex-col">
 <section class="bg-gradient-to-b from-gray-50 to-white py-16 flex-1">

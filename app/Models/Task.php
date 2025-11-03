@@ -41,12 +41,12 @@ class Task extends Model
     protected $appends = ['status_label'];
 
     /**
-     * Les statuts possibles pour une tâche
+     * Les statuts possibles pour une tâche (correspondant à la DB)
      */
-    const STATUS_TODO = 'todo';
-    const STATUS_IN_PROGRESS = 'in_progress';
-    const STATUS_REVIEW = 'review';
-    const STATUS_DONE = 'done';
+    const STATUS_TODO = 'a-faire';
+    const STATUS_IN_PROGRESS = 'en-cours';
+    const STATUS_REVIEW = 'a-tester';
+    const STATUS_DONE = 'termine';
 
     /**
      * Les priorités possibles pour une tâche
@@ -116,9 +116,9 @@ class Task extends Model
         $this->attributes['status'] = $value;
         
         // Mise à jour automatique du pourcentage selon le statut
-        if ($value == 'a-faire') {
+        if ($value == self::STATUS_TODO) {
             $this->attributes['progress'] = 0;
-        } elseif ($value == 'termine') {
+        } elseif ($value == self::STATUS_DONE) {
             $this->attributes['progress'] = 100;
         }
     }
@@ -126,15 +126,15 @@ class Task extends Model
     /**
      * Obtient le libellé du statut
      */
-    public function getStatusLabelAttribute()
+    public function getStatusLabelAttribute(): string
     {
         $labels = [
-            'a-faire' => 'À faire',
-            'en-cours' => 'En cours',
-            'a-tester' => 'À tester',
-            'termine' => 'Terminé'
+            self::STATUS_TODO => 'À faire',
+            self::STATUS_IN_PROGRESS => 'En cours',
+            self::STATUS_REVIEW => 'À tester',
+            self::STATUS_DONE => 'Terminé'
         ];
-        
+
         return $labels[$this->status] ?? $this->status;
     }
 

@@ -54,9 +54,24 @@ class Ticket extends Model
     {
         parent::boot();
 
-        // Génération automatique du numéro de ticket lors de la création
+        // Génération automatique du numéro de ticket séquentiel lors de la création
         static::creating(function ($ticket) {
-            $ticket->ticket_number = 'TIK-' . date('Ym') . '-' . str_pad(random_int(1, 9999), 4, '0', STR_PAD_LEFT);
+            // Récupérer le dernier ticket du mois en cours
+            $currentMonth = date('Ym');
+            $lastTicket = static::where('ticket_number', 'like', "TIK-{$currentMonth}-%")
+                ->orderByRaw('CAST(SUBSTRING(ticket_number, -4) AS UNSIGNED) DESC')
+                ->first();
+
+            // Calculer le prochain numéro
+            if ($lastTicket) {
+                $lastNumber = (int) substr($lastTicket->ticket_number, -4);
+                $nextNumber = $lastNumber + 1;
+            } else {
+                $nextNumber = 1;
+            }
+
+            // Générer le numéro avec padding
+            $ticket->ticket_number = 'TIK-' . $currentMonth . '-' . str_pad($nextNumber, 4, '0', STR_PAD_LEFT);
         });
     }
 

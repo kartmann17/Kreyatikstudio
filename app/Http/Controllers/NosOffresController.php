@@ -25,10 +25,12 @@ class NosOffresController extends Controller
             'canonical_url' => route('nos-offres'),
         ]);
 
-        // Récupération des plans tarifaires actifs, triés par ordre
-        $pricingPlans = PricingPlan::where('is_active', true)
-            ->orderBy('order')
-            ->get();
+        // Récupération des plans tarifaires avec cache de 1 heure
+        $pricingPlans = Cache::remember('pricing.plans', 3600, function () {
+            return PricingPlan::where('is_active', true)
+                ->orderBy('order')
+                ->get();
+        });
 
         return view('nosoffres.index', compact('SEOData', 'pricingPlans'));
     }

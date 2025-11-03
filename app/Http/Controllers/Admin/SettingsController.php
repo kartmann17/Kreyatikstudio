@@ -157,7 +157,8 @@ class SettingsController extends Controller
                 'title' => $validated['site_name'],
                 'description' => $validated['default_description'],
                 'keywords' => $validated['default_keywords'],
-                'image' => $currentImagePath ? asset('storage/' . $currentImagePath) : ($settings->default_image ? asset('storage/' . $settings->default_image) : null),
+                'image' => $currentImagePath ? secure_asset('storage/' . $currentImagePath)
+    : ($settings->default_image ? secure_asset('storage/' . $settings->default_image) : null),
                 'locale' => $validated['locale'],
                 'site_name' => $validated['site_name'],
                 'author' => config('app.name'),
@@ -175,7 +176,10 @@ class SettingsController extends Controller
             config(['seo.site_name' => $validated['site_name']]);
             config(['seo.default_description' => $validated['default_description']]);
             config(['seo.default_keywords' => $validated['default_keywords']]);
-            config(['seo.default_image' => $currentImagePath ? asset('storage/' . $currentImagePath) : ($settings->default_image ? asset('storage/' . $settings->default_image) : null)]);
+            config(['seo.default_image' => $currentImagePath
+    ? secure_asset('storage/' . $currentImagePath)
+    : ($settings->default_image ? secure_asset('storage/' . $settings->default_image) : null)
+]);
             config(['seo.locale' => $validated['locale']]);
             config(['seo.social_facebook' => $validated['social_facebook']]);
             config(['seo.social_twitter' => $validated['social_twitter']]);
@@ -364,7 +368,7 @@ class SettingsController extends Controller
                 'author' => $settings->site_name,
                 'robots' => 'index, follow',
                 'canonical_url' => url($url),
-                'image' => $settings->default_image ? asset('storage/' . $settings->default_image) : null,
+                'image' => $settings->default_image ? secure_asset('storage/' . $settings->default_image) : null,
                 'locale' => $settings->locale,
                 'site_name' => $settings->site_name,
                 'keywords' => $settings->default_keywords

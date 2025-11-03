@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="robots" content="noindex, nofollow">
 
     <title>@yield('title', 'Dashboard') - {{ config('app.name', 'Kréyatik Studio') }}</title>
 
@@ -267,6 +268,11 @@
                                     <i class="fas fa-ticket-alt mr-3 text-gray-500 group-hover:text-gray-700 {{ request()->routeIs('admin.tickets.*') ? 'text-blue-600' : '' }}"></i>
                                     Tickets Support
                                     <span id="tickets-notification-badge" class="ml-auto bg-red-500 text-white text-xs rounded-full px-2 py-1 hidden"></span>
+                                </a>
+
+                                <a href="{{ route('admin.contest-submissions.index') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 rounded-lg hover:bg-gray-100 group {{ request()->routeIs('admin.contest-submissions.*') ? 'bg-blue-50 text-blue-700 border-r-2 border-blue-700' : '' }}">
+                                    <i class="fas fa-trophy mr-3 text-gray-500 group-hover:text-gray-700 {{ request()->routeIs('admin.contest-submissions.*') ? 'text-blue-600' : '' }}"></i>
+                                    Concours
                                 </a>
                             </div>
                         </div>

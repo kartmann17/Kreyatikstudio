@@ -1,0 +1,159 @@
+═══════════════════════════════════════════════════════════
+🚨 COMMANDES URGENTES PRODUCTION - COPIER-COLLER
+═══════════════════════════════════════════════════════════
+
+SITUATION : Site kreyatikstudio.fr inaccessible (ParseError)
+ACTION : Nettoyer cache Blade sur serveur de production
+
+
+═══════════════════════════════════════════════════════════
+📋 OPTION 1 : VIA SSH (RECOMMANDÉ - 2 MINUTES)
+═══════════════════════════════════════════════════════════
+
+1️⃣ CONNEXION SSH
+─────────────────────────────────────────────────────────
+ssh votre-user@kreyatikstudio.fr
+
+# Si besoin d'un port spécifique :
+ssh -p 2222 votre-user@kreyatikstudio.fr
+
+
+2️⃣ ALLER DANS DOSSIER SITE
+─────────────────────────────────────────────────────────
+cd /var/www/kreyatikstudio.fr
+
+# OU (si autre chemin) :
+cd /home/votre-user/kreyatikstudio.fr
+cd /var/www/html/kreyatikstudio.fr
+
+# Vérifier qu'on est au bon endroit :
+ls -la artisan
+
+
+3️⃣ NETTOYER TOUS LES CACHES (COPIER TOUT LE BLOC)
+─────────────────────────────────────────────────────────
+php artisan view:clear && \
+php artisan cache:clear && \
+php artisan config:clear && \
+php artisan route:clear && \
+rm -rf storage/framework/views/*.php && \
+php artisan config:cache && \
+echo "✅ Cache nettoyé avec succès!"
+
+
+4️⃣ VÉRIFIER PERMISSIONS (SI ERREUR PERMISSION)
+─────────────────────────────────────────────────────────
+chmod -R 775 storage && \
+chmod -R 775 bootstrap/cache && \
+echo "✅ Permissions OK!"
+
+# Si besoin d'utiliser sudo :
+sudo chmod -R 775 storage
+sudo chmod -R 775 bootstrap/cache
+
+
+5️⃣ TESTER LE SITE
+─────────────────────────────────────────────────────────
+curl -I https://kreyatikstudio.fr
+
+# Doit afficher : HTTP/2 200
+# Si c'est le cas → ✅ RÉPARÉ !
+
+
+═══════════════════════════════════════════════════════════
+📋 OPTION 2 : VIA SCRIPT D'URGENCE (5 MINUTES)
+═══════════════════════════════════════════════════════════
+
+Si vous n'avez PAS d'accès SSH :
+
+1️⃣ UPLOADER LE FICHIER
+─────────────────────────────────────────────────────────
+- Fichier à uploader : public/clear-cache-emergency.php
+- Destination FTP : /public/clear-cache-emergency.php
+
+
+2️⃣ EXÉCUTER DANS NAVIGATEUR
+─────────────────────────────────────────────────────────
+Ouvrir cette URL :
+
+https://kreyatikstudio.fr/clear-cache-emergency.php?key=votre-mot-de-passe-secret-2025
+
+Attendre message : "✅ NETTOYAGE TERMINÉ!"
+
+
+3️⃣ SUPPRIMER LE FICHIER (SÉCURITÉ!)
+─────────────────────────────────────────────────────────
+Via FTP : Supprimer clear-cache-emergency.php
+
+OU via SSH :
+rm public/clear-cache-emergency.php
+
+
+═══════════════════════════════════════════════════════════
+📋 OPTION 3 : COMMANDE ULTRA-RAPIDE (1 LIGNE)
+═══════════════════════════════════════════════════════════
+
+ssh votre-user@kreyatikstudio.fr "cd /var/www/kreyatikstudio.fr && php artisan view:clear && php artisan cache:clear && rm -rf storage/framework/views/*.php && php artisan config:cache"
+
+
+═══════════════════════════════════════════════════════════
+🔍 VÉRIFICATION POST-FIX
+═══════════════════════════════════════════════════════════
+
+1. Ouvrir : https://kreyatikstudio.fr
+   → Doit afficher la homepage ✅
+
+2. Tester : https://kreyatikstudio.fr/Contact
+   → Doit afficher la page contact ✅
+
+3. Vérifier logs :
+   tail -20 storage/logs/laravel.log
+   → Pas d'erreur ✅
+
+
+═══════════════════════════════════════════════════════════
+❌ SI ERREUR "PERMISSION DENIED"
+═══════════════════════════════════════════════════════════
+
+# Ajouter sudo avant chaque commande :
+sudo php artisan view:clear
+sudo php artisan cache:clear
+sudo rm -rf storage/framework/views/*.php
+
+# Corriger propriétaire (remplacer www-data par votre user) :
+sudo chown -R www-data:www-data storage
+sudo chown -R www-data:www-data bootstrap/cache
+
+
+═══════════════════════════════════════════════════════════
+❌ SI ERREUR "PHP NOT FOUND"
+═══════════════════════════════════════════════════════════
+
+# Utiliser chemin complet PHP :
+/usr/bin/php artisan view:clear
+/usr/bin/php artisan cache:clear
+
+# OU trouver PHP :
+which php
+
+
+═══════════════════════════════════════════════════════════
+🎉 CONFIRMATION SUCCESS
+═══════════════════════════════════════════════════════════
+
+✅ Homepage accessible
+✅ Pas d'erreur 500
+✅ Formulaire contact fonctionne
+✅ Google Analytics charge
+✅ Toutes pages OK
+
+→ SITE RÉPARÉ!
+
+
+═══════════════════════════════════════════════════════════
+📞 BESOIN D'AIDE ?
+═══════════════════════════════════════════════════════════
+
+Documentation complète : FIX-PRODUCTION-EMERGENCY.md
+
+Contact hébergeur si problème permissions/accès

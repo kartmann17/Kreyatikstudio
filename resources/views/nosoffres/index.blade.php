@@ -1,4 +1,4 @@
-<x-header />
+<x-header :seoData="$SEOData ?? null" />
 <main class="site-content" role="main">
 
     <section class="pricing-section" aria-label="Nos formules d'abonnement">

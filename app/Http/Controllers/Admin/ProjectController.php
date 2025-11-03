@@ -29,10 +29,12 @@ class ProjectController extends Controller
     {
         // Récupérer les clients pour le formulaire d'ajout
         $clients = Client::all();
-        
-        // Récupérer les projets avec leur client
-        $projects = Project::with('client')->get();
-        
+
+        // Récupérer les projets avec toutes les relations nécessaires + pagination
+        $projects = Project::with(['client', 'user', 'tasks', 'timeLogs'])
+            ->orderBy('created_at', 'desc')
+            ->paginate(20);
+
         return view('admin.projects.index', compact('projects', 'clients'));
     }
     

@@ -5,52 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    @if(isset($SEOData))
-        <title>{{ $SEOData->title }} | {{ config('app.name') }}</title>
-        <meta name="description" content="{{ $SEOData->description }}">
-        <meta name="author" content="{{ $SEOData->author }}">
-        <meta name="robots" content="{{ $SEOData->robots }}">
-        <link rel="canonical" href="{{ $SEOData->canonical_url }}" />
-    @else
-        <title>{{ config('app.name') }} - Développeur Web Freelance Rochefort | Laravel, SaaS, CRM</title>
-        <meta name="description" content="Développeur web freelance à Rochefort spécialisé Laravel, SaaS et CRM sur-mesure. Création de sites internet professionnels en Charente-Maritime. Devis gratuit sous 24h.">
-        <meta name="robots" content="index, follow">
-        <link rel="canonical" href="{{ url()->current() }}" />
-    @endif
+    @php
+        $seo      = $SEOData ?? null;
+        $title    = $seo->title ?? (config('app.name') . ' Développeur Web Freelance Rochefort | Laravel, E-commerce & Applications');
+        $desc     = $seo->description ?? 'Développeur web freelance à Rochefort : création de sites internet, e-commerce & applications Laravel sur-mesure. Expert SEO, solutions digitales performantes. Devis gratuit.';
+        $robots   = $seo->robots ?? 'index, follow';
+        $type     = $seo->type ?? 'website';
+        $canonical= $seo->canonical_url ?? url()->current();
+
+
+        $rawImage = $seo->image ?? null;
+        $ogImage  = $rawImage
+            ? (Str::startsWith($rawImage, ['http://','https://']) ? $rawImage : secure_url(ltrim($rawImage,'/')))
+            : secure_asset('images/STUDIOcolibri.png');
+    @endphp
+
+    <title>{{ $title }}{{ isset($SEOData) ? ' | ' . config('app.name') : '' }}</title>
+    <meta name="description" content="{{ $desc }}">
+    <meta name="robots" content="{{ $robots }}">
+    <link rel="canonical" href="{{ $canonical }}" />
 
     <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="{{ isset($SEOData) ? $SEOData->type : 'website' }}">
-    <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:title" content="{{ isset($SEOData) ? $SEOData->title : config('app.name') . ' - Développeur Web Freelance Rochefort' }}">
-    <meta property="og:description" content="{{ isset($SEOData) ? $SEOData->description : 'Développeur web freelance à Rochefort spécialisé Laravel, SaaS et CRM sur-mesure en Charente-Maritime' }}">
-    <meta property="og:image" content="{{ isset($SEOData) ? $SEOData->image : asset('images/default-og.jpg') }}">
+    <meta property="og:type" content="{{ $type }}">
+    <meta property="og:url" content="{{ request()->fullUrl() }}">
+    <meta property="og:title" content="{{ $title }}">
+    <meta property="og:description" content="{{ $desc }}">
+    <meta property="og:image" content="{{ $ogImage }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="{{ config('app.name') }}">
+    <meta property="og:locale" content="fr_FR">
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:title" content="{{ isset($SEOData) ? $SEOData->title : config('app.name') }}">
-    <meta property="twitter:description" content="{{ isset($SEOData) ? $SEOData->description : 'Développeur web freelance Rochefort - Laravel, SaaS, CRM sur-mesure' }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $title }}">
+    <meta name="twitter:description" content="{{ $desc }}">
+    <meta name="twitter:image" content="{{ $ogImage }}">
 
     <!-- SEO Local Rochefort -->
     <meta name="geo.region" content="FR-17">
     <meta name="geo.placename" content="Rochefort">
     <meta name="geo.position" content="45.9377;-0.9609">
     <meta name="ICBM" content="45.9377,-0.9609">
-    <meta name="author" content="Kréyatik Studio - Développeur web freelance Rochefort">
-    <meta name="keywords" content="développeur web Rochefort, création site internet Charente-Maritime, développeur Laravel Rochefort, freelance web Rochefort, SaaS Rochefort, CRM sur mesure">
+    <meta name="keywords" content="développeur web freelance rochefort, création site internet rochefort, développeur laravel rochefort, freelance web charente-maritime, développeur application rochefort, site e-commerce rochefort, développeur php rochefort, kreyatik studio, lionel blanchet">
 
     <!-- Fonts et CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Macondo&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ secure_asset('favicon/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ secure_asset('favicon/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ secure_asset('favicon/favicon-16x16.png') }}">
+
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+    @stack('meta')
+
     <style>
-        /* Hide public navigation on admin/client pages */
+
         body.admin-page .navbar,
         body.client-page .navbar,
         .admin-layout .navbar,
@@ -58,7 +73,7 @@
             display: none !important;
         }
 
-        /* Override existing navbar styles and make it responsive */
+
         .site-wrapper .navbar {
             position: fixed !important;
             top: 0 !important;
@@ -86,14 +101,14 @@
             box-sizing: border-box !important;
         }
 
-        /* Override default.css navbar padding */
+
         .site-wrapper .navbar {
             padding: 0 !important;
         }
 
         /* Calculate exact navbar heights */
         .site-wrapper {
-            /* Mobile: 0.875rem * 2 + min 32px content = ~46px, round to 48px */
+
             padding-top: 48px !important;
         }
 
@@ -216,6 +231,60 @@
                 display: none !important;
             }
         }
+
+        /* Contest link blinking animation */
+        @keyframes blink-glow {
+            0%, 100% {
+                opacity: 1;
+                text-shadow: 0 0 10px rgba(255, 215, 0, 0.8),
+                             0 0 20px rgba(255, 215, 0, 0.5),
+                             0 0 30px rgba(255, 215, 0, 0.3);
+            }
+            50% {
+                opacity: 0.7;
+                text-shadow: 0 0 5px rgba(255, 215, 0, 0.4),
+                             0 0 10px rgba(255, 215, 0, 0.2);
+            }
+        }
+
+        .contest-link {
+            animation: blink-glow 2s ease-in-out infinite;
+            font-weight: 600 !important;
+            color: #FFD700 !important;
+        }
+
+        .contest-link:hover {
+            animation: none;
+            color: #FFA500 !important;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 1);
+        }
+
+        /* Results link blinking animation (gold) */
+        @keyframes blink-gold {
+            0%, 100% {
+                opacity: 1;
+                text-shadow: 0 0 10px rgba(251, 191, 36, 0.8),
+                             0 0 20px rgba(251, 191, 36, 0.5),
+                             0 0 30px rgba(251, 191, 36, 0.3);
+            }
+            50% {
+                opacity: 0.7;
+                text-shadow: 0 0 5px rgba(251, 191, 36, 0.4),
+                             0 0 10px rgba(251, 191, 36, 0.2);
+            }
+        }
+
+        .results-link {
+            animation: blink-gold 2s ease-in-out infinite;
+            font-weight: 600 !important;
+            color: #fbbf24 !important;
+        }
+
+        .results-link:hover {
+            animation: none;
+            color: #f59e0b !important;
+            text-shadow: 0 0 15px rgba(251, 191, 36, 1);
+        }
     </style>
 
     <!-- Google Analytics - Loaded conditionally based on consent -->
@@ -265,6 +334,21 @@
                     <li class="nav-item"><a class="nav-link" href="/">Accueil</a></li>
                     <li class="nav-item"><a class="nav-link" href="/NosOffres">Nos Offres</a></li>
                     <li class="nav-item"><a class="nav-link" href="/Portfolio">Portfolio</a></li>
+                    @php
+                        $now = \Carbon\Carbon::now();
+                        $contestEnabled = config('contest.enabled', false);
+                        $contestStart = \Carbon\Carbon::parse(config('contest.start_date'));
+                        $contestEnd = \Carbon\Carbon::parse(config('contest.end_date'))->endOfDay();
+                        $contestActive = $contestEnabled && $now->between($contestStart, $contestEnd);
+                        $resultsStartDate = \Carbon\Carbon::parse(config('contest.results_date'));
+                        $resultsEndDate = \Carbon\Carbon::parse(config('contest.end_date'))->addDays(10)->endOfDay();
+                        $resultsActive = $contestEnabled && $now->between($resultsStartDate, $resultsEndDate);
+                    @endphp
+                    @if($contestActive)
+                        <li class="nav-item"><a class="nav-link contest-link" href="/concours">🎉 Concours</a></li>
+                    @elseif($resultsActive)
+                        <li class="nav-item"><a class="nav-link results-link" href="/concours/resultat">🏆 Résultat</a></li>
+                    @endif
                     <li class="nav-item"><a class="nav-link" href="/Contact">Contact</a></li>
                     <li class="nav-item"><a class="nav-link" href="/login">Connexion</a></li>
                     <li class="nav-item"><a class="nav-link" href="/register">Inscription</a></li>
@@ -278,6 +362,11 @@
                 <a href="/" class="nav-link mobile-nav-link">Accueil</a>
                 <a href="/NosOffres" class="nav-link mobile-nav-link">Nos Offres</a>
                 <a href="/Portfolio" class="nav-link mobile-nav-link">Portfolio</a>
+                @if($contestActive ?? false)
+                    <a href="/concours" class="nav-link mobile-nav-link contest-link">🎉 Concours</a>
+                @elseif($resultsActive ?? false)
+                    <a href="/concours/resultat" class="nav-link mobile-nav-link results-link">🏆 Résultat</a>
+                @endif
                 <a href="/Contact" class="nav-link mobile-nav-link">Contact</a>
                 <a href="/login" class="nav-link mobile-nav-link">Connexion</a>
                 <a href="/register" class="nav-link mobile-nav-link">Inscription</a>

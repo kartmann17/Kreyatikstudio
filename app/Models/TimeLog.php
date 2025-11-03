@@ -90,20 +90,27 @@ class TimeLog extends Model
     }
     
     /**
-     * Obtient la durée formatée
+     * Obtient la durée formatée (depuis secondes)
      *
      * @return string
      */
-    public function getFormattedDurationAttribute()
+    public function getFormattedDurationAttribute(): string
     {
-        $minutes = $this->duration % 60;
-        $hours = floor($this->duration / 60);
-        
+        // Convertir secondes en heures, minutes, secondes
+        $totalMinutes = floor($this->duration / 60);
+        $seconds = $this->duration % 60;
+        $hours = floor($totalMinutes / 60);
+        $minutes = $totalMinutes % 60;
+
         if ($hours > 0) {
             return $hours . 'h ' . str_pad($minutes, 2, '0', STR_PAD_LEFT) . 'm';
         }
-        
-        return $minutes . 'm';
+
+        if ($minutes > 0) {
+            return $minutes . 'm';
+        }
+
+        return $seconds . 's';
     }
     
     /**

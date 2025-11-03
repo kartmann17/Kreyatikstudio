@@ -20,12 +20,14 @@ class WelcomeController extends Controller
     {
         $settings = GlobalSettings::getInstance();
 
-        // Récupérer les 2 derniers articles publiés pour la page d'accueil
-        $latestArticles = Article::where('is_published', true)
-            ->where('published_at', '<=', now())
-            ->orderBy('published_at', 'desc')
-            ->limit(2)
-            ->get();
+        // Récupérer les 2 derniers articles publiés avec cache de 15 minutes
+        $latestArticles = \Cache::remember('homepage.articles', 900, function () {
+            return Article::where('is_published', true)
+                ->where('published_at', '<=', now())
+                ->orderBy('published_at', 'desc')
+                ->limit(2)
+                ->get();
+        });
 
         // Utiliser le SEOService pour générer les données SEO dynamiquement
         $SEOData = $this->seoService->generatePageSEO('home', [

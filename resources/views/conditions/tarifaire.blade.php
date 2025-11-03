@@ -1,4 +1,4 @@
-<x-header />
+<x-header :seoData="$SEOData ?? null" />
 
 <main class="min-h-screen">
   <!-- Hero Section -->

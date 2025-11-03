@@ -1,4 +1,4 @@
-<x-header />
+<x-header :seoData="$SEOData ?? null" />
 
 <main class="site-content" role="main">
   
@@ -360,7 +360,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 successMessage.classList.remove('hidden');
                 successMessage.classList.add('show');
                 form.reset();
-                
+
+                // Track GA4 event
+                if (typeof window.trackEvent === 'function') {
+                    window.trackEvent('contact_form_submit', {
+                        'event_category': 'Contact',
+                        'event_label': 'Form Submission Success',
+                        'value': 1
+                    });
+                }
+
                 // Masquer le message de succès après 5 secondes
                 setTimeout(() => {
                     successMessage.classList.add('hidden');

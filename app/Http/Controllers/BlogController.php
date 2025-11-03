@@ -33,13 +33,15 @@ class BlogController extends Controller
             abort(404);
         }
 
-        // Récupérer les articles similaires (autres articles publiés, excluant l'article actuel)
-        $similarArticles = Article::where('is_published', true)
-            ->where('id', '!=', $article->id)
-            ->where('published_at', '<=', now())
-            ->orderBy('published_at', 'desc')
-            ->limit(3)
-            ->get();
+        // Récupérer les articles similaires avec cache de 30 minutes
+        $similarArticles = \Cache::remember("article.{$article->id}.similar", 1800, function () use ($article) {
+            return Article::where('is_published', true)
+                ->where('id', '!=', $article->id)
+                ->where('published_at', '<=', now())
+                ->orderBy('published_at', 'desc')
+                ->limit(3)
+                ->get();
+        });
 
         // Calculer le temps de lecture estimé (environ 200 mots par minute)
         $wordCount = str_word_count(strip_tags($article->content));

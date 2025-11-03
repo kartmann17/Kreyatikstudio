@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Models\Task;
 use App\Models\Project;
 
@@ -96,8 +97,12 @@ class TaskController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'project_id' => 'required|integer',
-            'priority' => 'required|string|in:low,medium,high,urgent',
-            'status' => 'required|string|in:a-faire,en-cours,a-tester,termine',
+            'priority' => ['required', 'string', Rule::in([
+                Task::PRIORITY_LOW, Task::PRIORITY_MEDIUM, Task::PRIORITY_HIGH, Task::PRIORITY_URGENT
+            ])],
+            'status' => ['required', 'string', Rule::in([
+                Task::STATUS_TODO, Task::STATUS_IN_PROGRESS, Task::STATUS_REVIEW, Task::STATUS_DONE
+            ])],
             'due_date' => 'nullable|date',
             'progress' => 'required|integer|min:0|max:100',
         ]);
@@ -142,8 +147,12 @@ class TaskController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'project_id' => 'required|integer',
-            'priority' => 'required|string|in:low,medium,high,urgent',
-            'status' => 'required|string|in:a-faire,en-cours,a-tester,termine',
+            'priority' => ['required', 'string', Rule::in([
+                Task::PRIORITY_LOW, Task::PRIORITY_MEDIUM, Task::PRIORITY_HIGH, Task::PRIORITY_URGENT
+            ])],
+            'status' => ['required', 'string', Rule::in([
+                Task::STATUS_TODO, Task::STATUS_IN_PROGRESS, Task::STATUS_REVIEW, Task::STATUS_DONE
+            ])],
             'due_date' => 'nullable|date',
             'progress' => 'required|integer|min:0|max:100',
         ]);

@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /
+
+# Ce sous-domaine est un webmail privé
+# Rien ne doit être indexé par Google
+#
+# À UPLOADER SUR: mail.kreyatikstudio.fr/robots.txt
+# Via FTP, SSH ou panel hébergeur

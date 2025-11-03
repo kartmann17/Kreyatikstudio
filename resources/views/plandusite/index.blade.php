@@ -1,4 +1,4 @@
-<x-header />
+<x-header :seoData="$SEOData ?? null" />
 
 <section class="min-h-[80vh] bg-gradient-to-b from-gray-50 to-white py-16 flex items-center justify-center">
     <div class="container mx-auto px-4">

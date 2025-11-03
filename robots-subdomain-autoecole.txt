@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /
+
+# Ce sous-domaine est une application privée
+# Rien ne doit être indexé par Google
+#
+# À UPLOADER SUR: autoecole.kreyatikstudio.fr/robots.txt
+# Via FTP, SSH ou panel hébergeur

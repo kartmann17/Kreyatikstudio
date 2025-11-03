@@ -116,26 +116,20 @@ class PricingPlan extends Model
     }
 
     /**
-     * Calculer l'économie annuelle (par rapport au paiement mensuel)
-     * 
-     * @return float
+     * Calculer l'économie annuelle (montant + pourcentage + formaté)
+     *
+     * @return array
      */
-    public function getYearlySavingAttribute()
+    public function getYearlySavingsAttribute(): array
     {
-        return ($this->monthly_price * 12) - $this->annual_price;
-    }
+        $monthlyTotal = $this->monthly_price * 12;
+        $savings = $monthlyTotal - $this->annual_price;
 
-    /**
-     * Calculer le pourcentage d'économie
-     * 
-     * @return int
-     */
-    public function getYearlySavingPercentageAttribute()
-    {
-        $monthly = $this->monthly_price * 12;
-        if ($monthly == 0) return 0;
-        
-        return round(($this->yearly_saving / $monthly) * 100);
+        return [
+            'amount' => max(0, $savings),
+            'percentage' => $monthlyTotal > 0 ? round(($savings / $monthlyTotal) * 100) : 0,
+            'formatted' => number_format(max(0, $savings), 2) . ' €'
+        ];
     }
 
     /**
@@ -165,55 +159,6 @@ class PricingPlan extends Model
         return number_format($this->annual_price, 2) . ' €';
     }
 
-    /**
-     * Calculer l'économie réalisée avec l'abonnement annuel.
-     */
-    public function getYearlySavingsAttribute()
-    {
-        $monthlyTotal = $this->monthly_price * 12;
-        $savings = $monthlyTotal - $this->annual_price;
-        
-        return [
-            'amount' => $savings,
-            'percentage' => $monthlyTotal > 0 ? round(($savings / $monthlyTotal) * 100) : 0,
-            'formatted' => number_format($savings, 2) . ' €'
-        ];
-    }
-
-    /**
-     * Calculer l'économie réalisée avec un abonnement annuel.
-     *
-     * @return float
-     */
-    public function getAnnualSavingsAttribute()
-    {
-        $monthlyCost = $this->monthly_price * 12;
-        $yearlyCost = $this->annual_price;
-        
-        if ($monthlyCost <= $yearlyCost) {
-            return 0;
-        }
-        
-        return $monthlyCost - $yearlyCost;
-    }
-
-    /**
-     * Calculer le pourcentage d'économie avec un abonnement annuel.
-     *
-     * @return int
-     */
-    public function getAnnualSavingsPercentageAttribute()
-    {
-        $monthlyCost = $this->monthly_price * 12;
-        
-        if ($monthlyCost <= 0) {
-            return 0;
-        }
-        
-        $savings = $this->annual_savings;
-        
-        return round(($savings / $monthlyCost) * 100);
-    }
 
     /**
      * Vérifie si le plan a une promotion active.
