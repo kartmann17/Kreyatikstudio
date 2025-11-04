@@ -3,29 +3,29 @@
 namespace App\View\Components;
 
 use Illuminate\View\Component;
+use RalphJSmit\Laravel\SEO\Support\SEOData;
 
 class Header extends Component
 {
-    public $title;
-    public $description;
     public $SEOData;
 
-    public function __construct($title = null, $description = null, $seoData = null)
+    public function __construct($seoData = null)
     {
-        $this->title = $title ?: config('app.name') . ' - Création de sites web professionnels';
-        $this->description = $description ?: 'Kreyatik Studio - Développeur web spécialisé';
-
-        // Créer un objet SEOData basique si des paramètres sont fournis
-        if ($title || $description || $seoData) {
-            $this->SEOData = (object) [
-                'title' => $this->title,
-                'description' => $this->description,
-                'author' => 'Kreyatik Studio',
-                'robots' => 'index, follow',
-                'canonical_url' => url()->current(),
-                'type' => 'article',
-                'image' => asset('images/default-og.jpg')
-            ];
+        // Utiliser directement le SEOData passé en paramètre
+        // Si aucun SEOData n'est fourni, créer un objet basique avec valeurs par défaut
+        if ($seoData instanceof SEOData) {
+            $this->SEOData = $seoData;
+        } else {
+            // Fallback avec valeurs par défaut
+            $this->SEOData = new SEOData(
+                title: config('app.name') . ' - Création de sites web professionnels',
+                description: 'Kreyatik Studio - Développeur web spécialisé',
+                author: 'Kreyatik Studio',
+                robots: 'index, follow',
+                canonical_url: url()->current(),
+                type: 'website',
+                image: asset('images/default-og.jpg')
+            );
         }
     }
 

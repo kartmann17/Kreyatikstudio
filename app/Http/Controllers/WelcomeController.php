@@ -29,12 +29,8 @@ class WelcomeController extends Controller
                 ->get();
         });
 
-        // Utiliser le SEOService pour générer les données SEO dynamiquement
-        $SEOData = $this->seoService->generatePageSEO('home', [
-            'title' => 'Accueil - Création de sites web professionnels | Kréyatik Studio',
-            'description' => $settings->default_description ?: 'Votre site web clé en main, pensé pour convertir. Agence digitale à Rochefort, spécialisée SEO & design impactant.',
-            'canonical_url' => url('/'),
-        ]);
+        // Utiliser le SEOService pour générer les données SEO dynamiquement depuis la BDD
+        $SEOData = $this->seoService->generatePageSEO('home');
 
         return view('welcome', [
             'SEOData' => $SEOData,

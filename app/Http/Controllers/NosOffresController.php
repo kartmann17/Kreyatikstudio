@@ -18,12 +18,8 @@ class NosOffresController extends Controller
 
     public function index()
     {
-        // Utiliser le SEOService pour générer les données SEO dynamiquement
-        $SEOData = $this->seoService->generatePageSEO('offres', [
-            'title' => 'Nos Offres - Services Web | Kréyatik Studio',
-            'description' => 'Découvrez nos offres de création de sites web : site vitrine, e-commerce, application web sur mesure. Tarifs transparents et qualité professionnelle.',
-            'canonical_url' => route('nos-offres'),
-        ]);
+        // Utiliser le SEOService pour générer les données SEO dynamiquement depuis la BDD
+        $SEOData = $this->seoService->generatePageSEO('offres');
 
         // Récupération des plans tarifaires avec cache de 1 heure
         $pricingPlans = Cache::remember('pricing.plans', 3600, function () {

@@ -1,5 +1,81 @@
 <x-header :seoData="$SEOData ?? null" />
 
+@push('meta')
+<!-- Schema.org Person pour GEO (Generative Engine Optimization) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Lionel Blanchet",
+  "jobTitle": "Développeur Web Freelance",
+  "description": "Développeur web freelance spécialisé en Laravel, SaaS, CRM et e-commerce. Reconversion de l'aéronautique vers le web, basé à Rochefort (Charente-Maritime).",
+  "url": "https://kreyatikstudio.fr/a-propos",
+  "image": "{{ secure_asset('images/Studiosansfond.png') }}",
+  "email": "contact@kreyatikstudio.fr",
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Kréyatik Studio",
+    "url": "https://kreyatikstudio.fr",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Rochefort",
+      "postalCode": "17300",
+      "addressRegion": "Charente-Maritime",
+      "addressCountry": "FR"
+    }
+  },
+  "alumniOf": {
+    "@type": "Organization",
+    "name": "Formation Développement Web"
+  },
+  "knowsAbout": [
+    "Laravel",
+    "PHP",
+    "Python",
+    "JavaScript",
+    "React",
+    "Flutter",
+    "TailwindCSS",
+    "E-commerce",
+    "SaaS",
+    "CRM",
+    "SEO",
+    "APIs REST",
+    "Développement Web",
+    "Applications Mobiles"
+  ],
+  "hasOccupation": {
+    "@type": "Occupation",
+    "name": "Développeur Web Fullstack",
+    "occupationLocation": {
+      "@type": "City",
+      "name": "Rochefort"
+    },
+    "skills": "Laravel, PHP, Python, React, Flutter, E-commerce, SaaS, CRM, SEO"
+  },
+  "sameAs": [
+    "https://www.facebook.com/share/1AtjVczpEJ/",
+    "https://www.instagram.com/kreyatik_17/"
+  ]
+}
+</script>
+
+<!-- Schema.org AboutPage pour la page À Propos -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "À Propos de Kréyatik Studio",
+  "description": "Découvrez le parcours de Lionel Blanchet, développeur web freelance à Rochefort. Reconversion de l'aéronautique vers le développement web, spécialisé en Laravel, SaaS, CRM et e-commerce.",
+  "url": "https://kreyatikstudio.fr/a-propos",
+  "mainEntity": {
+    "@type": "Person",
+    "name": "Lionel Blanchet"
+  }
+}
+</script>
+@endpush
+
 <main class="site-content" role="main">
 
   <!-- Hero Section -->
@@ -16,9 +92,9 @@
           </span>
         </h1>
         <p class="text-xl text-gray-600 mb-8 leading-relaxed">
-          <strong>Passionné par le web depuis plusieurs années</strong>, j'ai effectué une reconversion professionnelle 
-          pour transformer cette passion en métier. Mon expérience dans <strong>l'aéronautique</strong> m'a apporté 
-          la rigueur et la précision que j'applique aujourd'hui dans chaque projet web. 
+          <strong>Passionné par le web depuis plusieurs années</strong>, j'ai effectué une reconversion professionnelle
+          pour transformer cette passion en métier. Mon expérience dans <strong>l'aéronautique</strong> m'a apporté
+          la rigueur et la précision que j'applique aujourd'hui dans chaque projet web.
           Actuellement en spécialisation <strong>Python</strong> et exploration <strong>React/Flutter</strong>, basé à <strong>Rochefort</strong>.
         </p>
       </div>
@@ -52,7 +128,7 @@
             <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">APIs REST</span>
           </div>
           <p class="text-gray-600">
-            Développement d'applications web complexes avec Laravel : SaaS, CRM sur-mesure et boutiques e-commerce. 
+            Développement d'applications web complexes avec Laravel : SaaS, CRM sur-mesure et boutiques e-commerce.
             Spécialisation Python en cours. La rigueur aéronautique appliquée au code pour des solutions robustes et sécurisées.
           </p>
         </div>
@@ -72,7 +148,7 @@
             <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Responsive</span>
           </div>
           <p class="text-gray-600">
-            Création d'interfaces web modernes avec TailwindCSS et exploration des frameworks React pour des 
+            Création d'interfaces web modernes avec TailwindCSS et exploration des frameworks React pour des
             expériences utilisateur interactives et performantes.
           </p>
         </div>
@@ -91,7 +167,7 @@
             <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Analytics</span>
           </div>
           <p class="text-gray-600">
-            Exploration du développement d'applications mobiles avec Flutter et optimisation SEO 
+            Exploration du développement d'applications mobiles avec Flutter et optimisation SEO
             pour une présence digitale complète.
           </p>
         </div>
@@ -118,8 +194,8 @@
             <div class="ml-6">
               <h3 class="text-xl font-bold text-gray-900 mb-2">Expérience Aéronautique</h3>
               <p class="text-gray-600">
-                Plusieurs années dans l'industrie aéronautique qui m'ont forgé un esprit de rigueur, de précision et de méthode. 
-                Ces valeurs fondamentales sont devenues le socle de ma pratique professionnelle, 
+                Plusieurs années dans l'industrie aéronautique qui m'ont forgé un esprit de rigueur, de précision et de méthode.
+                Ces valeurs fondamentales sont devenues le socle de ma pratique professionnelle,
                 quelle que soit la technologie utilisée.
               </p>
             </div>
@@ -132,8 +208,8 @@
             <div class="ml-6">
               <h3 class="text-xl font-bold text-gray-900 mb-2">La Passion Devient Métier</h3>
               <p class="text-gray-600">
-                Fasciné par le web depuis plusieurs années, la décision de la reconversion s'impose naturellement. 
-                Formation intensive en développement web : HTML, CSS, JavaScript, PHP. 
+                Fasciné par le web depuis plusieurs années, la décision de la reconversion s'impose naturellement.
+                Formation intensive en développement web : HTML, CSS, JavaScript, PHP.
                 Découverte de Laravel qui devient rapidement ma spécialité de prédilection.
               </p>
             </div>
@@ -146,8 +222,8 @@
             <div class="ml-6">
               <h3 class="text-xl font-bold text-gray-900 mb-2">Premiers Projets & Montée en Compétences</h3>
               <p class="text-gray-600">
-                Application de la rigueur aéronautique aux premiers projets web. Développement de sites vitrine, 
-                boutiques e-commerce, applications SaaS et CRM sur-mesure. Spécialisation progressive en 
+                Application de la rigueur aéronautique aux premiers projets web. Développement de sites vitrine,
+                boutiques e-commerce, applications SaaS et CRM sur-mesure. Spécialisation progressive en
                 référencement naturel et optimisation des performances.
               </p>
             </div>
@@ -160,8 +236,8 @@
             <div class="ml-6">
               <h3 class="text-xl font-bold text-gray-900 mb-2">Spécialisation Multi-Technologies & Kréyatik Studio</h3>
               <p class="text-gray-600">
-                Formation licence Python en cours, exploration de React pour les interfaces web interactives 
-                et découverte de Flutter pour le développement d'applications mobiles. Création de Kréyatik Studio, 
+                Formation licence Python en cours, exploration de React pour les interfaces web interactives
+                et découverte de Flutter pour le développement d'applications mobiles. Création de Kréyatik Studio,
                 spécialisé dans les SaaS, CRM et e-commerce, alliant rigueur aéronautique et curiosité technologique.
               </p>
             </div>
@@ -186,7 +262,7 @@
           <div class="text-4xl mb-4">🎯</div>
           <h3 class="text-xl font-bold text-gray-900 mb-4">Rigueur & Précision</h3>
           <p class="text-gray-600">
-            L'exigence aéronautique appliquée au développement web. Chaque ligne de code écrite avec la même 
+            L'exigence aéronautique appliquée au développement web. Chaque ligne de code écrite avec la même
             précision que dans l'industrie où l'erreur n'est pas permise. Standards élevés et qualité irréprochable.
           </p>
         </div>
@@ -195,7 +271,7 @@
           <div class="text-4xl mb-4">🔄</div>
           <h3 class="text-xl font-bold text-gray-900 mb-4">Reconversion Réussie</h3>
           <p class="text-gray-600">
-            Une transition professionnelle menée avec détermination et passion. L'expérience industrielle 
+            Une transition professionnelle menée avec détermination et passion. L'expérience industrielle
             enrichit chaque projet web d'une approche méthodique et d'une vision globale unique.
           </p>
         </div>
@@ -204,7 +280,7 @@
           <div class="text-4xl mb-4">🚀</div>
           <h3 class="text-xl font-bold text-gray-900 mb-4">Curiosité Technologique</h3>
           <p class="text-gray-600">
-            Formation Python, exploration React et Flutter : une approche multi-technologies pour répondre 
+            Formation Python, exploration React et Flutter : une approche multi-technologies pour répondre
             aux besoins variés du digital. Du web aux applications mobiles, toujours en quête d'innovation.
           </p>
         </div>
@@ -213,7 +289,7 @@
           <div class="text-4xl mb-4">💡</div>
           <h3 class="text-xl font-bold text-gray-900 mb-4">Passion & Engagement</h3>
           <p class="text-gray-600">
-            La passion du web comme moteur de la reconversion. Chaque projet développé avec l'enthousiasme 
+            La passion du web comme moteur de la reconversion. Chaque projet développé avec l'enthousiasme
             de quelqu'un qui a choisi ce métier par vocation, pas par hasard.
           </p>
         </div>
@@ -227,7 +303,7 @@
       <div class="max-w-3xl mx-auto">
         <h2 class="text-3xl lg:text-4xl font-bold text-white mb-6">Transformons votre vision en réalité digitale</h2>
         <p class="text-xl text-blue-100 mb-8">
-          Mon parcours atypique et mon expertise en SaaS, CRM et e-commerce, alliant rigueur industrielle et passion web, 
+          Mon parcours atypique et mon expertise en SaaS, CRM et e-commerce, alliant rigueur industrielle et passion web,
           au service de votre projet. Discutons de vos ambitions digitales et créons ensemble quelque chose d'exceptionnel.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">

@@ -4,7 +4,9 @@ namespace App\Services;
 
 use App\Models\Article;
 use RalphJSmit\Laravel\SEO\Support\SEOData;
+use RalphJSmit\Laravel\SEO\Models\SEO;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class SEOService
 {
@@ -13,8 +15,50 @@ class SEOService
      */
     public function generatePageSEO(string $page, array $overrides = []): SEOData
     {
+        // Mapper les noms de pages vers les URLs dans la table seo
+        $urlMap = [
+            'home' => '/',
+            'contact' => '/Contact',
+            'offres' => '/NosOffres',
+            'nos-offres' => '/NosOffres',
+            'portfolio' => '/Portfolio',
+            'client' => '/Client',
+            'blog' => '/blog',
+            'concours' => '/concours',
+            'concours-resultat' => '/concours-resultat',
+            'cgv' => '/CGV',
+            'mentions-legales' => '/MentionLegal',
+            'politique-confidentialite' => '/confidentialite',
+            'a-propos' => '/a-propos',
+            'methode-travail' => '/methode-travail',
+            'temoignages-clients' => '/temoignages-clients',
+            'conditions-tarifaires' => '/ConditionTarifaire',
+            'plan-du-site' => '/plandusite',
+        ];
+
+        $url = $urlMap[$page] ?? $overrides['canonical_url'] ?? url()->current();
+
+        // Charger les données SEO depuis la base de données
+        $seoRecord = DB::table('seo')
+            ->where('url', $url)
+            ->first();
+
+        // Si des données existent en BDD, les utiliser en priorité
+        if ($seoRecord) {
+            return new SEOData(
+                title: $overrides['title'] ?? $seoRecord->title ?? config('app.name'),
+                description: $overrides['description'] ?? $seoRecord->description ?? config('seo.description.fallback'),
+                author: $overrides['author'] ?? $seoRecord->author ?? config('seo.author.fallback'),
+                image: $overrides['image'] ?? $seoRecord->image ?? asset(config('seo.image.fallback')),
+                canonical_url: $overrides['canonical_url'] ?? $seoRecord->canonical_url ?? $url,
+                robots: $overrides['robots'] ?? $seoRecord->robots ?? config('seo.robots.default'),
+                type: $overrides['type'] ?? 'website',
+            );
+        }
+
+        // Fallback sur la configuration fichier si rien en BDD
         $config = config("seo.pages.{$page}", []);
-        
+
         return new SEOData(
             title: $overrides['title'] ?? $config['title'] ?? config('app.name'),
             description: $overrides['description'] ?? $config['description'] ?? config('seo.description.fallback'),

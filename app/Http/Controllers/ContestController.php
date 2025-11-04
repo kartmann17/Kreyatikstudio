@@ -35,11 +35,7 @@ class ContestController extends Controller
                 : config('contest.messages.ended'));
         }
 
-        $SEOData = $this->seoService->generatePageSEO('concours', [
-            'title' => 'Concours - Gagnez un Site Web Gratuit | Kréyatik Studio',
-            'description' => 'Participez à notre concours et tentez de remporter un site web professionnel gratuit. Inscription gratuite et simple.',
-            'canonical_url' => route('concours'),
-        ]);
+        $SEOData = $this->seoService->generatePageSEO('concours');
 
         return view('concours', [
             'SEOData' => $SEOData,
@@ -121,11 +117,7 @@ class ContestController extends Controller
         $totalParticipants = ContestSubmission::count();
         $daysTotal = 31; // 13 octobre au 13 novembre = 31 jours
 
-        $SEOData = $this->seoService->generatePageSEO('concours-resultat', [
-            'title' => 'Résultats du Concours | Kréyatik Studio',
-            'description' => 'Découvrez les résultats de notre concours. Qui a remporté un site web gratuit ?',
-            'canonical_url' => route('concours.resultat'),
-        ]);
+        $SEOData = $this->seoService->generatePageSEO('concours-resultat');
 
         return view('concours-resultat', [
             'SEOData' => $SEOData,

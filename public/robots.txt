@@ -48,6 +48,57 @@ Allow: /images/
 Allow: /build/
 Allow: /storage/
 
+# ==================================================
+# CRAWLERS IA GÉNÉRATIVES (GEO)
+# ==================================================
+
+# OpenAI (ChatGPT, SearchGPT)
+User-agent: GPTBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic (Claude)
+User-agent: anthropic-ai
+Allow: /
+Crawl-delay: 1
+
+User-agent: ClaudeBot
+Allow: /
+Crawl-delay: 1
+
+# Google (Gemini/Bard)
+User-agent: Google-Extended
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+Crawl-delay: 1
+
+# You.com
+User-agent: YouBot
+Allow: /
+
+# Cohere
+User-agent: cohere-ai
+Allow: /
+
+# Apple Intelligence
+User-agent: Applebot-Extended
+Allow: /
+
+# Common Crawl (utilisé par plusieurs IA)
+User-agent: CCBot
+Allow: /
+Crawl-delay: 2
+
+# ==================================================
+# MOTEURS DE RECHERCHE TRADITIONNELS
+# ==================================================
+
 # Crawl delays optimisés
 User-agent: Googlebot
 Crawl-delay: 0.5
