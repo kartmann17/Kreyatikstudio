@@ -63,7 +63,6 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <!-- Resource Hints for Performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 
