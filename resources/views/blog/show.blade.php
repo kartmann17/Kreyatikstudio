@@ -1,4 +1,64 @@
-<x-header :seoData="$SEOData ?? null" />
+<x-header :seoData="$SEOData ?? null">
+<x-slot name="meta">
+    <!-- Article Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "{{ $article->title }}",
+        "description": "{{ Str::limit(strip_tags($article->content), 200) }}",
+        "image": "{{ $article->image ? secure_asset('storage/' . $article->image) : secure_asset('images/STUDIOcolibri.png') }}",
+        "datePublished": "{{ $article->published_at ? $article->published_at->toIso8601String() : $article->created_at->toIso8601String() }}",
+        "dateModified": "{{ $article->updated_at->toIso8601String() }}",
+        "author": {
+            "@type": "Person",
+            "name": "Lionel Blanchet",
+            "url": "https://kreyatikstudio.fr"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Kréyatik Studio",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "{{ secure_asset('images/STUDIOcolibri.png') }}"
+            }
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "{{ url()->current() }}"
+        }
+    }
+    </script>
+
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Accueil",
+                "item": "{{ url('/') }}"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Blog",
+                "item": "{{ route('blog') }}"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "{{ $article->title }}",
+                "item": "{{ url()->current() }}"
+            }
+        ]
+    }
+    </script>
+</x-slot>
+</x-header>
 
 <section class="relative min-h-[60vh] flex items-center justify-center overflow-hidden pt-20">
   @if($article->image)

@@ -56,33 +56,30 @@ use App\Http\Controllers\SitemapController;
 // Page d'accueil
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 
-//Page Mention Légale
-Route::get('/MentionLegal', [LegalController::class, 'mentionsLegales'])->name('mentionslegales');
-
-//Plan du site
-Route::get('/plandusite', [LegalController::class, 'planDuSite'])->name('plan-du-site');
-
-//Page CGV
-Route::get('/CGV', [LegalController::class, 'cgv'])->name('cgv');
-
-//Page confidentialité
+// Pages légales (URLs normalisées)
+Route::get('/mentions-legales', [LegalController::class, 'mentionsLegales'])->name('mentionslegales');
+Route::get('/plan-du-site', [LegalController::class, 'planDuSite'])->name('plan-du-site');
+Route::get('/cgv', [LegalController::class, 'cgv'])->name('cgv');
 Route::get('/confidentialite', [LegalController::class, 'confidentialite'])->name('confidentialite');
+Route::get('/conditions-tarifaires', [LegalController::class, 'conditionsTarifaires'])->name('conditions-tarifaires');
 
-
-// Pages statiques
-Route::get('/NosOffres', [NosOffresController::class, 'index'])->name('nos-offres');
+// Pages principales (URLs normalisées)
+Route::get('/nos-offres', [NosOffresController::class, 'index'])->name('nos-offres');
+Route::get('/portfolio', [PortfolioPublicController::class, 'index'])->name('portfolio');
+Route::get('/contact', [LegalController::class, 'contact'])->name('contact');
 
 // Blog public
 Route::get('/blog', [BlogController::class, 'index'])->name('blog');
 Route::get('/blog/{article:slug}', [BlogController::class, 'show'])->name('blog.show');
 
-Route::get('/ConditionTarifaire', [LegalController::class, 'conditionsTarifaires'])->name('conditions-tarifaires');
-
-// Page portfolio publique avec récupération des données
-Route::get('/Portfolio', [PortfolioPublicController::class, 'index'])->name('portfolio');
-
-// Page de contact
-Route::get('/Contact', [LegalController::class, 'contact'])->name('contact');
+// Redirections 301 pour anciennes URLs (SEO)
+Route::redirect('/NosOffres', '/nos-offres', 301);
+Route::redirect('/Portfolio', '/portfolio', 301);
+Route::redirect('/Contact', '/contact', 301);
+Route::redirect('/MentionLegal', '/mentions-legales', 301);
+Route::redirect('/CGV', '/cgv', 301);
+Route::redirect('/ConditionTarifaire', '/conditions-tarifaires', 301);
+Route::redirect('/plandusite', '/plan-du-site', 301);
 Route::post('/contact/send', [ContactController::class, 'send'])
     ->middleware('throttle:3,60') // 3 tentatives par heure par IP
     ->name('send.email');

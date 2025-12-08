@@ -12,15 +12,15 @@
                     <div class="flex-1 flex flex-col md:flex-row gap-6 justify-center">
                         <ul class="space-y-1 text-center md:text-left text-sm">
                             <li><a href="/" class="hover:text-primary transition">Accueil</a></li>
-                            <li><a href="/Contact" class="hover:text-primary transition">Contact</a></li>
-                            <li><a href="/plandusite" class="hover:text-primary transition">Plan du site</a></li>
-                            <li><a href="/NosOffres" class="hover:text-primary transition">Nos Offres</a></li>
+                            <li><a href="/contact" class="hover:text-primary transition">Contact</a></li>
+                            <li><a href="/plan-du-site" class="hover:text-primary transition">Plan du site</a></li>
+                            <li><a href="/nos-offres" class="hover:text-primary transition">Nos Offres</a></li>
                         </ul>
                         <ul class="space-y-1 text-center md:text-left text-sm">
                             <li><a href="/blog" class="hover:text-primary transition">Blog</a></li>
                             <li><a href="/confidentialite" class="hover:text-primary transition">Confidentialité</a></li>
-                            <li><a href="/MentionLegal" class="hover:text-primary transition">Mentions légales</a></li>
-                            <li><a href="/CGV" class="hover:text-primary transition">CGV</a></li>
+                            <li><a href="/mentions-legales" class="hover:text-primary transition">Mentions légales</a></li>
+                            <li><a href="/cgv" class="hover:text-primary transition">CGV</a></li>
                         </ul>
                     </div>
 
