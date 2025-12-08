@@ -20,7 +20,7 @@
             : secure_asset('images/STUDIOcolibri.png');
     @endphp
 
-    <title>{{ $title }}</title>
+    <title>{{ $title }}{{ isset($SEOData) ? ' | ' . config('app.name') : '' }}</title>
     <meta name="description" content="{{ $desc }}">
     <meta name="robots" content="{{ $robots }}">
     <link rel="canonical" href="{{ $canonical }}" />
@@ -64,79 +64,79 @@
 
     @stack('meta')
 
-    <!-- Schema.org LocalBusiness pour SEO local -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": "Kréyatik Studio",
-        "image": "{{ secure_asset('images/Studiosansfond.png') }}",
-        "description": "Développeur web freelance à Rochefort spécialisé dans la création de sites internet, e-commerce et applications Laravel sur-mesure. Expert SEO et solutions digitales performantes.",
-        "@id": "https://kreyatikstudio.fr",
-        "url": "https://kreyatikstudio.fr",
-        "telephone": "+33-6-95-80-06-63",
-        "email": "kreyatik@gmail.com",
-        "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "",
-            "addressLocality": "Rochefort",
-            "postalCode": "17300",
-            "addressRegion": "Charente-Maritime",
-            "addressCountry": "FR"
-        },
-        "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": 45.9377,
-            "longitude": -0.9609
-        },
-        "areaServed": [
-            {
-                "@type": "City",
-                "name": "Rochefort"
-            },
-            {
-                "@type": "State",
-                "name": "Charente-Maritime"
-            },
-            {
-                "@type": "Country",
-                "name": "France"
-            }
-        ],
-        "priceRange": "€€",
-        "openingHoursSpecification": [
-            {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": [
-                    "Monday",
-                    "Tuesday",
-                    "Wednesday",
-                    "Thursday",
-                    "Friday"
-                ],
-                "opens": "09:00",
-                "closes": "19:00"
-            }
-        ],
-        "sameAs": [
-            "https://www.facebook.com/share/1AtjVczpEJ/",
-            "https://www.instagram.com/kreyatik_17/"
-        ],
-        "founder": {
-            "@type": "Person",
-            "name": "Lionel Blanchet",
-            "jobTitle": "Développeur Web Freelance"
-        },
-        "serviceType": [
-            "Création de sites web",
-            "Développement Laravel",
-            "E-commerce",
-            "Applications web sur-mesure",
-            "Référencement SEO",
-            "Maintenance de sites web"
-        ]
-    }
-    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <style>
 

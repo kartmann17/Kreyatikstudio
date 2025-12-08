@@ -5,7 +5,11 @@
 
   <section class="hero-section" aria-labelledby="hero-title">
     <div class="hero-background">
-      <img src="{{ asset('images/compose.png') }}" alt="Kreyatik Studio - Développeur Web Freelance spécialisé en création sites internet Rochefort, développement web moderne et référencement SEO expert" class="hero-bg-image" loading="eager" width="1920" height="1080">
+      <picture>
+        <source media="(max-width: 768px)" srcset="{{ asset('images/optimized/compose-mobile.webp') }}" type="image/webp" width="768" height="432">
+        <source media="(min-width: 769px)" srcset="{{ asset('images/optimized/compose.webp') }}" type="image/webp" width="1920" height="1080">
+        <img src="{{ asset('images/compose.png') }}" alt="Kreyatik Studio - Développeur Web Freelance spécialisé en création sites internet Rochefort, développement web moderne et référencement SEO expert" class="hero-bg-image" loading="eager" width="1920" height="1080">
+      </picture>
       <div class="hero-overlay"></div>
       <div class="hero-particles"></div>
     </div>
