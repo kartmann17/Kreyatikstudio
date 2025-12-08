@@ -64,111 +64,6 @@
 
     @stack('meta')
 
-    <!-- Resource Hints for Performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
-    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
-    @if(request()->is('/'))
-    <link rel="preload" as="image" href="{{ asset('images/optimized/compose.webp') }}" media="(min-width: 769px)">
-    <link rel="preload" as="image" href="{{ asset('images/optimized/compose-mobile.webp') }}" media="(max-width: 768px)">
-    @endif
-
-    <!-- Schema.org Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": "Kréyatik Studio",
-        "image": "{{ secure_asset('images/STUDIOcolibri.png') }}",
-        "description": "Développeur web freelance à Rochefort spécialisé dans la création de sites internet, e-commerce et applications Laravel sur-mesure. Expert SEO et solutions digitales performantes.",
-        "@id": "https://kreyatikstudio.fr",
-        "url": "https://kreyatikstudio.fr",
-        "telephone": "+33695800663",
-        "email": "kreyatik@gmail.com",
-        "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "2 rue du petit port marchand",
-            "addressLocality": "Rochefort",
-            "postalCode": "17300",
-            "addressRegion": "Charente-Maritime",
-            "addressCountry": "FR"
-        },
-        "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": 45.9377,
-            "longitude": -0.9609
-        },
-        "areaServed": [
-            {
-                "@type": "City",
-                "name": "Rochefort"
-            },
-            {
-                "@type": "State",
-                "name": "Charente-Maritime"
-            },
-            {
-                "@type": "Country",
-                "name": "France"
-            }
-        ],
-        "priceRange": "€€",
-        "openingHoursSpecification": [
-            {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": [
-                    "Monday",
-                    "Tuesday",
-                    "Wednesday",
-                    "Thursday",
-                    "Friday"
-                ],
-                "opens": "09:00",
-                "closes": "19:00"
-            }
-        ],
-        "sameAs": [
-            "https://www.facebook.com/share/1AtjVczpEJ/",
-            "https://www.instagram.com/kreyatik_17/"
-        ],
-        "founder": {
-            "@type": "Person",
-            "name": "Lionel Blanchet",
-            "jobTitle": "Développeur Web Freelance"
-        },
-        "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "5",
-            "reviewCount": "2",
-            "bestRating": "5"
-        },
-        "offers": {
-            "@type": "AggregateOffer",
-            "offerCount": "5",
-            "lowPrice": "500",
-            "highPrice": "5000",
-            "priceCurrency": "EUR"
-        }
-    }
-    </script>
-
-    @if(request()->is('/'))
-    <!-- WebSite Schema with Search Action -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "Kréyatik Studio",
-        "url": "https://kreyatikstudio.fr",
-        "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://kreyatikstudio.fr/blog?search={search_term_string}",
-            "query-input": "required name=search_term_string"
-        }
-    }
-    </script>
-    @endif
-
 
 
 
@@ -511,8 +406,8 @@
                 <!-- Desktop Navigation (only visible on desktop) -->
                 <ul class="desktop-nav navbar-nav">
                     <li class="nav-item"><a class="nav-link" href="/">Accueil</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/nos-offres">Nos Offres</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/portfolio">Portfolio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/NosOffres">Nos Offres</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Portfolio">Portfolio</a></li>
                     @php
                         $now = \Carbon\Carbon::now();
                         $contestEnabled = config('contest.enabled', false);
@@ -528,7 +423,7 @@
                     @elseif($resultsActive)
                         <li class="nav-item"><a class="nav-link results-link" href="/concours/resultat">🏆 Résultat</a></li>
                     @endif
-                    <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Contact">Contact</a></li>
                     <li class="nav-item"><a class="nav-link" href="/login">Connexion</a></li>
                     <li class="nav-item"><a class="nav-link" href="/register">Inscription</a></li>
                 </ul>
@@ -539,14 +434,14 @@
         <div class="mobile-nav fixed inset-0 bg-black/95 z-40 lg:hidden hidden" id="mobileMenu">
             <div class="flex flex-col items-center justify-center h-full space-y-8 text-white">
                 <a href="/" class="nav-link mobile-nav-link">Accueil</a>
-                <a href="/nos-offres" class="nav-link mobile-nav-link">Nos Offres</a>
-                <a href="/portfolio" class="nav-link mobile-nav-link">Portfolio</a>
+                <a href="/NosOffres" class="nav-link mobile-nav-link">Nos Offres</a>
+                <a href="/Portfolio" class="nav-link mobile-nav-link">Portfolio</a>
                 @if($contestActive ?? false)
                     <a href="/concours" class="nav-link mobile-nav-link contest-link">🎉 Concours</a>
                 @elseif($resultsActive ?? false)
                     <a href="/concours/resultat" class="nav-link mobile-nav-link results-link">🏆 Résultat</a>
                 @endif
-                <a href="/contact" class="nav-link mobile-nav-link">Contact</a>
+                <a href="/Contact" class="nav-link mobile-nav-link">Contact</a>
                 <a href="/login" class="nav-link mobile-nav-link">Connexion</a>
                 <a href="/register" class="nav-link mobile-nav-link">Inscription</a>
             </div>
