@@ -62,7 +62,100 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+    <!-- Resource Hints for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+
     @stack('meta')
+
+    <!-- Schema.org LocalBusiness Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Kréyatik Studio",
+        "image": "{{ secure_asset('images/STUDIOcolibri.png') }}",
+        "description": "Développeur web freelance à Rochefort spécialisé dans la création de sites internet, e-commerce et applications Laravel sur-mesure. Expert SEO et solutions digitales performantes.",
+        "@id": "https://kreyatikstudio.fr",
+        "url": "https://kreyatikstudio.fr",
+        "telephone": "+33695800663",
+        "email": "kreyatik@gmail.com",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "2 rue du petit port marchand",
+            "addressLocality": "Rochefort",
+            "postalCode": "17300",
+            "addressRegion": "Charente-Maritime",
+            "addressCountry": "FR"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 45.9377,
+            "longitude": -0.9609
+        },
+        "areaServed": [
+            {
+                "@type": "City",
+                "name": "Rochefort"
+            },
+            {
+                "@type": "State",
+                "name": "Charente-Maritime"
+            },
+            {
+                "@type": "Country",
+                "name": "France"
+            }
+        ],
+        "priceRange": "€€",
+        "openingHoursSpecification": [
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                "opens": "09:00",
+                "closes": "19:00"
+            }
+        ],
+        "sameAs": [
+            "https://www.facebook.com/share/1AtjVczpEJ/",
+            "https://www.instagram.com/kreyatik_17/"
+        ],
+        "founder": {
+            "@type": "Person",
+            "name": "Lionel Blanchet",
+            "jobTitle": "Développeur Web Freelance"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "5",
+            "reviewCount": "2",
+            "bestRating": "5"
+        },
+        "offers": {
+            "@type": "AggregateOffer",
+            "offerCount": "5",
+            "lowPrice": "500",
+            "highPrice": "5000",
+            "priceCurrency": "EUR"
+        }
+    }
+    </script>
+
+    <!-- WebSite Schema with SearchAction -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Kréyatik Studio",
+        "url": "https://kreyatikstudio.fr",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://kreyatikstudio.fr/blog?search={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
 
 
 
