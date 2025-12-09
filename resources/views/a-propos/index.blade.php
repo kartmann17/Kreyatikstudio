@@ -1,6 +1,5 @@
-<x-header :seoData="$SEOData ?? null" />
-
-@push('meta')
+<x-header :seoData="$SEOData ?? null">
+<x-slot name="meta">
 <!-- Schema.org Person pour GEO (Generative Engine Optimization) -->
 <script type="application/ld+json">
 {
@@ -74,7 +73,8 @@
   }
 }
 </script>
-@endpush
+</x-slot>
+</x-header>
 
 <main class="site-content" role="main">
 
