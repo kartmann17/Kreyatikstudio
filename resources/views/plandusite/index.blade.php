@@ -27,12 +27,6 @@
                             </a>
                         </li>
                         <li class="flex justify-center">
-                            <a href="{{ route('nos-offres') }}" class="inline-flex items-center text-gray-600 hover:text-primary transition-colors duration-200 group">
-                                <span class="w-2 h-2 bg-primary rounded-full mr-3 transform group-hover:scale-150 transition-transform"></span>
-                                Nos Offres
-                            </a>
-                        </li>
-                        <li class="flex justify-center">
                             <a href="{{ route('portfolio') }}" class="inline-flex items-center text-gray-600 hover:text-primary transition-colors duration-200 group">
                                 <span class="w-2 h-2 bg-primary rounded-full mr-3 transform group-hover:scale-150 transition-transform"></span>
                                 Portfolio
