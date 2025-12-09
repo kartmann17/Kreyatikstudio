@@ -1,5 +1,235 @@
 <x-header :seoData="$SEOData ?? null" />
 
+<!-- HowTo Schema for Méthode de Travail -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "@id": "https://kreyatikstudio.fr/methode-travail",
+    "name": "Méthode de Création de Site Web - Processus en 5 Étapes",
+    "description": "Découvrez notre méthode de création web flexible en 5 étapes : audit, conception, développement, tests et déploiement. Un processus structuré qui s'adapte à la complexité de chaque projet.",
+    "url": "https://kreyatikstudio.fr/methode-travail",
+    "image": "{{ secure_asset('images/STUDIOcolibri.png') }}",
+    "totalTime": "P14D",
+    "estimatedCost": {
+        "@type": "MonetaryAmount",
+        "currency": "EUR",
+        "value": "2500"
+    },
+    "supply": [
+        {
+            "@type": "HowToSupply",
+            "name": "Brief client et cahier des charges"
+        },
+        {
+            "@type": "HowToSupply",
+            "name": "Contenu et médias du site"
+        },
+        {
+            "@type": "HowToSupply",
+            "name": "Hébergement web"
+        }
+    ],
+    "tool": [
+        {
+            "@type": "HowToTool",
+            "name": "Laravel Framework"
+        },
+        {
+            "@type": "HowToTool",
+            "name": "TailwindCSS"
+        },
+        {
+            "@type": "HowToTool",
+            "name": "Git & GitHub"
+        },
+        {
+            "@type": "HowToTool",
+            "name": "Figma pour le design"
+        }
+    ],
+    "step": [
+        {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Audit & Analyse",
+            "text": "Analyse complète de vos besoins et audit de l'existant. Étude de la concurrence, définition des objectifs et des fonctionnalités clés.",
+            "url": "https://kreyatikstudio.fr/methode-travail#audit",
+            "itemListElement": [
+                {
+                    "@type": "HowToDirection",
+                    "text": "Réunion de découverte pour comprendre vos besoins et objectifs"
+                },
+                {
+                    "@type": "HowToDirection",
+                    "text": "Analyse de votre présence digitale actuelle"
+                },
+                {
+                    "@type": "HowToDirection",
+                    "text": "Étude de la concurrence et benchmark"
+                },
+                {
+                    "@type": "HowToDirection",
+                    "text": "Définition du cahier des charges et des spécifications techniques"
+                }
+            ],
+            "image": "{{ secure_asset('images/STUDIOcolibri.png') }}"
+        },
+        {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Conception & Design",
+            "text": "Création de maquettes, wireframes et validation du design avant développement. Design UX/UI optimisé pour la conversion.",
+            "url": "https://kreyatikstudio.fr/methode-travail#design",
+            "itemListElement": [
+                {
+                    "@type": "HowToDirection",
+                    "text": "Création de wireframes et maquettes fonctionnelles"
+                },
+                {
+                    "@type": "HowToDirection",
+                    "text": "Design d'interface responsive (desktop, tablette, mobile)"
+                },
+                {
+                    "@type": "HowToDirection",
+                    "text": "Validation du design avec le client"
+                },
+                {
+                    "@type": "HowToDirection",
+                    "text": "Création du design system et guide de style"
+                }
+            ],
+            "image": "{{ secure_asset('images/STUDIOcolibri.png') }}"
+        },
+        {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Développement",
+            "text": "Développement technique front-end et back-end avec les meilleures pratiques. Code propre, sécurisé et optimisé.",
+            "url": "https://kreyatikstudio.fr/methode-travail#developpement",
+            "itemListElement": [
+                {
+                    "@type": "HowToDirection",
+                    "text": "Mise en place de l'architecture et des bases de données"
+                },
+                {
+                    "@type": "HowToDirection",
+                    "text": "Développement front-end avec TailwindCSS"
+                },
+                {
+                    "@type": "HowToDirection",
+                    "text": "Développement back-end avec Laravel"
+                },
+                {
+                    "@type": "HowToDirection",
+                    "text": "Intégration des fonctionnalités spécifiques"
+                },
+                {
+                    "@type": "HowToDirection",
+                    "text": "Optimisation des performances et du SEO"
+                }
+            ],
+            "image": "{{ secure_asset('images/STUDIOcolibri.png') }}"
+        },
+        {
+            "@type": "HowToStep",
+            "position": 4,
+            "name": "Tests & Validation",
+            "text": "Tests complets sur tous les navigateurs et appareils. Correction des bugs et validation finale avant mise en ligne.",
+            "url": "https://kreyatikstudio.fr/methode-travail#tests",
+            "itemListElement": [
+                {
+                    "@type": "HowToDirection",
+                    "text": "Tests fonctionnels de toutes les features"
+                },
+                {
+                    "@type": "HowToDirection",
+                    "text": "Tests de compatibilité multi-navigateurs"
+                },
+                {
+                    "@type": "HowToDirection",
+                    "text": "Tests responsive sur différents appareils"
+                },
+                {
+                    "@type": "HowToDirection",
+                    "text": "Tests de performance et optimisation"
+                },
+                {
+                    "@type": "HowToDirection",
+                    "text": "Validation par le client"
+                }
+            ],
+            "image": "{{ secure_asset('images/STUDIOcolibri.png') }}"
+        },
+        {
+            "@type": "HowToStep",
+            "position": 5,
+            "name": "Déploiement & Suivi",
+            "text": "Mise en ligne sécurisée, formation client et accompagnement post-lancement. Support et maintenance inclus.",
+            "url": "https://kreyatikstudio.fr/methode-travail#deploiement",
+            "itemListElement": [
+                {
+                    "@type": "HowToDirection",
+                    "text": "Configuration de l'hébergement et du nom de domaine"
+                },
+                {
+                    "@type": "HowToDirection",
+                    "text": "Déploiement sécurisé en production"
+                },
+                {
+                    "@type": "HowToDirection",
+                    "text": "Configuration des outils analytics et SEO"
+                },
+                {
+                    "@type": "HowToDirection",
+                    "text": "Formation client à l'utilisation du site"
+                },
+                {
+                    "@type": "HowToDirection",
+                    "text": "Support et maintenance post-lancement"
+                }
+            ],
+            "image": "{{ secure_asset('images/STUDIOcolibri.png') }}"
+        }
+    ],
+    "author": {
+        "@id": "https://kreyatikstudio.fr/#founder"
+    },
+    "inLanguage": "fr-FR",
+    "isPartOf": {
+        "@id": "https://kreyatikstudio.fr/#website"
+    }
+}
+</script>
+
+<!-- WebPage Schema -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://kreyatikstudio.fr/methode-travail",
+    "url": "https://kreyatikstudio.fr/methode-travail",
+    "name": "Méthode de Travail - Processus de Création Web en 5 Étapes",
+    "description": "Découvrez notre méthode de création web flexible : audit, conception, développement, tests et déploiement. Un processus adaptatif pour chaque projet.",
+    "isPartOf": {
+        "@id": "https://kreyatikstudio.fr/#website"
+    },
+    "about": {
+        "@type": "Thing",
+        "name": "Processus de développement web"
+    },
+    "inLanguage": "fr-FR",
+    "datePublished": "2024-01-01T00:00:00+01:00",
+    "dateModified": "{{ now()->toIso8601String() }}",
+    "author": {
+        "@id": "https://kreyatikstudio.fr/#founder"
+    },
+    "publisher": {
+        "@id": "https://kreyatikstudio.fr/#organization"
+    }
+}
+</script>
+
 <main class="site-content" role="main">
   
   <!-- Hero Section -->

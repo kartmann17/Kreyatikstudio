@@ -1,5 +1,87 @@
 <x-header :seoData="$SEOData ?? null" />
 
+<!-- ContactPage Schema -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "@id": "https://kreyatikstudio.fr/Contact",
+    "url": "https://kreyatikstudio.fr/Contact",
+    "name": "Contact - Kréyatik Studio | Développeur Web Rochefort",
+    "description": "Contactez Kréyatik Studio pour votre projet web. Réponse sous 24h, consultation gratuite. Développeur web freelance à Rochefort.",
+    "inLanguage": "fr-FR",
+    "isPartOf": {
+        "@id": "https://kreyatikstudio.fr/#website"
+    },
+    "mainEntity": {
+        "@type": "Organization",
+        "@id": "https://kreyatikstudio.fr/#organization",
+        "name": "Kréyatik Studio",
+        "telephone": "+33695800663",
+        "email": "kreyatik@gmail.com",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "2 rue du petit port marchand",
+            "addressLocality": "Rochefort",
+            "postalCode": "17300",
+            "addressRegion": "Charente-Maritime",
+            "addressCountry": "FR"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 45.9377,
+            "longitude": -0.9609
+        },
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "customer service",
+            "telephone": "+33695800663",
+            "email": "kreyatik@gmail.com",
+            "areaServed": "FR",
+            "availableLanguage": ["French"],
+            "hoursAvailable": {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                "opens": "09:00",
+                "closes": "19:00"
+            }
+        }
+    }
+}
+</script>
+
+<!-- WebPage Schema for Contact -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://kreyatikstudio.fr/Contact#webpage",
+    "url": "https://kreyatikstudio.fr/Contact",
+    "name": "Contact - Parlons de votre projet web",
+    "description": "Contactez Kréyatik Studio pour discuter de votre projet. Réponse rapide sous 24h, consultation gratuite et devis personnalisé.",
+    "inLanguage": "fr-FR",
+    "isPartOf": {
+        "@id": "https://kreyatikstudio.fr/#website"
+    },
+    "datePublished": "2024-01-01T00:00:00+01:00",
+    "dateModified": "{{ now()->toIso8601String() }}",
+    "publisher": {
+        "@id": "https://kreyatikstudio.fr/#organization"
+    },
+    "potentialAction": {
+        "@type": "CommunicateAction",
+        "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://kreyatikstudio.fr/Contact",
+            "actionPlatform": [
+                "http://schema.org/DesktopWebPlatform",
+                "http://schema.org/MobileWebPlatform"
+            ]
+        }
+    }
+}
+</script>
+
 <main class="site-content" role="main">
   
     <section class="hero-section bg-gradient-to-br from-blue-50 to-indigo-100 py-16 lg:py-24">

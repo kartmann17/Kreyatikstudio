@@ -1,5 +1,172 @@
 <x-header :seoData="$SEOData ?? null" />
 
+<!-- CollectionPage Schema for Portfolio -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": "https://kreyatikstudio.fr/Portfolio",
+    "url": "https://kreyatikstudio.fr/Portfolio",
+    "name": "Portfolio - Réalisations Web | Kréyatik Studio",
+    "description": "Découvrez notre collection de projets web innovants : sites vitrines, e-commerce, applications SaaS et CRM sur-mesure. Créativité et technologie au service de vos projets.",
+    "inLanguage": "fr-FR",
+    "isPartOf": {
+        "@id": "https://kreyatikstudio.fr/#website"
+    },
+    "datePublished": "2024-01-01T00:00:00+01:00",
+    "dateModified": "{{ now()->toIso8601String() }}",
+    "author": {
+        "@id": "https://kreyatikstudio.fr/#founder"
+    },
+    "publisher": {
+        "@id": "https://kreyatikstudio.fr/#organization"
+    },
+    "about": {
+        "@type": "Thing",
+        "name": "Portfolio de développement web"
+    },
+    @if(isset($portfolioItems) && $portfolioItems->count() > 0)
+    "numberOfItems": {{ $portfolioItems->count() }},
+    "hasPart": [
+        @foreach($portfolioItems as $item)
+        {
+            "@type": "CreativeWork",
+            "@id": "https://kreyatikstudio.fr/Portfolio#{{ $item->slug ?? $item->id }}",
+            "name": "{{ addslashes($item->title) }}",
+            "description": "{{ addslashes(Str::limit(strip_tags($item->description ?? ''), 200)) }}",
+            @if($item->image)
+            "image": "{{ asset('storage/' . $item->image) }}",
+            @endif
+            @if($item->url)
+            "url": "{{ $item->url }}",
+            @endif
+            "creator": {
+                "@id": "https://kreyatikstudio.fr/#organization"
+            },
+            "dateCreated": "{{ $item->created_at->toIso8601String() }}",
+            "inLanguage": "fr-FR"
+        }{{ $loop->last ? '' : ',' }}
+        @endforeach
+    ]
+    @else
+    "numberOfItems": 0
+    @endif
+}
+</script>
+
+<!-- ItemList Schema for Portfolio Projects -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": [
+        @if(isset($portfolioItems) && $portfolioItems->count() > 0)
+        @foreach($portfolioItems as $index => $item)
+        {
+            "@type": "ListItem",
+            "position": {{ $index + 1 }},
+            "item": {
+                "@type": "CreativeWork",
+                "@id": "https://kreyatikstudio.fr/Portfolio#{{ $item->slug ?? $item->id }}",
+                "name": "{{ addslashes($item->title) }}",
+                "description": "{{ addslashes(Str::limit(strip_tags($item->description ?? ''), 150)) }}",
+                @if($item->image)
+                "image": {
+                    "@type": "ImageObject",
+                    "url": "{{ asset('storage/' . $item->image) }}",
+                    "caption": "{{ addslashes($item->title) }}"
+                },
+                @endif
+                @if($item->url)
+                "url": "{{ $item->url }}",
+                @endif
+                "creator": {
+                    "@type": "Organization",
+                    "name": "Kréyatik Studio"
+                },
+                "dateCreated": "{{ $item->created_at->toIso8601String() }}"
+            }
+        }{{ $loop->last ? '' : ',' }}
+        @endforeach
+        @endif
+    ]
+}
+</script>
+
+<!-- Service Schema for Web Development -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Développement Web",
+    "provider": {
+        "@id": "https://kreyatikstudio.fr/#organization"
+    },
+    "areaServed": {
+        "@type": "Country",
+        "name": "France"
+    },
+    "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Services de Développement Web",
+        "itemListElement": [
+            {
+                "@type": "OfferCatalog",
+                "name": "Sites Vitrines",
+                "itemListElement": [
+                    {
+                        "@type": "Offer",
+                        "itemOffered": {
+                            "@type": "Service",
+                            "name": "Site Vitrine Professionnel"
+                        }
+                    }
+                ]
+            },
+            {
+                "@type": "OfferCatalog",
+                "name": "E-commerce",
+                "itemListElement": [
+                    {
+                        "@type": "Offer",
+                        "itemOffered": {
+                            "@type": "Service",
+                            "name": "Boutique en Ligne"
+                        }
+                    }
+                ]
+            },
+            {
+                "@type": "OfferCatalog",
+                "name": "Applications SaaS",
+                "itemListElement": [
+                    {
+                        "@type": "Offer",
+                        "itemOffered": {
+                            "@type": "Service",
+                            "name": "Application SaaS sur-mesure"
+                        }
+                    }
+                ]
+            },
+            {
+                "@type": "OfferCatalog",
+                "name": "CRM Personnalisés",
+                "itemListElement": [
+                    {
+                        "@type": "Offer",
+                        "itemOffered": {
+                            "@type": "Service",
+                            "name": "CRM sur-mesure"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}
+</script>
+
 <main class="site-content" role="main">
 
     <section class="hero-section relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#0099CC] to-[#00A86B] pt-16 sm:pt-20 md:pt-24">

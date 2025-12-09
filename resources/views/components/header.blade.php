@@ -65,6 +65,23 @@
     <!-- Resource Hints for Performance -->
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Additional SEO Meta Tags -->
+    <meta name="author" content="Lionel Blanchet - Kréyatik Studio">
+    <meta name="generator" content="Laravel {{ app()->version() }}">
+    <meta name="theme-color" content="#1a1a2e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="rating" content="general">
+    <meta name="revisit-after" content="7 days">
+
+    <!-- Language and Locale -->
+    <meta http-equiv="content-language" content="fr">
+    <link rel="alternate" hreflang="fr" href="{{ url()->current() }}">
+    <link rel="alternate" hreflang="x-default" href="{{ url('/') }}">
 
     @stack('meta')
 
@@ -147,12 +164,124 @@
         "@context": "https://schema.org",
         "@type": "WebSite",
         "name": "Kréyatik Studio",
+        "alternateName": "Kreyatik Studio - Développeur Web Rochefort",
         "url": "https://kreyatikstudio.fr",
+        "description": "Site web officiel de Kréyatik Studio, développeur web freelance à Rochefort",
+        "inLanguage": "fr-FR",
+        "copyrightYear": {{ date('Y') }},
+        "creator": {
+            "@id": "https://kreyatikstudio.fr/#founder"
+        },
         "potentialAction": {
             "@type": "SearchAction",
-            "target": "https://kreyatikstudio.fr/blog?search={search_term_string}",
+            "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://kreyatikstudio.fr/blog?search={search_term_string}"
+            },
             "query-input": "required name=search_term_string"
         }
+    }
+    </script>
+
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": "https://kreyatikstudio.fr/#organization",
+        "name": "Kréyatik Studio",
+        "legalName": "Kréyatik Studio - Lionel Blanchet",
+        "url": "https://kreyatikstudio.fr",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "{{ secure_asset('images/STUDIOcolibri.png') }}",
+            "width": "250",
+            "height": "250",
+            "caption": "Logo Kréyatik Studio"
+        },
+        "image": "{{ secure_asset('images/STUDIOcolibri.png') }}",
+        "description": "Développeur web freelance spécialisé en création de sites internet, e-commerce et applications web sur-mesure",
+        "founder": {
+            "@type": "Person",
+            "@id": "https://kreyatikstudio.fr/#founder",
+            "name": "Lionel Blanchet",
+            "jobTitle": "Développeur Web Full Stack Freelance",
+            "url": "https://kreyatikstudio.fr/a-propos",
+            "sameAs": [
+                "https://www.facebook.com/share/1AtjVczpEJ/",
+                "https://www.instagram.com/kreyatik_17/"
+            ]
+        },
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+33695800663",
+            "contactType": "customer service",
+            "email": "kreyatik@gmail.com",
+            "areaServed": "FR",
+            "availableLanguage": ["French"]
+        },
+        "sameAs": [
+            "https://www.facebook.com/share/1AtjVczpEJ/",
+            "https://www.instagram.com/kreyatik_17/"
+        ],
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "2 rue du petit port marchand",
+            "addressLocality": "Rochefort",
+            "postalCode": "17300",
+            "addressRegion": "Charente-Maritime",
+            "addressCountry": "FR"
+        }
+    }
+    </script>
+
+    <!-- BreadcrumbList Schema (Dynamic per page) -->
+    @php
+        $breadcrumbs = [];
+        $breadcrumbs[] = ['name' => 'Accueil', 'url' => url('/')];
+
+        $path = request()->path();
+        if ($path !== '/') {
+            $segments = explode('/', trim($path, '/'));
+            $url = url('/');
+
+            foreach ($segments as $segment) {
+                $url .= '/' . $segment;
+                $name = ucfirst(str_replace('-', ' ', $segment));
+
+                // Custom names for better readability
+                $customNames = [
+                    'a propos' => 'À Propos',
+                    'methode travail' => 'Méthode de Travail',
+                    'portfolio' => 'Portfolio',
+                    'contact' => 'Contact',
+                    'blog' => 'Blog',
+                    'mentionlegal' => 'Mentions Légales',
+                    'cgv' => 'CGV',
+                    'confidentialite' => 'Politique de Confidentialité',
+                    'plandusite' => 'Plan du Site',
+                    'temoignages clients' => 'Témoignages Clients'
+                ];
+
+                $name = $customNames[strtolower($name)] ?? $name;
+                $breadcrumbs[] = ['name' => $name, 'url' => $url];
+            }
+        }
+    @endphp
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            @foreach($breadcrumbs as $index => $crumb)
+            {
+                "@type": "ListItem",
+                "position": {{ $index + 1 }},
+                "name": "{{ $crumb['name'] }}",
+                "item": "{{ $crumb['url'] }}"
+            }{{ $loop->last ? '' : ',' }}
+            @endforeach
+        ]
     }
     </script>
 

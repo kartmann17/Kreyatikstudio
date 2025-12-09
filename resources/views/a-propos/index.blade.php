@@ -1,80 +1,118 @@
-<x-header :seoData="$SEOData ?? null">
-<x-slot name="meta">
-<!-- Schema.org Person pour GEO (Generative Engine Optimization) -->
+<x-header :seoData="$SEOData ?? null" />
+
+<!-- Person Schema for Lionel Blanchet -->
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Lionel Blanchet",
-  "jobTitle": "Développeur Web Freelance",
-  "description": "Développeur web freelance spécialisé en Laravel, SaaS, CRM et e-commerce. Reconversion de l'aéronautique vers le web, basé à Rochefort (Charente-Maritime).",
-  "url": "https://kreyatikstudio.fr/a-propos",
-  "image": "{{ secure_asset('images/Studiosansfond.png') }}",
-  "email": "contact@kreyatikstudio.fr",
-  "worksFor": {
-    "@type": "Organization",
-    "name": "Kréyatik Studio",
-    "url": "https://kreyatikstudio.fr",
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": "https://kreyatikstudio.fr/#founder",
+    "name": "Lionel Blanchet",
+    "alternateName": "Lionel Blanchet - Kréyatik Studio",
+    "jobTitle": "Développeur Web Full Stack Freelance",
+    "description": "Développeur web freelance passionné, reconverti de l'aéronautique vers le développement web. Spécialisé en Laravel, Python, React et Flutter. Basé à Rochefort, Charente-Maritime.",
+    "url": "https://kreyatikstudio.fr/a-propos",
+    "image": "{{ secure_asset('images/STUDIOcolibri.png') }}",
+    "email": "kreyatik@gmail.com",
+    "telephone": "+33695800663",
     "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Rochefort",
-      "postalCode": "17300",
-      "addressRegion": "Charente-Maritime",
-      "addressCountry": "FR"
-    }
-  },
-  "alumniOf": {
-    "@type": "Organization",
-    "name": "Formation Développement Web"
-  },
-  "knowsAbout": [
-    "Laravel",
-    "PHP",
-    "Python",
-    "JavaScript",
-    "React",
-    "Flutter",
-    "TailwindCSS",
-    "E-commerce",
-    "SaaS",
-    "CRM",
-    "SEO",
-    "APIs REST",
-    "Développement Web",
-    "Applications Mobiles"
-  ],
-  "hasOccupation": {
-    "@type": "Occupation",
-    "name": "Développeur Web Fullstack",
-    "occupationLocation": {
-      "@type": "City",
-      "name": "Rochefort"
+        "@type": "PostalAddress",
+        "streetAddress": "2 rue du petit port marchand",
+        "addressLocality": "Rochefort",
+        "postalCode": "17300",
+        "addressRegion": "Charente-Maritime",
+        "addressCountry": "FR"
     },
-    "skills": "Laravel, PHP, Python, React, Flutter, E-commerce, SaaS, CRM, SEO"
-  },
-  "sameAs": [
-    "https://www.facebook.com/share/1AtjVczpEJ/",
-    "https://www.instagram.com/kreyatik_17/"
-  ]
+    "worksFor": {
+        "@type": "Organization",
+        "@id": "https://kreyatikstudio.fr/#organization",
+        "name": "Kréyatik Studio"
+    },
+    "alumniOf": {
+        "@type": "EducationalOrganization",
+        "name": "Formation Développement Web"
+    },
+    "knowsAbout": [
+        "Développement Web",
+        "Laravel",
+        "PHP",
+        "Python",
+        "React",
+        "Flutter",
+        "TailwindCSS",
+        "JavaScript",
+        "MySQL",
+        "SEO",
+        "E-commerce",
+        "SaaS",
+        "CRM"
+    ],
+    "knowsLanguage": {
+        "@type": "Language",
+        "name": "French",
+        "alternateName": "fr"
+    },
+    "sameAs": [
+        "https://www.facebook.com/share/1AtjVczpEJ/",
+        "https://www.instagram.com/kreyatik_17/",
+        "https://kreyatikstudio.fr"
+    ],
+    "hasOccupation": {
+        "@type": "Occupation",
+        "name": "Développeur Web Freelance",
+        "occupationalCategory": "15-1254.00",
+        "skills": "Laravel, PHP, Python, React, Flutter, TailwindCSS, MySQL, Git, SEO",
+        "responsibilities": "Création de sites internet, applications web sur-mesure, e-commerce, SaaS, CRM, optimisation SEO"
+    }
 }
 </script>
 
-<!-- Schema.org AboutPage pour la page À Propos -->
+<!-- AboutPage Schema -->
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "AboutPage",
-  "name": "À Propos de Kréyatik Studio",
-  "description": "Découvrez le parcours de Lionel Blanchet, développeur web freelance à Rochefort. Reconversion de l'aéronautique vers le développement web, spécialisé en Laravel, SaaS, CRM et e-commerce.",
-  "url": "https://kreyatikstudio.fr/a-propos",
-  "mainEntity": {
-    "@type": "Person",
-    "name": "Lionel Blanchet"
-  }
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "@id": "https://kreyatikstudio.fr/a-propos",
+    "url": "https://kreyatikstudio.fr/a-propos",
+    "name": "À Propos - Lionel Blanchet | Développeur Web Freelance Rochefort",
+    "description": "Découvrez le parcours de Lionel Blanchet, développeur web freelance reconverti de l'aéronautique. Spécialisé en Laravel, Python, React et Flutter, basé à Rochefort.",
+    "mainEntity": {
+        "@id": "https://kreyatikstudio.fr/#founder"
+    },
+    "inLanguage": "fr-FR",
+    "isPartOf": {
+        "@id": "https://kreyatikstudio.fr/#website"
+    },
+    "about": {
+        "@type": "Person",
+        "name": "Lionel Blanchet",
+        "description": "Développeur web freelance avec une expérience unique alliant rigueur aéronautique et passion du développement web"
+    },
+    "specialty": [
+        "Développement Laravel",
+        "Applications SaaS",
+        "E-commerce",
+        "CRM sur-mesure",
+        "Formation Python",
+        "Exploration React et Flutter"
+    ]
 }
 </script>
-</x-slot>
-</x-header>
+
+<!-- ProfilePage Schema -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "dateCreated": "2024-01-01T00:00:00+01:00",
+    "dateModified": "{{ now()->toIso8601String() }}",
+    "mainEntity": {
+        "@id": "https://kreyatikstudio.fr/#founder"
+    },
+    "breadcrumb": {
+        "@id": "https://kreyatikstudio.fr/a-propos#breadcrumb"
+    }
+}
+</script>
 
 <main class="site-content" role="main">
 
