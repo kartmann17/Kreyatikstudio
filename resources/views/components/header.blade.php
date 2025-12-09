@@ -498,7 +498,7 @@
                 <!-- Desktop Navigation (only visible on desktop) -->
                 <ul class="desktop-nav navbar-nav">
                     <li class="nav-item"><a class="nav-link" href="/">Accueil</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/NosOffres">Nos Offres</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/methode-travail">Méthode de Travail</a></li>
                     <li class="nav-item"><a class="nav-link" href="/Portfolio">Portfolio</a></li>
                     @php
                         $now = \Carbon\Carbon::now();
@@ -526,7 +526,7 @@
         <div class="mobile-nav fixed inset-0 bg-black/95 z-40 lg:hidden hidden" id="mobileMenu">
             <div class="flex flex-col items-center justify-center h-full space-y-8 text-white">
                 <a href="/" class="nav-link mobile-nav-link">Accueil</a>
-                <a href="/NosOffres" class="nav-link mobile-nav-link">Nos Offres</a>
+                <a href="/methode-travail" class="nav-link mobile-nav-link">Méthode de Travail</a>
                 <a href="/Portfolio" class="nav-link mobile-nav-link">Portfolio</a>
                 @if($contestActive ?? false)
                     <a href="/concours" class="nav-link mobile-nav-link contest-link">🎉 Concours</a>

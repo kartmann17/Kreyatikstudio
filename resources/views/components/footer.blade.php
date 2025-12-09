@@ -14,7 +14,7 @@
                             <li><a href="/" class="hover:text-primary transition">Accueil</a></li>
                             <li><a href="/Contact" class="hover:text-primary transition">Contact</a></li>
                             <li><a href="/plandusite" class="hover:text-primary transition">Plan du site</a></li>
-                            <li><a href="/NosOffres" class="hover:text-primary transition">Nos Offres</a></li>
+                            <li><a href="/methode-travail" class="hover:text-primary transition">Méthode de Travail</a></li>
                         </ul>
                         <ul class="space-y-1 text-center md:text-left text-sm">
                             <li><a href="/blog" class="hover:text-primary transition">Blog</a></li>
