@@ -12,8 +12,8 @@
                     <div class="flex-1 flex flex-col md:flex-row gap-6 justify-center">
                         <ul class="space-y-1 text-center md:text-left text-sm">
                             <li><a href="/" class="hover:text-primary transition">Accueil</a></li>
-                            <li><a href="/a-propos" class="hover:text-primary transition">À propos</a></li>
                             <li><a href="/Contact" class="hover:text-primary transition">Contact</a></li>
+                            <li><a href="/Portfolio" class="hover:text-primary transition">Portfolio</a></li>
                             <li><a href="/methode-travail" class="hover:text-primary transition">Méthode de Travail</a></li>
                         </ul>
                         <ul class="space-y-1 text-center md:text-left text-sm">
