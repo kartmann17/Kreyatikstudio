@@ -38,25 +38,8 @@ class SEOService
 
         $url = $urlMap[$page] ?? $overrides['canonical_url'] ?? url()->current();
 
-        // Charger les données SEO depuis la base de données
-        $seoRecord = DB::table('seo')
-            ->where('url', $url)
-            ->first();
-
-        // Si des données existent en BDD, les utiliser en priorité
-        if ($seoRecord) {
-            return new SEOData(
-                title: $overrides['title'] ?? $seoRecord->title ?? config('app.name'),
-                description: $overrides['description'] ?? $seoRecord->description ?? config('seo.description.fallback'),
-                author: $overrides['author'] ?? $seoRecord->author ?? config('seo.author.fallback'),
-                image: $overrides['image'] ?? $seoRecord->image ?? asset(config('seo.image.fallback')),
-                canonical_url: $overrides['canonical_url'] ?? $seoRecord->canonical_url ?? $url,
-                robots: $overrides['robots'] ?? $seoRecord->robots ?? config('seo.robots.default'),
-                type: $overrides['type'] ?? 'website',
-            );
-        }
-
-        // Fallback sur la configuration fichier si rien en BDD
+        // Pour les pages statiques, on utilise directement la configuration
+        // La table SEO est polymorphique et utilisée pour les modèles (Articles, Projects, etc.)
         $config = config("seo.pages.{$page}", []);
 
         return new SEOData(
