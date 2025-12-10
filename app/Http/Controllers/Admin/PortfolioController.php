@@ -340,8 +340,10 @@ class PortfolioController extends Controller
                 ]);
                 return '';
             }
-            
-            return "storage/{$folder}/{$fileName}";
+
+            // Retourner uniquement le chemin relatif sans "storage/" au début
+            // car asset('storage/' . $path) sera utilisé dans les vues
+            return "{$folder}/{$fileName}";
         } catch (\Exception $e) {
             \Log::error('Exception lors du téléchargement du fichier: ' . $e->getMessage(), [
                 'file' => $file->getClientOriginalName(),
