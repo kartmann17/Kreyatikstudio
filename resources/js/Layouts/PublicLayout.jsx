@@ -25,16 +25,28 @@ export default function PublicLayout({ children, seo }) {
     // SEO defaults
     const title = seo?.title || 'Kréyatik Studio Développeur Web Freelance Rochefort | Laravel, E-commerce & Applications';
     const description = seo?.description || 'Développeur web freelance à Rochefort : création de sites internet, e-commerce & applications Laravel sur-mesure. Expert SEO, solutions digitales performantes. Devis gratuit.';
-    const ogImage = seo?.image || '/images/STUDIOcolibri.png';
+    const ogImage = seo?.image || 'https://kreyatikstudio.fr/images/STUDIOcolibri.png';
+    const absoluteOgImage = ogImage.startsWith('http') ? ogImage : `https://kreyatikstudio.fr${ogImage}`;
 
     return (
         <>
             <Head>
                 <title>{title}</title>
                 <meta name="description" content={description} />
+                <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+                <meta property="og:type" content="website" />
                 <meta property="og:title" content={title} />
                 <meta property="og:description" content={description} />
-                <meta property="og:image" content={ogImage} />
+                <meta property="og:image" content={absoluteOgImage} />
+                <meta property="og:image:width" content="1200" />
+                <meta property="og:image:height" content="630" />
+                <meta property="og:url" content={seo?.canonical_url || window.location.href} />
+                <meta property="og:site_name" content="Kréyatik Studio" />
+                <meta property="og:locale" content="fr_FR" />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content={title} />
+                <meta name="twitter:description" content={description} />
+                <meta name="twitter:image" content={absoluteOgImage} />
                 <link rel="canonical" href={seo?.canonical_url || window.location.href} />
             </Head>
 
@@ -147,9 +159,9 @@ export default function PublicLayout({ children, seo }) {
                                 <h3 className="footer-title">Navigation</h3>
                                 <ul className="footer-links">
                                     <li><Link href="/" className="footer-link">Accueil</Link></li>
-                                    <li><Link href="/Portfolio" className="footer-link">Portfolio</Link></li>
+                                    <li><Link href="/portfolio" className="footer-link">Portfolio</Link></li>
                                     <li><Link href="/blog" className="footer-link">Blog</Link></li>
-                                    <li><Link href="/Contact" className="footer-link">Contact</Link></li>
+                                    <li><Link href="/contact" className="footer-link">Contact</Link></li>
                                 </ul>
                             </div>
 
@@ -157,10 +169,10 @@ export default function PublicLayout({ children, seo }) {
                             <div className="footer-section">
                                 <h3 className="footer-title">Informations légales</h3>
                                 <ul className="footer-links">
-                                    <li><Link href="/MentionLegal" className="footer-link">Mentions légales</Link></li>
-                                    <li><Link href="/CGV" className="footer-link">CGV</Link></li>
+                                    <li><Link href="/mentions-legales" className="footer-link">Mentions légales</Link></li>
+                                    <li><Link href="/cgv" className="footer-link">CGV</Link></li>
                                     <li><Link href="/confidentialite" className="footer-link">Confidentialité</Link></li>
-                                    <li><Link href="/plandusite" className="footer-link">Plan du site</Link></li>
+                                    <li><Link href="/plan-du-site" className="footer-link">Plan du site</Link></li>
                                 </ul>
                             </div>
 
