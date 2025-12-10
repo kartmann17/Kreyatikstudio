@@ -30,6 +30,10 @@ class Article extends Model
         'published_at' => 'datetime'
     ];
 
+    protected $appends = [
+        'featured_image'
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -72,6 +76,24 @@ class Article extends Model
         }
 
         return Str::limit($this->plain_text, 160);
+    }
+
+    /**
+     * Get the featured image URL for display
+     */
+    public function getFeaturedImageAttribute(): ?string
+    {
+        if (!$this->image) {
+            return null;
+        }
+
+        // Si le chemin commence par http, c'est une URL absolue
+        if (str_starts_with($this->image, 'http')) {
+            return $this->image;
+        }
+
+        // Sinon, construire le chemin depuis storage
+        return asset('storage/' . $this->image);
     }
 
 }
