@@ -90,9 +90,9 @@
                         <div>
                             <h5 class="text-lg font-medium text-gray-900 mb-4">Fichier actuel</h5>
                             @if($portfolioItem->isImage())
-                                <img src="{{ asset($portfolioItem->path) }}" alt="{{ $portfolioItem->title }}" class="max-h-48 rounded-lg border border-gray-200">
+                                <img src="{{ asset('storage/' . $portfolioItem->path) }}" alt="{{ $portfolioItem->title }}" class="max-h-48 rounded-lg border border-gray-200">
                             @else
-                                <video src="{{ asset($portfolioItem->path) }}" controls class="max-h-48 rounded-lg border border-gray-200">
+                                <video src="{{ asset('storage/' . $portfolioItem->path) }}" controls class="max-h-48 rounded-lg border border-gray-200">
                                     Votre navigateur ne supporte pas la vidéo.
                                 </video>
                             @endif

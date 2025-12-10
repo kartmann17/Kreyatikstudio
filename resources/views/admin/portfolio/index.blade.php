@@ -44,10 +44,10 @@
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $item->order }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         @if($item->isImage())
-                                            <img src="{{ asset($item->path) }}" alt="{{ $item->title }}" class="h-15 w-15 object-cover rounded-lg border border-gray-200">
+                                            <img src="{{ asset('storage/' . $item->path) }}" alt="{{ $item->title }}" class="h-15 w-15 object-cover rounded-lg border border-gray-200">
                                         @else
                                             <video muted class="h-15 w-15 object-cover rounded-lg border border-gray-200">
-                                                <source src="{{ asset($item->path) }}" type="video/mp4">
+                                                <source src="{{ asset('storage/' . $item->path) }}" type="video/mp4">
                                                 Votre navigateur ne supporte pas la vidéo.
                                             </video>
                                         @endif
