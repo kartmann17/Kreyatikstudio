@@ -31,7 +31,7 @@ class ContactController extends Controller
             image: asset('images/logo.png'),
         );
 
-        return view('contact.index', ['SEOData' => $seo]);
+        return inertia('Contact', ['seo' => $seo]);
     }
 
     /**

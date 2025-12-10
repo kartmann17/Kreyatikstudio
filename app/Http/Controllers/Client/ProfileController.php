@@ -24,7 +24,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        return view('client.profile');
+        return inertia('Client/Profile');
     }
 
     /**

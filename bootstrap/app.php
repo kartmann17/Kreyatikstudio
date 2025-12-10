@@ -7,6 +7,7 @@ use App\Http\Middleware\CheckRole;
 use App\Http\Middleware\SecurityHeaders;
 use App\Http\Middleware\EnsureUserHasClient;
 use App\Http\Middleware\PerformanceHeaders;
+use App\Http\Middleware\HandleInertiaRequests;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -17,6 +18,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         // Middleware global de sécurité
         $middleware->web(append: [
+            HandleInertiaRequests::class,
             SecurityHeaders::class,
             // PerformanceHeaders désactivé en local (conflit compression avec Nginx/Apache)
         ]);

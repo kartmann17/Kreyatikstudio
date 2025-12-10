@@ -22,9 +22,9 @@ class PortfolioPublicController extends Controller
         // Utiliser le SEOService pour générer les données SEO dynamiquement depuis la BDD
         $SEOData = $this->seoService->generatePageSEO('portfolio');
 
-        return view('portfolio.index', [
+        return inertia('Portfolio', [
             'portfolioItems' => $portfolioItems,
-            'SEOData' => $SEOData
+            'seo' => $SEOData
         ]);
     }
 }

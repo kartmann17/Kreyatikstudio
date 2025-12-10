@@ -57,7 +57,7 @@ class PricingPlan extends Model
      * @var array
      */
     protected $appends = [
-        'yearly_saving',
+        'yearly_savings',
     ];
 
     /**
@@ -122,8 +122,11 @@ class PricingPlan extends Model
      */
     public function getYearlySavingsAttribute(): array
     {
-        $monthlyTotal = $this->monthly_price * 12;
-        $savings = $monthlyTotal - $this->annual_price;
+        $monthlyPrice = floatval($this->monthly_price ?? 0);
+        $annualPrice = floatval($this->annual_price ?? 0);
+
+        $monthlyTotal = $monthlyPrice * 12;
+        $savings = $monthlyTotal - $annualPrice;
 
         return [
             'amount' => max(0, $savings),

@@ -1,0 +1,314 @@
+import { Link } from '@inertiajs/react';
+import PublicLayout from '@/Layouts/PublicLayout';
+import { Head } from '@inertiajs/react';
+
+export default function APropos({ seo }) {
+    return (
+        <PublicLayout seo={seo}>
+            <Head>
+                {/* Schema.org Person pour GEO (Generative Engine Optimization) */}
+                <script type="application/ld+json">
+                    {JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "Person",
+                        "name": "Lionel Blanchet",
+                        "jobTitle": "Développeur Web Freelance",
+                        "description": "Développeur web freelance spécialisé en Laravel, SaaS, CRM et e-commerce. Reconversion de l'aéronautique vers le web, basé à Rochefort (Charente-Maritime).",
+                        "url": "https://kreyatikstudio.fr/a-propos",
+                        "image": "/images/Studiosansfond.png",
+                        "email": "contact@kreyatikstudio.fr",
+                        "worksFor": {
+                            "@type": "Organization",
+                            "name": "Kréyatik Studio",
+                            "url": "https://kreyatikstudio.fr",
+                            "address": {
+                                "@type": "PostalAddress",
+                                "addressLocality": "Rochefort",
+                                "postalCode": "17300",
+                                "addressRegion": "Charente-Maritime",
+                                "addressCountry": "FR"
+                            }
+                        },
+                        "alumniOf": {
+                            "@type": "Organization",
+                            "name": "Formation Développement Web"
+                        },
+                        "knowsAbout": [
+                            "Laravel", "PHP", "Python", "JavaScript", "React", "Flutter",
+                            "TailwindCSS", "E-commerce", "SaaS", "CRM", "SEO", "APIs REST",
+                            "Développement Web", "Applications Mobiles"
+                        ],
+                        "hasOccupation": {
+                            "@type": "Occupation",
+                            "name": "Développeur Web Fullstack",
+                            "occupationLocation": {
+                                "@type": "City",
+                                "name": "Rochefort"
+                            },
+                            "skills": "Laravel, PHP, Python, React, Flutter, E-commerce, SaaS, CRM, SEO"
+                        },
+                        "sameAs": [
+                            "https://www.facebook.com/share/1AtjVczpEJ/",
+                            "https://www.instagram.com/kreyatik_17/"
+                        ]
+                    })}
+                </script>
+                <script type="application/ld+json">
+                    {JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "AboutPage",
+                        "name": "À Propos de Kréyatik Studio",
+                        "description": "Découvrez le parcours de Lionel Blanchet, développeur web freelance à Rochefort. Reconversion de l'aéronautique vers le développement web, spécialisé en Laravel, SaaS, CRM et e-commerce.",
+                        "url": "https://kreyatikstudio.fr/a-propos",
+                        "mainEntity": {
+                            "@type": "Person",
+                            "name": "Lionel Blanchet"
+                        }
+                    })}
+                </script>
+            </Head>
+
+            <main className="site-content" role="main">
+                {/* Hero Section */}
+                <section className="hero-section bg-gradient-to-br from-blue-50 to-indigo-100 py-16 lg:py-24">
+                    <div className="container mx-auto px-4">
+                        <div className="text-center max-w-4xl mx-auto">
+                            <div className="inline-flex items-center bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full mb-6">
+                                <span>👋 À Propos de Kréyatik Studio</span>
+                            </div>
+                            <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                                De l'aéronautique au{' '}
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+                                    développement web
+                                </span>
+                            </h1>
+                            <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+                                <strong>Passionné par le web depuis plusieurs années</strong>, j'ai effectué une reconversion professionnelle
+                                pour transformer cette passion en métier. Mon expérience dans <strong>l'aéronautique</strong> m'a apporté
+                                la rigueur et la précision que j'applique aujourd'hui dans chaque projet web.
+                                Actuellement en spécialisation <strong>Python</strong> et exploration <strong>React/Flutter</strong>, basé à <strong>Rochefort</strong>.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                {/* Expertise Section */}
+                <section className="py-16 lg:py-24 bg-white">
+                    <div className="container mx-auto px-4">
+                        <div className="text-center max-w-3xl mx-auto mb-16">
+                            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">Mon Expertise Technique</h2>
+                            <p className="text-xl text-gray-600">
+                                Des compétences forgées par l'exigence aéronautique et affûtées par la passion du web
+                            </p>
+                        </div>
+
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+                                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
+                                    <svg className="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z"/>
+                                    </svg>
+                                </div>
+                                <h3 className="text-xl font-bold text-gray-900 mb-4">Développement Backend</h3>
+                                <div className="flex flex-wrap gap-2 mb-4">
+                                    <span className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Laravel</span>
+                                    <span className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">SaaS</span>
+                                    <span className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">CRM</span>
+                                    <span className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">E-commerce</span>
+                                    <span className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Python</span>
+                                    <span className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">APIs REST</span>
+                                </div>
+                                <p className="text-gray-600">
+                                    Développement d'applications web complexes avec Laravel : SaaS, CRM sur-mesure et boutiques e-commerce.
+                                    Spécialisation Python en cours. La rigueur aéronautique appliquée au code pour des solutions robustes et sécurisées.
+                                </p>
+                            </div>
+
+                            <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+                                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-6">
+                                    <svg className="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                    </svg>
+                                </div>
+                                <h3 className="text-xl font-bold text-gray-900 mb-4">Frontend Moderne</h3>
+                                <div className="flex flex-wrap gap-2 mb-4">
+                                    <span className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">TailwindCSS</span>
+                                    <span className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">React</span>
+                                    <span className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Alpine.js</span>
+                                    <span className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Vite</span>
+                                    <span className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Responsive</span>
+                                </div>
+                                <p className="text-gray-600">
+                                    Création d'interfaces web modernes avec TailwindCSS et exploration des frameworks React pour des
+                                    expériences utilisateur interactives et performantes.
+                                </p>
+                            </div>
+
+                            <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100 md:col-span-2 lg:col-span-1">
+                                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-6">
+                                    <svg className="w-6 h-6 text-purple-600" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0L19.2 12l-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
+                                    </svg>
+                                </div>
+                                <h3 className="text-xl font-bold text-gray-900 mb-4">Applications Mobiles & SEO</h3>
+                                <div className="flex flex-wrap gap-2 mb-4">
+                                    <span className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Flutter</span>
+                                    <span className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">SEO On-page</span>
+                                    <span className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Core Web Vitals</span>
+                                    <span className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Analytics</span>
+                                </div>
+                                <p className="text-gray-600">
+                                    Exploration du développement d'applications mobiles avec Flutter et optimisation SEO
+                                    pour une présence digitale complète.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* Timeline Section */}
+                <section className="py-16 lg:py-24 bg-gray-50">
+                    <div className="container mx-auto px-4">
+                        <div className="text-center max-w-3xl mx-auto mb-16">
+                            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">Mon Parcours : Une Reconversion Passionnée</h2>
+                            <p className="text-xl text-gray-600">
+                                De l'industrie aéronautique au développement web, l'histoire d'une transformation professionnelle réussie
+                            </p>
+                        </div>
+
+                        <div className="max-w-4xl mx-auto">
+                            <div className="space-y-12">
+                                <div className="flex items-start">
+                                    <div className="flex-shrink-0 w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-2xl">
+                                        ✈️
+                                    </div>
+                                    <div className="ml-6">
+                                        <h3 className="text-xl font-bold text-gray-900 mb-2">Expérience Aéronautique</h3>
+                                        <p className="text-gray-600">
+                                            Plusieurs années dans l'industrie aéronautique qui m'ont forgé un esprit de rigueur, de précision et de méthode.
+                                            Ces valeurs fondamentales sont devenues le socle de ma pratique professionnelle,
+                                            quelle que soit la technologie utilisée.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div className="flex items-start">
+                                    <div className="flex-shrink-0 w-16 h-16 bg-green-600 rounded-full flex items-center justify-center text-white font-bold text-2xl">
+                                        💡
+                                    </div>
+                                    <div className="ml-6">
+                                        <h3 className="text-xl font-bold text-gray-900 mb-2">La Passion Devient Métier</h3>
+                                        <p className="text-gray-600">
+                                            Fasciné par le web depuis plusieurs années, la décision de la reconversion s'impose naturellement.
+                                            Formation intensive en développement web : HTML, CSS, JavaScript, PHP.
+                                            Découverte de Laravel qui devient rapidement ma spécialité de prédilection.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div className="flex items-start">
+                                    <div className="flex-shrink-0 w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold text-2xl">
+                                        🚀
+                                    </div>
+                                    <div className="ml-6">
+                                        <h3 className="text-xl font-bold text-gray-900 mb-2">Premiers Projets & Montée en Compétences</h3>
+                                        <p className="text-gray-600">
+                                            Application de la rigueur aéronautique aux premiers projets web. Développement de sites vitrine,
+                                            boutiques e-commerce, applications SaaS et CRM sur-mesure. Spécialisation progressive en
+                                            référencement naturel et optimisation des performances.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div className="flex items-start">
+                                    <div className="flex-shrink-0 w-16 h-16 bg-indigo-600 rounded-full flex items-center justify-center text-white font-bold text-2xl">
+                                        🐍
+                                    </div>
+                                    <div className="ml-6">
+                                        <h3 className="text-xl font-bold text-gray-900 mb-2">Spécialisation Multi-Technologies & Kréyatik Studio</h3>
+                                        <p className="text-gray-600">
+                                            Formation licence Python en cours, exploration de React pour les interfaces web interactives
+                                            et découverte de Flutter pour le développement d'applications mobiles. Création de Kréyatik Studio,
+                                            spécialisé dans les SaaS, CRM et e-commerce, alliant rigueur aéronautique et curiosité technologique.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* Values Section */}
+                <section className="py-16 lg:py-24 bg-white">
+                    <div className="container mx-auto px-4">
+                        <div className="text-center max-w-3xl mx-auto mb-16">
+                            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">Mes Valeurs & Engagements</h2>
+                            <p className="text-xl text-gray-600">
+                                Les principes qui guident chaque collaboration et projet
+                            </p>
+                        </div>
+
+                        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                            <div className="text-center p-8">
+                                <div className="text-4xl mb-4">🎯</div>
+                                <h3 className="text-xl font-bold text-gray-900 mb-4">Rigueur & Précision</h3>
+                                <p className="text-gray-600">
+                                    L'exigence aéronautique appliquée au développement web. Chaque ligne de code écrite avec la même
+                                    précision que dans l'industrie où l'erreur n'est pas permise. Standards élevés et qualité irréprochable.
+                                </p>
+                            </div>
+
+                            <div className="text-center p-8">
+                                <div className="text-4xl mb-4">🔄</div>
+                                <h3 className="text-xl font-bold text-gray-900 mb-4">Reconversion Réussie</h3>
+                                <p className="text-gray-600">
+                                    Une transition professionnelle menée avec détermination et passion. L'expérience industrielle
+                                    enrichit chaque projet web d'une approche méthodique et d'une vision globale unique.
+                                </p>
+                            </div>
+
+                            <div className="text-center p-8">
+                                <div className="text-4xl mb-4">🚀</div>
+                                <h3 className="text-xl font-bold text-gray-900 mb-4">Curiosité Technologique</h3>
+                                <p className="text-gray-600">
+                                    Formation Python, exploration React et Flutter : une approche multi-technologies pour répondre
+                                    aux besoins variés du digital. Du web aux applications mobiles, toujours en quête d'innovation.
+                                </p>
+                            </div>
+
+                            <div className="text-center p-8">
+                                <div className="text-4xl mb-4">💡</div>
+                                <h3 className="text-xl font-bold text-gray-900 mb-4">Passion & Engagement</h3>
+                                <p className="text-gray-600">
+                                    La passion du web comme moteur de la reconversion. Chaque projet développé avec l'enthousiasme
+                                    de quelqu'un qui a choisi ce métier par vocation, pas par hasard.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* CTA Section */}
+                <section className="py-16 lg:py-24 bg-gradient-to-br from-blue-600 to-indigo-700">
+                    <div className="container mx-auto px-4 text-center">
+                        <div className="max-w-3xl mx-auto">
+                            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">Transformons votre vision en réalité digitale</h2>
+                            <p className="text-xl text-blue-100 mb-8">
+                                Mon parcours atypique et mon expertise en SaaS, CRM et e-commerce, alliant rigueur industrielle et passion web,
+                                au service de votre projet. Discutons de vos ambitions digitales et créons ensemble quelque chose d'exceptionnel.
+                            </p>
+                            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                                <Link href="/contact" className="inline-flex items-center justify-center px-8 py-4 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-50 transition-colors">
+                                    <span>💬 Discuter de mon projet</span>
+                                </Link>
+                                <Link href="/portfolio" className="inline-flex items-center justify-center px-8 py-4 bg-transparent border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-blue-600 transition-colors">
+                                    <span>👁️ Voir mes réalisations</span>
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </PublicLayout>
+    );
+}

@@ -28,6 +28,6 @@ class NosOffresController extends Controller
                 ->get();
         });
 
-        return view('nosoffres.index', compact('SEOData', 'pricingPlans'));
+        return inertia('NosOffres', ['seo' => $SEOData, 'pricingPlans' => $pricingPlans]);
     }
 } 

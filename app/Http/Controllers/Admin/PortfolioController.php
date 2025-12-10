@@ -49,6 +49,7 @@ class PortfolioController extends Controller
             'technology' => 'nullable|string|max:255',
             'type' => 'required|in:image,video',
             'file' => 'required|file|max:20480',
+            'url' => 'nullable|url|max:255',
         ]);
 
         // Vérification supplémentaire du format de fichier en fonction du type sélectionné
@@ -88,6 +89,7 @@ class PortfolioController extends Controller
             'technology' => $validated['technology'],
             'type' => $validated['type'],
             'path' => $path,
+            'url' => $validated['url'] ?? null,
             'order' => $lastOrder + 1,
             'is_visible' => $request->has('is_visible') ? true : false,
         ]);
@@ -129,6 +131,7 @@ class PortfolioController extends Controller
             'technology' => 'nullable|string|max:255',
             'type' => 'required|in:image,video',
             'file' => 'nullable|file|max:20480',
+            'url' => 'nullable|url|max:255',
         ]);
 
         // Gestion du fichier (image ou vidéo) si un nouveau fichier est fourni
@@ -171,8 +174,9 @@ class PortfolioController extends Controller
         $portfolioItem->description = $validated['description'];
         $portfolioItem->technology = $validated['technology'];
         $portfolioItem->type = $validated['type'];
+        $portfolioItem->url = $validated['url'] ?? null;
         $portfolioItem->is_visible = $request->has('is_visible') ? true : false;
-        
+
         $portfolioItem->save();
 
         return redirect()->route('admin.portfolio.index')

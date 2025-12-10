@@ -51,6 +51,12 @@
                             <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" id="technology" name="technology" value="{{ old('technology', $portfolioItem->technology) }}" placeholder="ex: HTML, CSS, JavaScript, Laravel, etc.">
                             <p class="mt-1 text-sm text-gray-500">Les technologies utilisées pour réaliser ce projet (séparées par des virgules).</p>
                         </div>
+
+                        <div>
+                            <label for="url" class="block text-sm font-medium text-gray-700 mb-2">URL du projet</label>
+                            <input type="url" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" id="url" name="url" value="{{ old('url', $portfolioItem->url) }}" placeholder="https://exemple.com">
+                            <p class="mt-1 text-sm text-gray-500">L'URL du projet en ligne (optionnel).</p>
+                        </div>
                     </div>
 
                     <div class="space-y-6">

@@ -18,25 +18,19 @@ class LegalController extends Controller
     public function mentionsLegales()
     {
         $SEOData = $this->seoService->generatePageSEO('mentions-legales');
-        return view('MentionLegal.index', ['SEOData' => $SEOData]);
-    }
-
-    public function planDuSite()
-    {
-        $SEOData = $this->seoService->generatePageSEO('plan-du-site');
-        return view('plandusite.index', ['SEOData' => $SEOData]);
+        return inertia('Legal/MentionsLegales', ['seo' => $SEOData]);
     }
 
     public function cgv()
     {
         $SEOData = $this->seoService->generatePageSEO('cgv');
-        return view('CGV.index', ['SEOData' => $SEOData]);
+        return inertia('Legal/CGV', ['seo' => $SEOData]);
     }
 
     public function confidentialite()
     {
         $SEOData = $this->seoService->generatePageSEO('politique-confidentialite');
-        return view('confidentialite.index', ['SEOData' => $SEOData]);
+        return inertia('Legal/Confidentialite', ['seo' => $SEOData]);
     }
 
     public function conditionsTarifaires()
@@ -48,8 +42,8 @@ class LegalController extends Controller
             ->ordered()
             ->get();
 
-        return view('conditions.tarifaire', [
-            'SEOData' => $SEOData,
+        return inertia('Legal/ConditionsTarifaires', [
+            'seo' => $SEOData,
             'pricingPlans' => $pricingPlans
         ]);
     }
@@ -57,24 +51,30 @@ class LegalController extends Controller
     public function contact()
     {
         $SEOData = $this->seoService->generatePageSEO('contact');
-        return view('contact.index', ['SEOData' => $SEOData]);
+        return inertia('Contact', ['seo' => $SEOData]);
     }
 
     public function aPropos()
     {
         $SEOData = $this->seoService->generatePageSEO('a-propos');
-        return view('a-propos.index', ['SEOData' => $SEOData]);
+        return inertia('APropos', ['seo' => $SEOData]);
     }
 
     public function methodeTravail()
     {
         $SEOData = $this->seoService->generatePageSEO('methode-travail');
-        return view('methode-travail.index', ['SEOData' => $SEOData]);
+        return inertia('MethodeTravail', ['seo' => $SEOData]);
     }
 
     public function temoignagesClients()
     {
         $SEOData = $this->seoService->generatePageSEO('temoignages-clients');
-        return view('temoignages-clients.index', ['SEOData' => $SEOData]);
+        return inertia('TemoignagesClients', ['seo' => $SEOData]);
+    }
+
+    public function planDuSite()
+    {
+        $SEOData = $this->seoService->generatePageSEO('plan-du-site');
+        return inertia('PlanDuSite', ['seo' => $SEOData]);
     }
 }

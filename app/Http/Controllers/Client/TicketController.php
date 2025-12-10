@@ -46,7 +46,7 @@ class TicketController extends Controller
             'closed' => Ticket::where('client_id', Auth::user()->client_id ?? 0)->closed()->count(),
         ];
         
-        return view('client.tickets.index', compact('tickets', 'stats', 'status'));
+        return inertia('Client/Tickets/Index', compact('tickets', 'stats', 'status'));
     }
 
     /**

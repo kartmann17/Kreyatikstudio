@@ -24,7 +24,7 @@ class BlogController extends Controller
         // SEO Data pour la page d'index du blog
         $SEOData = $this->seoService->generateBlogIndexSEO();
 
-        return view('blog.index', compact('articles', 'SEOData'));
+        return inertia('Blog/Index', ['articles' => $articles, 'seo' => $SEOData]);
     }
 
     public function show(Article $article)
@@ -63,6 +63,14 @@ class BlogController extends Controller
             ['name' => $article->title, 'url' => route('blog.show', $article->slug)]
         ]);
 
-        return view('blog.show', compact('article', 'similarArticles', 'readingTime', 'author', 'SEOData', 'structuredData', 'breadcrumbs'));
+        return inertia('Blog/Show', [
+            'article' => $article,
+            'similarArticles' => $similarArticles,
+            'readingTime' => $readingTime,
+            'author' => $author,
+            'seo' => $SEOData,
+            'structuredData' => $structuredData,
+            'breadcrumbs' => $breadcrumbs
+        ]);
     }
 }

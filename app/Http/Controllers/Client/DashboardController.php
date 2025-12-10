@@ -57,6 +57,6 @@ class DashboardController extends Controller
             ->take(5)
             ->get();
         
-        return view('client.dashboard', compact('stats', 'recentProjects', 'recentTickets'));
+        return inertia('Client/Dashboard', compact('stats', 'recentProjects', 'recentTickets'));
     }
 } 

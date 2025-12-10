@@ -32,8 +32,8 @@ class WelcomeController extends Controller
         // Utiliser le SEOService pour générer les données SEO dynamiquement depuis la BDD
         $SEOData = $this->seoService->generatePageSEO('home');
 
-        return view('welcome', [
-            'SEOData' => $SEOData,
+        return inertia('Welcome', [
+            'seo' => $SEOData,
             'latestArticles' => $latestArticles
         ]);
     }

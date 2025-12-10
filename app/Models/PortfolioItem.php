@@ -20,6 +20,7 @@ class PortfolioItem extends Model
         'technology',
         'type', // 'image' ou 'video'
         'path',
+        'url', // URL du projet
         'order', // Pour permettre de réordonner les éléments
         'is_visible', // Pour activer/désactiver l'affichage d'un élément
     ];

@@ -40,7 +40,7 @@ class ProjectController extends Controller
                           ->orderBy('created_at', 'desc')
                           ->get();
 
-        return view('client.projects.index', compact('projects'));
+        return inertia('Client/Projects/Index', compact('projects'));
     }
 
     /**
@@ -75,6 +75,6 @@ class ProjectController extends Controller
         $totalTasks = $tasks->count();
         $taskProgress = $totalTasks > 0 ? round(($completedTasks / $totalTasks) * 100) : 0;
 
-        return view('client.projects.show', compact('project', 'tasks', 'taskProgress'));
+        return inertia('Client/Projects/Show', compact('project', 'tasks', 'taskProgress'));
     }
 } 
