@@ -1,0 +1,1 @@
+import{jsx as t}from"react/jsx-runtime";import{P as r}from"./PublicLayout-Lkku22Nm.js";import"react";import"@inertiajs/react";function e({content:e,seo:o}){return t(r,{seo:o,children:t("div",{dangerouslySetInnerHTML:{__html:e}})})}export{e as default};

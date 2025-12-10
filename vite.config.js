@@ -8,6 +8,7 @@ export default defineConfig({
     plugins: [
         laravel({
             input: ["resources/css/app.css", "resources/js/app.js", "resources/js/app.jsx"],
+            ssr: 'resources/js/ssr.jsx',
             refresh: true,
         }),
         react(),
@@ -27,8 +28,17 @@ export default defineConfig({
         },
         rollupOptions: {
             output: {
-                manualChunks: {
-                    vendor: ['axios', 'react', 'react-dom'],
+                manualChunks: (id) => {
+                    // Ne pas créer de manualChunks en mode SSR
+                    if (process.env.npm_lifecycle_script && process.env.npm_lifecycle_script.includes('--ssr')) {
+                        return null;
+                    }
+                    // En mode client, créer les chunks normalement
+                    if (id.includes('node_modules')) {
+                        if (id.includes('axios')) return 'vendor';
+                        if (id.includes('react')) return 'vendor';
+                        if (id.includes('react-dom')) return 'vendor';
+                    }
                 },
             },
         },

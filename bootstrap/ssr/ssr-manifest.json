@@ -1,0 +1,67 @@
+{
+  "node_modules/laravel-vite-plugin/inertia-helpers/index.js": [],
+  "resources/js/Layouts/ClientLayout.jsx": [
+    "/build/assets/ClientLayout-C2WO633L.js"
+  ],
+  "resources/js/Layouts/PublicLayout.jsx": [
+    "/build/assets/PublicLayout-Lkku22Nm.js"
+  ],
+  "resources/js/Pages/APropos.jsx": [
+    "/build/assets/APropos-BvyMC1uh.js"
+  ],
+  "resources/js/Pages/Blog/Index.jsx": [
+    "/build/assets/Index-BycADU89.js"
+  ],
+  "resources/js/Pages/Blog/Show.jsx": [
+    "/build/assets/Show-kmny2RWG.js"
+  ],
+  "resources/js/Pages/Client/Dashboard.jsx": [
+    "/build/assets/Dashboard-B8rwpkmS.js"
+  ],
+  "resources/js/Pages/Client/Profile.jsx": [
+    "/build/assets/Profile-DtvNlYf4.js"
+  ],
+  "resources/js/Pages/Client/Projects/Index.jsx": [
+    "/build/assets/Index-DRDeVOXU.js"
+  ],
+  "resources/js/Pages/Client/Projects/Show.jsx": [
+    "/build/assets/Show-BPy9MN1K.js"
+  ],
+  "resources/js/Pages/Client/Tickets/Index.jsx": [
+    "/build/assets/Index-DU8Kotf1.js"
+  ],
+  "resources/js/Pages/Contact.jsx": [
+    "/build/assets/Contact-BVKsz7Nq.js"
+  ],
+  "resources/js/Pages/Legal/CGV.jsx": [
+    "/build/assets/CGV-DK7zqhY7.js"
+  ],
+  "resources/js/Pages/Legal/Confidentialite.jsx": [
+    "/build/assets/Confidentialite-CEnt1oOA.js"
+  ],
+  "resources/js/Pages/Legal/MentionsLegales.jsx": [
+    "/build/assets/MentionsLegales-BgE82tqB.js"
+  ],
+  "resources/js/Pages/MethodeTravail.jsx": [
+    "/build/assets/MethodeTravail-DzAOZb-M.js"
+  ],
+  "resources/js/Pages/NosOffres.jsx": [
+    "/build/assets/NosOffres-B1SFJZpq.js"
+  ],
+  "resources/js/Pages/PlanDuSite.jsx": [
+    "/build/assets/PlanDuSite-2sfn7xk5.js"
+  ],
+  "resources/js/Pages/Portfolio.jsx": [
+    "/build/assets/Portfolio-BaKCRuon.js"
+  ],
+  "resources/js/Pages/StaticPage.jsx": [
+    "/build/assets/StaticPage-Djvd39jE.js"
+  ],
+  "resources/js/Pages/TemoignagesClients.jsx": [
+    "/build/assets/TemoignagesClients-gxpTAEXd.js"
+  ],
+  "resources/js/Pages/Welcome.jsx": [
+    "/build/assets/Welcome-DddgEmVc.js"
+  ],
+  "resources/js/ssr.jsx": []
+}
