@@ -3,7 +3,7 @@ Allow: /
 
 # Pages publiques importantes (crawl prioritaire)
 Allow: /
-Allow: /nos-offres
+Disallow: /nos-offres
 Allow: /portfolio
 Allow: /contact
 Allow: /blog/

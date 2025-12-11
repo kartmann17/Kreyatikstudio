@@ -64,7 +64,7 @@ Route::get('/confidentialite', [LegalController::class, 'confidentialite'])->nam
 Route::get('/conditions-tarifaires', [LegalController::class, 'conditionsTarifaires'])->name('conditions-tarifaires');
 
 // Pages principales (URLs normalisées)
-Route::get('/nos-offres', [NosOffresController::class, 'index'])->name('nos-offres');
+// Route::get('/nos-offres', [NosOffresController::class, 'index'])->name('nos-offres'); // Désactivée temporairement
 Route::get('/portfolio', [PortfolioPublicController::class, 'index'])->name('portfolio');
 Route::get('/contact', [LegalController::class, 'contact'])->name('contact');
 
