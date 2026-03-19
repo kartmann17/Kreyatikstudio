@@ -1,323 +1,161 @@
+import { useEffect } from 'react';
 import { Link } from '@inertiajs/react';
 import PublicLayout from '@/Layouts/PublicLayout';
 
 export default function MethodeTravail({ seo }) {
+    useEffect(() => {
+        const els = document.querySelectorAll('.reveal');
+        const obs = new IntersectionObserver((entries) => {
+            entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('revealed'); obs.unobserve(e.target); } });
+        }, { rootMargin: '0px 0px -60px 0px', threshold: 0.1 });
+        els.forEach((el) => obs.observe(el));
+        return () => obs.disconnect();
+    }, []);
+
     return (
         <PublicLayout seo={seo}>
-            <main className="site-content" role="main">
-                {/* Hero Section */}
-                <section className="hero-section bg-gradient-to-br from-blue-50 to-indigo-100 py-16 lg:py-24">
-                    <div className="container mx-auto px-4">
-                        <div className="text-center max-w-4xl mx-auto">
-                            <div className="inline-flex items-center bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full mb-6">
-                                <span>🛠️ Notre Méthode de Travail</span>
+            <main className="main-page">
+
+                {/* ===== HERO ===== */}
+                <section className="hero-section"  aria-labelledby="methode-title">
+                    <div className="hero-background">
+                        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, #0F2640 0%, #1B3A5C 50%, #0F2640 100%)' }}></div>
+                        <div className="hero-mesh" aria-hidden="true"></div>
+                    </div>
+                    <div className="hero-container">
+                        <div className="hero-content" style={{ maxWidth: 700 }}>
+                            <div className="hero-badge reveal">
+                                <span className="badge-dot"></span>
+                                <span className="badge-text">Notre Méthode de Travail</span>
                             </div>
-                            <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                                Processus{' '}
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
-                                    éprouvé
-                                </span>
-                                {' '}et transparent
+                            <h1 id="methode-title" className="hero-title">
+                                <span className="title-line reveal reveal-delay-1">Processus</span>
+                                <span className="title-highlight reveal reveal-delay-2">éprouvé et transparent</span>
                             </h1>
-                            <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                                Découvrez notre <strong>méthode de création web flexible en 5 étapes</strong> : de l'audit initial au déploiement final.
-                                Un processus structuré qui s'adapte à la complexité et aux spécificités de chaque projet.
+                            <p className="hero-description reveal reveal-delay-3">
+                                Une méthode transparente et éprouvée, pensée pour les entreprises de Rochefort, La Rochelle
+                                et toute la Charente-Maritime. De l'audit initial au déploiement, on travaille ensemble.
                             </p>
                         </div>
                     </div>
                 </section>
 
-                {/* Process Overview */}
-                <section className="py-16 lg:py-24 bg-white">
-                    <div className="container mx-auto px-4">
-                        <div className="text-center max-w-3xl mx-auto mb-16">
-                            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">Notre Processus Adaptatif</h2>
-                            <p className="text-xl text-gray-600">
-                                Une méthode flexible qui s'ajuste selon la taille, la complexité et les contraintes de votre projet
-                            </p>
-                        </div>
-                        
-                        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
-                            <div className="text-center">
-                                <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl mb-4 mx-auto">1</div>
-                                <h3 className="text-lg font-bold text-gray-900 mb-2">Audit & Analyse</h3>
-                                <p className="text-sm text-blue-600 font-medium mb-2">2-5 jours</p>
-                                <p className="text-gray-600 text-sm">
-                                    Analyse complète de vos besoins et audit de l'existant.
-                                </p>
-                            </div>
-
-                            <div className="text-center">
-                                <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center text-white font-bold text-xl mb-4 mx-auto">2</div>
-                                <h3 className="text-lg font-bold text-gray-900 mb-2">Conception & Design</h3>
-                                <p className="text-sm text-green-600 font-medium mb-2">1-2 semaines</p>
-                                <p className="text-gray-600 text-sm">
-                                    Architecture, wireframes et maquettes UX/UI validées.
-                                </p>
-                            </div>
-
-                            <div className="text-center">
-                                <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold text-xl mb-4 mx-auto">3</div>
-                                <h3 className="text-lg font-bold text-gray-900 mb-2">Développement</h3>
-                                <p className="text-sm text-purple-600 font-medium mb-2">2-8 semaines</p>
-                                <p className="text-gray-600 text-sm">
-                                    Développement front-end et back-end avec optimisations.
-                                </p>
-                            </div>
-
-                            <div className="text-center">
-                                <div className="w-16 h-16 bg-orange-600 rounded-full flex items-center justify-center text-white font-bold text-xl mb-4 mx-auto">4</div>
-                                <h3 className="text-lg font-bold text-gray-900 mb-2">Tests & Optimisation</h3>
-                                <p className="text-sm text-orange-600 font-medium mb-2">3-5 jours</p>
-                                <p className="text-gray-600 text-sm">
-                                    Tests fonctionnels et optimisation SEO complète.
-                                </p>
-                            </div>
-
-                            <div className="text-center">
-                                <div className="w-16 h-16 bg-indigo-600 rounded-full flex items-center justify-center text-white font-bold text-xl mb-4 mx-auto">5</div>
-                                <h3 className="text-lg font-bold text-gray-900 mb-2">Déploiement & Suivi</h3>
-                                <p className="text-sm text-indigo-600 font-medium mb-2">2-3 jours + suivi</p>
-                                <p className="text-gray-600 text-sm">
-                                    Mise en ligne et accompagnement post-lancement.
-                                </p>
-                            </div>
+                {/* ===== 5 ÉTAPES (WHY GRID) ===== */}
+                <section className="services-section" aria-labelledby="steps-title">
+                    <div className="container">
+                        <div className="section-header">
+                            <span className="section-tag reveal">5 Étapes</span>
+                            <h2 id="steps-title" className="section-title reveal reveal-delay-1">Un Parcours <span className="text-gradient">Adaptatif</span></h2>
+                            <p className="section-description reveal reveal-delay-2">Une méthode flexible qui s'ajuste selon la taille et les contraintes de votre projet.</p>
                         </div>
 
-                        {/* Flexibility Note */}
-                        <div className="mt-16 max-w-4xl mx-auto">
-                            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8 border border-blue-100">
-                                <div className="flex items-center mb-4">
-                                    <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center mr-4">
-                                        <span className="text-white text-lg">⚡</span>
-                                    </div>
-                                    <h3 className="text-xl font-bold text-gray-900">Délais Variables Selon le Projet</h3>
-                                </div>
-                                <div className="grid md:grid-cols-3 gap-6 text-sm">
-                                    <div>
-                                        <h4 className="font-semibold text-gray-900 mb-2">🚀 Projets Simples</h4>
-                                        <p className="text-gray-600">Site vitrine, landing page</p>
-                                        <p className="text-blue-600 font-medium">1-3 semaines total</p>
-                                    </div>
-                                    <div>
-                                        <h4 className="font-semibold text-gray-900 mb-2">⚙️ Projets Standards</h4>
-                                        <p className="text-gray-600">E-commerce, site corporate</p>
-                                        <p className="text-green-600 font-medium">4-8 semaines total</p>
-                                    </div>
-                                    <div>
-                                        <h4 className="font-semibold text-gray-900 mb-2">🏗️ Projets Complexes</h4>
-                                        <p className="text-gray-600">SaaS, CRM, applications sur-mesure</p>
-                                        <p className="text-purple-600 font-medium">8-16 semaines total</p>
-                                    </div>
+                        <div className="why-grid" style={{ gridTemplateColumns: 'repeat(5, 1fr)' }}>
+                            {[
+                                { num: '01', title: 'Audit & Analyse', time: '2-5 jours' },
+                                { num: '02', title: 'Conception & Design', time: '1-2 semaines' },
+                                { num: '03', title: 'Développement', time: '2-8 semaines' },
+                                { num: '04', title: 'Tests & Optimisation', time: '3-5 jours' },
+                                { num: '05', title: 'Déploiement & Suivi', time: '2-3 jours' },
+                            ].map((step, i) => (
+                                <article key={step.num} className={`why-card reveal ${i > 0 ? `reveal-delay-${i}` : ''}`} style={{ textAlign: 'center' }}>
+                                    <div className="why-card-number" style={{ position: 'static', fontSize: '2.5rem', marginBottom: 12 }}>{step.num}</div>
+                                    <h3 style={{ fontSize: '1rem' }}>{step.title}</h3>
+                                    <p style={{ fontSize: '0.85rem', color: 'var(--cyan)', fontWeight: 600 }}>{step.time}</p>
+                                </article>
+                            ))}
+                        </div>
+
+                        {/* Délais */}
+                        <div className="process-cta reveal" style={{ marginTop: 48 }}>
+                            <div className="cta-inner" style={{ padding: '40px 32px' }}>
+                                <h3 style={{ fontSize: '1.5rem', marginBottom: 24 }}>Délais variables selon le projet</h3>
+                                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20, maxWidth: 700, margin: '0 auto' }}>
+                                    {[
+                                        { type: 'Projets Simples', desc: 'Site vitrine, landing page', time: '1-3 semaines' },
+                                        { type: 'Projets Standards', desc: 'E-commerce, site corporate', time: '4-8 semaines' },
+                                        { type: 'Projets Complexes', desc: 'SaaS, CRM, application', time: '8-16 semaines' },
+                                    ].map(p => (
+                                        <div key={p.type} style={{ background: 'rgba(255,255,255,0.1)', borderRadius: 16, padding: 20, border: '1px solid rgba(255,255,255,0.15)' }}>
+                                            <h4 style={{ color: 'white', fontSize: '1rem', fontWeight: 700, marginBottom: 4 }}>{p.type}</h4>
+                                            <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.85rem', marginBottom: 8 }}>{p.desc}</p>
+                                            <p style={{ color: 'var(--gold)', fontSize: '0.95rem', fontWeight: 700 }}>{p.time}</p>
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                {/* Detailed Steps */}
-                <section className="py-16 lg:py-24 bg-gray-50">
-                    <div className="container mx-auto px-4">
-                        <div className="text-center max-w-3xl mx-auto mb-16">
-                            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">Détail de Chaque Étape</h2>
+                {/* ===== DÉTAIL DES ÉTAPES (TIMELINE) ===== */}
+                <section className="process-section" style={{ background: 'var(--bg-soft)' }} aria-labelledby="detail-title">
+                    <div className="container">
+                        <div className="section-header">
+                            <span className="section-tag reveal">En Détail</span>
+                            <h2 id="detail-title" className="section-title reveal reveal-delay-1">Chaque Étape <span className="text-gradient">Expliquée</span></h2>
+                            <p className="section-description reveal reveal-delay-2">Transparence totale sur notre façon de travailler.</p>
                         </div>
-                        
-                        <div className="max-w-4xl mx-auto space-y-8">
-                            {/* Étape 1 */}
-                            <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
-                                <div className="flex items-center mb-6">
-                                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
-                                        <span className="text-2xl">🔍</span>
-                                    </div>
-                                    <h3 className="text-2xl font-bold text-gray-900">Étape 1 : Audit & Analyse Approfondie</h3>
-                                </div>
-                                <div className="grid md:grid-cols-3 gap-6">
-                                    <div>
-                                        <h4 className="text-lg font-semibold text-gray-900 mb-3">🎯 Analyse des Besoins</h4>
-                                        <ul className="text-gray-600 space-y-1">
-                                            <li>• Entretiens avec les parties prenantes</li>
-                                            <li>• Définition des personas utilisateurs</li>
-                                            <li>• Cartographie des fonctionnalités</li>
-                                            <li>• Établissement des KPIs de succès</li>
-                                        </ul>
-                                    </div>
-                                    <div>
-                                        <h4 className="text-lg font-semibold text-gray-900 mb-3">🕵️ Audit Technique</h4>
-                                        <ul className="text-gray-600 space-y-1">
-                                            <li>• Analyse de l'infrastructure existante</li>
-                                            <li>• Audit SEO complet</li>
-                                            <li>• Évaluation des performances</li>
-                                            <li>• Points d'amélioration identifiés</li>
-                                        </ul>
-                                    </div>
-                                    <div>
-                                        <h4 className="text-lg font-semibold text-gray-900 mb-3">📊 Étude Concurrentielle</h4>
-                                        <ul className="text-gray-600 space-y-1">
-                                            <li>• Analyse des sites concurrents</li>
-                                            <li>• Benchmarking des bonnes pratiques</li>
-                                            <li>• Opportunités de différenciation</li>
-                                            <li>• Veille technologique</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-                                    <h4 className="font-semibold text-gray-900 mb-2">📄 Livrables</h4>
-                                    <p className="text-gray-600">Cahier des charges détaillé, audit technique complet, stratégie digitale et planning projet.</p>
-                                </div>
-                            </div>
 
-                            {/* Étape 2 */}
-                            <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
-                                <div className="flex items-center mb-6">
-                                    <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
-                                        <span className="text-2xl">🎨</span>
-                                    </div>
-                                    <h3 className="text-2xl font-bold text-gray-900">Étape 2 : Conception & Design UX/UI</h3>
+                        <div className="process-timeline">
+                            <div className="timeline-line" aria-hidden="true"></div>
+                            {[
+                                { num: '01', title: 'Audit & Analyse Approfondie', desc: 'Entretiens, définition des personas, cartographie des fonctionnalités, audit SEO et étude concurrentielle.', tags: ['Cahier des charges', 'Audit technique', 'Stratégie digitale'] },
+                                { num: '02', title: 'Conception & Design UX/UI', desc: 'Architecture du site, wireframes, prototypes interactifs, design haute fidélité et validation de la charte graphique.', tags: ['Maquettes validées', 'Prototype interactif', 'Design system'] },
+                                { num: '03', title: 'Développement Technique', desc: 'Architecture Laravel sécurisée, APIs REST, intégration responsive mobile-first, accessibilité WCAG et optimisation SEO.', tags: ['Code documenté', 'Tests fonctionnels', 'Pré-production'] },
+                                { num: '04', title: 'Tests & Optimisation', desc: 'Tests navigateurs, tests de performance, optimisation Core Web Vitals, audit SEO final et corrections.', tags: ['Tests complets', 'Performance optimale', 'SEO validé'] },
+                                { num: '05', title: 'Déploiement & Suivi', desc: 'Mise en ligne sécurisée, formation à l\'utilisation du back-office, suivi post-lancement et maintenance.', tags: ['Site en ligne', 'Formation', 'Support continu'] },
+                            ].map((step, i) => (
+                                <div key={step.num} className={`process-step reveal ${i > 0 ? `reveal-delay-${Math.min(i, 3)}` : ''}`}>
+                                    <div className="step-marker"><span className="step-number">{step.num}</span></div>
+                                    <div className="step-content"><h3>{step.title}</h3><p>{step.desc}</p><div className="step-deliverables">{step.tags.map(t => <span key={t}>{t}</span>)}</div></div>
                                 </div>
-                                <div className="grid md:grid-cols-3 gap-6">
-                                    <div>
-                                        <h4 className="text-lg font-semibold text-gray-900 mb-3">🗺️ Architecture</h4>
-                                        <ul className="text-gray-600 space-y-1">
-                                            <li>• Carte du site optimisée</li>
-                                            <li>• Arborescence logique</li>
-                                            <li>• Structuration des contenus</li>
-                                            <li>• Maillage interne optimal</li>
-                                        </ul>
-                                    </div>
-                                    <div>
-                                        <h4 className="text-lg font-semibold text-gray-900 mb-3">📐 Wireframes</h4>
-                                        <ul className="text-gray-600 space-y-1">
-                                            <li>• Wireframes basse fidélité</li>
-                                            <li>• Prototype interactif</li>
-                                            <li>• Tests utilisateurs</li>
-                                            <li>• Itérations basées sur retours</li>
-                                        </ul>
-                                    </div>
-                                    <div>
-                                        <h4 className="text-lg font-semibold text-gray-900 mb-3">🎭 Design Visuel</h4>
-                                        <ul className="text-gray-600 space-y-1">
-                                            <li>• Identité visuelle web</li>
-                                            <li>• Maquettes haute fidélité</li>
-                                            <li>• Design system complet</li>
-                                            <li>• Validation charte graphique</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div className="mt-6 p-4 bg-green-50 rounded-lg">
-                                    <h4 className="font-semibold text-gray-900 mb-2">📄 Livrables</h4>
-                                    <p className="text-gray-600">Maquettes validées, prototype interactif, design system et spécifications techniques.</p>
-                                </div>
-                            </div>
-
-                            {/* Étape 3 */}
-                            <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
-                                <div className="flex items-center mb-6">
-                                    <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
-                                        <span className="text-2xl">💻</span>
-                                    </div>
-                                    <h3 className="text-2xl font-bold text-gray-900">Étape 3 : Développement Technique</h3>
-                                </div>
-                                <div className="grid md:grid-cols-3 gap-6">
-                                    <div>
-                                        <h4 className="text-lg font-semibold text-gray-900 mb-3">⚙️ Backend</h4>
-                                        <ul className="text-gray-600 space-y-1">
-                                            <li>• Architecture Laravel sécurisée</li>
-                                            <li>• Développement des APIs REST</li>
-                                            <li>• Bases de données optimisées</li>
-                                            <li>• Système d'authentification</li>
-                                        </ul>
-                                    </div>
-                                    <div>
-                                        <h4 className="text-lg font-semibold text-gray-900 mb-3">🎨 Frontend</h4>
-                                        <ul className="text-gray-600 space-y-1">
-                                            <li>• Intégration responsive</li>
-                                            <li>• Interactions JavaScript modernes</li>
-                                            <li>• Optimisation performances</li>
-                                            <li>• Accessibilité WCAG 2.1 AA</li>
-                                        </ul>
-                                    </div>
-                                    <div>
-                                        <h4 className="text-lg font-semibold text-gray-900 mb-3">🔧 Intégrations</h4>
-                                        <ul className="text-gray-600 space-y-1">
-                                            <li>• CMS/Back-office intuitif</li>
-                                            <li>• Outils d'analyse</li>
-                                            <li>• Services tiers</li>
-                                            <li>• Optimisation SEO technique</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div className="mt-6 p-4 bg-purple-50 rounded-lg">
-                                    <h4 className="font-semibold text-gray-900 mb-2">📄 Livrables</h4>
-                                    <p className="text-gray-600">Code source documenté, environnement de développement et version de test fonctionnelle.</p>
-                                </div>
-                            </div>
+                            ))}
                         </div>
                     </div>
                 </section>
 
-                {/* Communication & Tools */}
-                <section className="py-16 lg:py-24 bg-white">
-                    <div className="container mx-auto px-4">
-                        <div className="text-center max-w-3xl mx-auto mb-16">
-                            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">Communication & Outils</h2>
-                            <p className="text-xl text-gray-600">
-                                Transparence totale et collaboration efficace tout au long du projet
-                            </p>
+                {/* ===== COMMUNICATION (BENTO) ===== */}
+                <section className="services-section" aria-labelledby="comm-title">
+                    <div className="container">
+                        <div className="section-header">
+                            <span className="section-tag reveal">Collaboration</span>
+                            <h2 id="comm-title" className="section-title reveal reveal-delay-1">Communication & <span className="text-gradient">Outils</span></h2>
+                            <p className="section-description reveal reveal-delay-2">Transparence et collaboration efficace tout au long de votre projet.</p>
                         </div>
 
-                        <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-                            <div className="text-center p-6">
-                                <div className="text-4xl mb-4">💬</div>
-                                <h3 className="text-xl font-bold text-gray-900 mb-4">Communication Régulière</h3>
-                                <ul className="text-gray-600 space-y-2 text-left">
-                                    <li>• Points hebdomadaires programmés</li>
-                                    <li>• Slack/Teams pour échanges quotidiens</li>
-                                    <li>• Rapports d'avancement détaillés</li>
-                                    <li>• Disponibilité garantie en journée</li>
-                                </ul>
-                            </div>
-
-                            <div className="text-center p-6">
-                                <div className="text-4xl mb-4">📋</div>
-                                <h3 className="text-xl font-bold text-gray-900 mb-4">Gestion de Projet</h3>
-                                <ul className="text-gray-600 space-y-2 text-left">
-                                    <li>• Trello/Notion pour le suivi</li>
-                                    <li>• Planning détaillé et mis à jour</li>
-                                    <li>• Versionning Git professionnel</li>
-                                    <li>• Environnements de test dédiés</li>
-                                </ul>
-                            </div>
-
-                            <div className="text-center p-6">
-                                <div className="text-4xl mb-4">📊</div>
-                                <h3 className="text-xl font-bold text-gray-900 mb-4">Mesure & Analytics</h3>
-                                <ul className="text-gray-600 space-y-2 text-left">
-                                    <li>• Google Analytics 4 configuré</li>
-                                    <li>• Search Console optimisée</li>
-                                    <li>• Monitoring des performances</li>
-                                    <li>• Rapports mensuels automatisés</li>
-                                </ul>
-                            </div>
+                        <div className="bento-grid" style={{ gridTemplateColumns: 'repeat(3, 1fr)' }}>
+                            {[
+                                { title: 'Communication Régulière', desc: 'Points hebdomadaires programmés, Slack/Teams pour les échanges quotidiens, rapports d\'avancement et disponibilité garantie en journée.', glow: 'bento-glow-cyan' },
+                                { title: 'Gestion de Projet', desc: 'Trello ou Notion pour le suivi en temps réel, planning détaillé et mis à jour, versionning Git professionnel et environnements de test dédiés.', glow: 'bento-glow-gold' },
+                                { title: 'Mesure & Analytics', desc: 'Google Analytics 4 configuré, Search Console optimisée, monitoring des performances en continu et rapports mensuels automatisés.', glow: 'bento-glow-green' },
+                            ].map((card, i) => (
+                                <article key={card.title} className={`bento-card reveal ${i > 0 ? `reveal-delay-${i}` : ''}`}>
+                                    <div className={`bento-glow ${card.glow}`}></div>
+                                    <div className="bento-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                                            {i === 0 && <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />}
+                                            {i === 1 && <><rect x="3" y="4" width="18" height="18" rx="2" /><path d="M16 2v4M8 2v4M3 10h18" /></>}
+                                            {i === 2 && <><path d="M3 3v18h18" /><path d="m19 9-5 5-4-4-3 3" /></>}
+                                        </svg>
+                                    </div>
+                                    <h3>{card.title}</h3>
+                                    <p>{card.desc}</p>
+                                </article>
+                            ))}
                         </div>
                     </div>
                 </section>
 
-                {/* CTA Section */}
-                <section className="py-16 lg:py-24 bg-gradient-to-br from-blue-600 to-indigo-700">
-                    <div className="container mx-auto px-4 text-center">
-                        <div className="max-w-3xl mx-auto">
-                            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">Prêt à démarrer votre projet ?</h2>
-                            <p className="text-xl text-blue-100 mb-8">
-                                Chaque projet est unique. Discutons de vos besoins pour établir ensemble un planning adapté 
-                                à vos objectifs, votre budget et vos contraintes de temps.
-                            </p>
-                            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                                <Link href="/contact" className="inline-flex items-center justify-center px-8 py-4 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-50 transition-colors">
-                                    <span>🚀 Démarrer mon projet</span>
-                                </Link>
-                                <Link href="/portfolio" className="inline-flex items-center justify-center px-8 py-4 bg-transparent border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-blue-600 transition-colors">
-                                    <span>👁️ Voir nos réalisations</span>
-                                </Link>
+                {/* ===== CTA ===== */}
+                <section className="cta-section" aria-labelledby="methode-cta-title">
+                    <div className="cta-bg-mesh" aria-hidden="true"></div>
+                    <div className="container">
+                        <div className="cta-content reveal">
+                            <h2 id="methode-cta-title">Prêt à <span className="text-gradient-light">démarrer votre projet</span> ?</h2>
+                            <p>Chaque projet est unique. Discutons de vos besoins pour établir un planning adapté à vos objectifs.</p>
+                            <div className="cta-actions">
+                                <Link href="/contact" className="btn btn-primary btn-large"><span>Démarrer mon projet</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7" /></svg></Link>
+                                <Link href="/portfolio" className="btn btn-glass btn-large"><span>Voir nos réalisations</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" /><circle cx="12" cy="12" r="3" /></svg></Link>
                             </div>
                         </div>
                     </div>

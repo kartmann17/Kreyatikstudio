@@ -1,309 +1,200 @@
-import { Link } from '@inertiajs/react';
+import { Link, Head } from '@inertiajs/react';
+import { useEffect } from 'react';
 import PublicLayout from '@/Layouts/PublicLayout';
-import { Head } from '@inertiajs/react';
 
 export default function APropos({ seo }) {
+    useEffect(() => {
+        const els = document.querySelectorAll('.reveal');
+        const obs = new IntersectionObserver((entries) => {
+            entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('revealed'); obs.unobserve(e.target); } });
+        }, { rootMargin: '0px 0px -60px 0px', threshold: 0.1 });
+        els.forEach((el) => obs.observe(el));
+        return () => obs.disconnect();
+    }, []);
+
     return (
         <PublicLayout seo={seo}>
             <Head>
-                {/* Schema.org Person pour GEO (Generative Engine Optimization) */}
-                <script type="application/ld+json">
-                    {JSON.stringify({
-                        "@context": "https://schema.org",
-                        "@type": "Person",
-                        "name": "Lionel Blanchet",
-                        "jobTitle": "Développeur Web Freelance",
-                        "description": "Développeur web freelance spécialisé en Laravel, SaaS, CRM et e-commerce. Reconversion de l'aéronautique vers le web, basé à Rochefort (Charente-Maritime).",
-                        "url": "https://kreyatikstudio.fr/a-propos",
-                        "image": "/images/Studiosansfond.png",
-                        "email": "contact@kreyatikstudio.fr",
-                        "worksFor": {
-                            "@type": "Organization",
-                            "name": "Kréyatik Studio",
-                            "url": "https://kreyatikstudio.fr",
-                            "address": {
-                                "@type": "PostalAddress",
-                                "addressLocality": "Rochefort",
-                                "postalCode": "17300",
-                                "addressRegion": "Charente-Maritime",
-                                "addressCountry": "FR"
-                            }
-                        },
-                        "alumniOf": {
-                            "@type": "Organization",
-                            "name": "Formation Développement Web"
-                        },
-                        "knowsAbout": [
-                            "Laravel", "PHP", "Python", "JavaScript", "React", "Flutter",
-                            "TailwindCSS", "E-commerce", "SaaS", "CRM", "SEO", "APIs REST",
-                            "Développement Web", "Applications Mobiles"
-                        ],
-                        "hasOccupation": {
-                            "@type": "Occupation",
-                            "name": "Développeur Web Fullstack",
-                            "occupationLocation": {
-                                "@type": "City",
-                                "name": "Rochefort"
-                            },
-                            "skills": "Laravel, PHP, Python, React, Flutter, E-commerce, SaaS, CRM, SEO"
-                        },
-                        "sameAs": [
-                            "https://www.facebook.com/share/1AtjVczpEJ/",
-                            "https://www.instagram.com/kreyatik_17/"
-                        ]
-                    })}
-                </script>
-                <script type="application/ld+json">
-                    {JSON.stringify({
-                        "@context": "https://schema.org",
-                        "@type": "AboutPage",
-                        "name": "À Propos de Kréyatik Studio",
-                        "description": "Découvrez le parcours de Lionel Blanchet, développeur web freelance à Rochefort. Reconversion de l'aéronautique vers le développement web, spécialisé en Laravel, SaaS, CRM et e-commerce.",
-                        "url": "https://kreyatikstudio.fr/a-propos",
-                        "mainEntity": {
-                            "@type": "Person",
-                            "name": "Lionel Blanchet"
-                        }
-                    })}
-                </script>
+                <script type="application/ld+json">{JSON.stringify({
+                    "@context": "https://schema.org", "@type": "Person", "name": "Lionel Blanchet",
+                    "jobTitle": "Développeur Web Freelance",
+                    "description": "Développeur web freelance spécialisé en Laravel, SaaS, CRM et e-commerce à Rochefort.",
+                    "url": "https://kreyatikstudio.fr/a-propos", "image": "/images/Studiosansfond.png",
+                    "email": "contact@kreyatikstudio.fr",
+                    "worksFor": { "@type": "Organization", "name": "Kréyatik Studio", "url": "https://kreyatikstudio.fr",
+                        "address": { "@type": "PostalAddress", "addressLocality": "Rochefort", "postalCode": "17300", "addressRegion": "Charente-Maritime", "addressCountry": "FR" }
+                    },
+                    "knowsAbout": ["Laravel","PHP","Python","JavaScript","React","Flutter","TailwindCSS","E-commerce","SaaS","CRM","SEO"],
+                    "sameAs": ["https://www.facebook.com/share/1AtjVczpEJ/","https://www.instagram.com/kreyatik_17/"]
+                })}</script>
             </Head>
 
-            <main className="site-content" role="main">
-                {/* Hero Section */}
-                <section className="hero-section bg-gradient-to-br from-blue-50 to-indigo-100 py-16 lg:py-24">
-                    <div className="container mx-auto px-4">
-                        <div className="text-center max-w-4xl mx-auto">
-                            <div className="inline-flex items-center bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full mb-6">
-                                <span>👋 À Propos de Kréyatik Studio</span>
+            <main className="main-page">
+                <div className="grain-overlay" aria-hidden="true"></div>
+
+                {/* ===== HERO ===== */}
+                <section className="hero-section" aria-labelledby="about-title" >
+                    <div className="hero-background">
+                        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, #0F2640 0%, #1B3A5C 50%, #0F2640 100%)' }}></div>
+                        <div className="hero-mesh" aria-hidden="true"></div>
+                    </div>
+                    <div className="hero-container">
+                        <div className="hero-content" style={{ maxWidth: 680 }}>
+                            <div className="hero-badge reveal">
+                                <span className="badge-dot"></span>
+                                <span className="badge-text">À propos de Kréyatik Studio</span>
                             </div>
-                            <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                                De l'aéronautique au{' '}
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
-                                    développement web
-                                </span>
+                            <h1 id="about-title" className="hero-title">
+                                <span className="title-line reveal reveal-delay-1">De l'aéronautique au</span>
+                                <span className="title-highlight reveal reveal-delay-2">développement web</span>
                             </h1>
-                            <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                                <strong>Passionné par le web depuis plusieurs années</strong>, j'ai effectué une reconversion professionnelle
-                                pour transformer cette passion en métier. Mon expérience dans <strong>l'aéronautique</strong> m'a apporté
-                                la rigueur et la précision que j'applique aujourd'hui dans chaque projet web.
-                                Actuellement en spécialisation <strong>Python</strong> et exploration <strong>React/Flutter</strong>, basé à <strong>Rochefort</strong>.
+                            <p className="hero-description reveal reveal-delay-3">
+                                Passionné par le web depuis plusieurs années, j'ai quitté l'industrie aéronautique
+                                pour en faire mon métier. La rigueur acquise dans l'aviation nourrit chacun de mes projets.
+                                Basé à Rochefort, j'accompagne les entreprises de Charente-Maritime — La Rochelle,
+                                Saintes, Royan et au-delà — dans leur transformation digitale.
                             </p>
-                        </div>
-                    </div>
-                </section>
-
-                {/* Expertise Section */}
-                <section className="py-16 lg:py-24 bg-white">
-                    <div className="container mx-auto px-4">
-                        <div className="text-center max-w-3xl mx-auto mb-16">
-                            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">Mon Expertise Technique</h2>
-                            <p className="text-xl text-gray-600">
-                                Des compétences forgées par l'exigence aéronautique et affûtées par la passion du web
-                            </p>
-                        </div>
-
-                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
-                                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
-                                    <svg className="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z"/>
-                                    </svg>
-                                </div>
-                                <h3 className="text-xl font-bold text-gray-900 mb-4">Développement Backend</h3>
-                                <div className="flex flex-wrap gap-2 mb-4">
-                                    <span className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Laravel</span>
-                                    <span className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">SaaS</span>
-                                    <span className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">CRM</span>
-                                    <span className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">E-commerce</span>
-                                    <span className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Python</span>
-                                    <span className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">APIs REST</span>
-                                </div>
-                                <p className="text-gray-600">
-                                    Développement d'applications web complexes avec Laravel : SaaS, CRM sur-mesure et boutiques e-commerce.
-                                    Spécialisation Python en cours. La rigueur aéronautique appliquée au code pour des solutions robustes et sécurisées.
-                                </p>
-                            </div>
-
-                            <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
-                                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-6">
-                                    <svg className="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                                    </svg>
-                                </div>
-                                <h3 className="text-xl font-bold text-gray-900 mb-4">Frontend Moderne</h3>
-                                <div className="flex flex-wrap gap-2 mb-4">
-                                    <span className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">TailwindCSS</span>
-                                    <span className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">React</span>
-                                    <span className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Alpine.js</span>
-                                    <span className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Vite</span>
-                                    <span className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Responsive</span>
-                                </div>
-                                <p className="text-gray-600">
-                                    Création d'interfaces web modernes avec TailwindCSS et exploration des frameworks React pour des
-                                    expériences utilisateur interactives et performantes.
-                                </p>
-                            </div>
-
-                            <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100 md:col-span-2 lg:col-span-1">
-                                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-6">
-                                    <svg className="w-6 h-6 text-purple-600" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0L19.2 12l-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
-                                    </svg>
-                                </div>
-                                <h3 className="text-xl font-bold text-gray-900 mb-4">Applications Mobiles & SEO</h3>
-                                <div className="flex flex-wrap gap-2 mb-4">
-                                    <span className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Flutter</span>
-                                    <span className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">SEO On-page</span>
-                                    <span className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Core Web Vitals</span>
-                                    <span className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Analytics</span>
-                                </div>
-                                <p className="text-gray-600">
-                                    Exploration du développement d'applications mobiles avec Flutter et optimisation SEO
-                                    pour une présence digitale complète.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* Timeline Section */}
-                <section className="py-16 lg:py-24 bg-gray-50">
-                    <div className="container mx-auto px-4">
-                        <div className="text-center max-w-3xl mx-auto mb-16">
-                            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">Mon Parcours : Une Reconversion Passionnée</h2>
-                            <p className="text-xl text-gray-600">
-                                De l'industrie aéronautique au développement web, l'histoire d'une transformation professionnelle réussie
-                            </p>
-                        </div>
-
-                        <div className="max-w-4xl mx-auto">
-                            <div className="space-y-12">
-                                <div className="flex items-start">
-                                    <div className="flex-shrink-0 w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-2xl">
-                                        ✈️
-                                    </div>
-                                    <div className="ml-6">
-                                        <h3 className="text-xl font-bold text-gray-900 mb-2">Expérience Aéronautique</h3>
-                                        <p className="text-gray-600">
-                                            Plusieurs années dans l'industrie aéronautique qui m'ont forgé un esprit de rigueur, de précision et de méthode.
-                                            Ces valeurs fondamentales sont devenues le socle de ma pratique professionnelle,
-                                            quelle que soit la technologie utilisée.
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div className="flex items-start">
-                                    <div className="flex-shrink-0 w-16 h-16 bg-green-600 rounded-full flex items-center justify-center text-white font-bold text-2xl">
-                                        💡
-                                    </div>
-                                    <div className="ml-6">
-                                        <h3 className="text-xl font-bold text-gray-900 mb-2">La Passion Devient Métier</h3>
-                                        <p className="text-gray-600">
-                                            Fasciné par le web depuis plusieurs années, la décision de la reconversion s'impose naturellement.
-                                            Formation intensive en développement web : HTML, CSS, JavaScript, PHP.
-                                            Découverte de Laravel qui devient rapidement ma spécialité de prédilection.
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div className="flex items-start">
-                                    <div className="flex-shrink-0 w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold text-2xl">
-                                        🚀
-                                    </div>
-                                    <div className="ml-6">
-                                        <h3 className="text-xl font-bold text-gray-900 mb-2">Premiers Projets & Montée en Compétences</h3>
-                                        <p className="text-gray-600">
-                                            Application de la rigueur aéronautique aux premiers projets web. Développement de sites vitrine,
-                                            boutiques e-commerce, applications SaaS et CRM sur-mesure. Spécialisation progressive en
-                                            référencement naturel et optimisation des performances.
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div className="flex items-start">
-                                    <div className="flex-shrink-0 w-16 h-16 bg-indigo-600 rounded-full flex items-center justify-center text-white font-bold text-2xl">
-                                        🐍
-                                    </div>
-                                    <div className="ml-6">
-                                        <h3 className="text-xl font-bold text-gray-900 mb-2">Spécialisation Multi-Technologies & Kréyatik Studio</h3>
-                                        <p className="text-gray-600">
-                                            Formation licence Python en cours, exploration de React pour les interfaces web interactives
-                                            et découverte de Flutter pour le développement d'applications mobiles. Création de Kréyatik Studio,
-                                            spécialisé dans les SaaS, CRM et e-commerce, alliant rigueur aéronautique et curiosité technologique.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* Values Section */}
-                <section className="py-16 lg:py-24 bg-white">
-                    <div className="container mx-auto px-4">
-                        <div className="text-center max-w-3xl mx-auto mb-16">
-                            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">Mes Valeurs & Engagements</h2>
-                            <p className="text-xl text-gray-600">
-                                Les principes qui guident chaque collaboration et projet
-                            </p>
-                        </div>
-
-                        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                            <div className="text-center p-8">
-                                <div className="text-4xl mb-4">🎯</div>
-                                <h3 className="text-xl font-bold text-gray-900 mb-4">Rigueur & Précision</h3>
-                                <p className="text-gray-600">
-                                    L'exigence aéronautique appliquée au développement web. Chaque ligne de code écrite avec la même
-                                    précision que dans l'industrie où l'erreur n'est pas permise. Standards élevés et qualité irréprochable.
-                                </p>
-                            </div>
-
-                            <div className="text-center p-8">
-                                <div className="text-4xl mb-4">🔄</div>
-                                <h3 className="text-xl font-bold text-gray-900 mb-4">Reconversion Réussie</h3>
-                                <p className="text-gray-600">
-                                    Une transition professionnelle menée avec détermination et passion. L'expérience industrielle
-                                    enrichit chaque projet web d'une approche méthodique et d'une vision globale unique.
-                                </p>
-                            </div>
-
-                            <div className="text-center p-8">
-                                <div className="text-4xl mb-4">🚀</div>
-                                <h3 className="text-xl font-bold text-gray-900 mb-4">Curiosité Technologique</h3>
-                                <p className="text-gray-600">
-                                    Formation Python, exploration React et Flutter : une approche multi-technologies pour répondre
-                                    aux besoins variés du digital. Du web aux applications mobiles, toujours en quête d'innovation.
-                                </p>
-                            </div>
-
-                            <div className="text-center p-8">
-                                <div className="text-4xl mb-4">💡</div>
-                                <h3 className="text-xl font-bold text-gray-900 mb-4">Passion & Engagement</h3>
-                                <p className="text-gray-600">
-                                    La passion du web comme moteur de la reconversion. Chaque projet développé avec l'enthousiasme
-                                    de quelqu'un qui a choisi ce métier par vocation, pas par hasard.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* CTA Section */}
-                <section className="py-16 lg:py-24 bg-gradient-to-br from-blue-600 to-indigo-700">
-                    <div className="container mx-auto px-4 text-center">
-                        <div className="max-w-3xl mx-auto">
-                            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">Transformons votre vision en réalité digitale</h2>
-                            <p className="text-xl text-blue-100 mb-8">
-                                Mon parcours atypique et mon expertise en SaaS, CRM et e-commerce, alliant rigueur industrielle et passion web,
-                                au service de votre projet. Discutons de vos ambitions digitales et créons ensemble quelque chose d'exceptionnel.
-                            </p>
-                            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                                <Link href="/contact" className="inline-flex items-center justify-center px-8 py-4 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-50 transition-colors">
-                                    <span>💬 Discuter de mon projet</span>
+                            <div className="hero-actions reveal reveal-delay-4">
+                                <a href="#expertise" className="btn btn-primary">
+                                    <span>Découvrir mon parcours</span>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+                                </a>
+                                <Link href="/contact" className="btn btn-glass" style={{ background: 'rgba(255,255,255,0.12)', color: 'white', borderColor: 'rgba(255,255,255,0.25)' }}>
+                                    <span>Me contacter</span>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" /></svg>
                                 </Link>
-                                <Link href="/portfolio" className="inline-flex items-center justify-center px-8 py-4 bg-transparent border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-blue-600 transition-colors">
-                                    <span>👁️ Voir mes réalisations</span>
-                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* ===== EXPERTISE (BENTO) ===== */}
+                <section className="services-section" id="expertise" aria-labelledby="expertise-title">
+                    <div className="container">
+                        <div className="section-header">
+                            <span className="section-tag reveal">Expertise</span>
+                            <h2 id="expertise-title" className="section-title reveal reveal-delay-1">Compétences <span className="text-gradient">Techniques</span></h2>
+                            <p className="section-description reveal reveal-delay-2">
+                                Des savoir-faire forgés par l'exigence industrielle et enrichis par la curiosité technologique.
+                            </p>
+                        </div>
+                        <div className="bento-grid">
+                            <article className="bento-card bento-large reveal">
+                                <div className="bento-glow bento-glow-cyan"></div>
+                                <div className="bento-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" /></svg></div>
+                                <h3>Développement Backend</h3>
+                                <p>Applications web robustes avec Laravel et PHP : plateformes SaaS, CRM sur-mesure et boutiques e-commerce. Python complète ma palette pour l'automatisation.</p>
+                                <div className="bento-tags"><span>Laravel</span><span>PHP</span><span>Python</span><span>APIs REST</span><span>SaaS</span></div>
+                            </article>
+                            <article className="bento-card reveal reveal-delay-1">
+                                <div className="bento-glow bento-glow-gold"></div>
+                                <div className="bento-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z" /></svg></div>
+                                <h3>Frontend Moderne</h3>
+                                <p>Interfaces réactives avec React et TailwindCSS. Des expériences utilisateur fluides du prototype à la production.</p>
+                                <div className="bento-tags"><span>React</span><span>TailwindCSS</span><span>Alpine.js</span><span>Vite</span></div>
+                            </article>
+                            <article className="bento-card reveal reveal-delay-2">
+                                <div className="bento-glow bento-glow-green"></div>
+                                <div className="bento-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg></div>
+                                <h3>Mobile & SEO</h3>
+                                <p>Applications mobiles avec Flutter et stratégies de référencement pour une visibilité durable.</p>
+                                <div className="bento-tags"><span>Flutter</span><span>SEO</span><span>Core Web Vitals</span><span>Analytics</span></div>
+                            </article>
+                        </div>
+                    </div>
+                </section>
+
+                {/* ===== PARCOURS (TIMELINE) ===== */}
+                <section className="process-section" style={{ background: 'var(--bg-soft)' }} aria-labelledby="timeline-title">
+                    <div className="container">
+                        <div className="section-header">
+                            <span className="section-tag reveal">Parcours</span>
+                            <h2 id="timeline-title" className="section-title reveal reveal-delay-1">Une Reconversion <span className="text-gradient">Passionnée</span></h2>
+                            <p className="section-description reveal reveal-delay-2">De l'industrie aéronautique au développement web, une transformation guidée par la passion.</p>
+                        </div>
+                        <div className="process-timeline">
+                            <div className="timeline-line" aria-hidden="true"></div>
+                            {[
+                                { num: '01', title: 'Expérience Aéronautique', desc: 'Plusieurs années dans l\'industrie aéronautique, un environnement où la rigueur et la précision ne sont pas négociables.', tags: ['Rigueur', 'Méthode', 'Précision'] },
+                                { num: '02', title: 'La Passion Devient Métier', desc: 'Fasciné par le web, la décision de changer de voie s\'est imposée. Formation intensive : HTML, CSS, JavaScript, PHP. Découverte de Laravel.', tags: ['Formation', 'Laravel', 'PHP'] },
+                                { num: '03', title: 'Premiers Projets', desc: 'Sites vitrines, boutiques e-commerce, applications SaaS et CRM sur-mesure. Chaque projet confirme le choix de cette reconversion.', tags: ['E-commerce', 'SaaS', 'CRM'] },
+                                { num: '04', title: 'Kréyatik Studio', desc: 'Création du studio à Rochefort pour accompagner les entreprises locales et nationales. Python, React et Flutter au service de vos projets.', tags: ['Python', 'React', 'Flutter'] },
+                            ].map((step, i) => (
+                                <div key={step.num} className={`process-step reveal ${i > 0 ? `reveal-delay-${i}` : ''}`}>
+                                    <div className="step-marker"><span className="step-number">{step.num}</span></div>
+                                    <div className="step-content"><h3>{step.title}</h3><p>{step.desc}</p><div className="step-deliverables">{step.tags.map(t => <span key={t}>{t}</span>)}</div></div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                {/* ===== VALEURS ===== */}
+                <section className="why-section" aria-labelledby="values-title">
+                    <div className="container">
+                        <div className="section-header">
+                            <span className="section-tag reveal">Valeurs</span>
+                            <h2 id="values-title" className="section-title reveal reveal-delay-1">Ce Qui Me <span className="text-gradient">Guide</span></h2>
+                            <p className="section-description reveal reveal-delay-2">Les principes au cœur de chaque collaboration.</p>
+                        </div>
+                        <div className="why-grid" style={{ gridTemplateColumns: 'repeat(2, 1fr)' }}>
+                            {[
+                                { num: '01', title: 'Rigueur & Précision', desc: 'L\'exigence aéronautique transposée au code. Chaque projet est abordé avec méthode.', tags: ['Qualité', 'Standards', 'Fiabilité'], icon: 'M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z' },
+                                { num: '02', title: 'Adaptabilité', desc: 'Changer de carrière demande de se réinventer. Cette capacité se retrouve dans chaque défi technique.', tags: ['Flexibilité', 'Évolution'], icon: 'M22 11.08V12a10 10 0 1 1-5.93-9.14' },
+                                { num: '03', title: 'Curiosité Technologique', desc: 'Python, React, Flutter : la technologie évolue vite et j\'évolue avec elle.', tags: ['Innovation', 'Veille'], icon: 'M13 10V3L4 14h7v7l9-11h-7z' },
+                                { num: '04', title: 'Passion & Engagement', desc: 'Ce métier est un choix délibéré. Chaque projet bénéficie de l\'enthousiasme de quelqu\'un qui fait ce qu\'il aime.', tags: ['Motivation', 'Énergie'], icon: 'M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z' },
+                            ].map((card, i) => (
+                                <article key={card.num} className={`why-card reveal ${i > 0 ? `reveal-delay-${i}` : ''}`}>
+                                    <div className="why-card-number">{card.num}</div>
+                                    <div className="why-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d={card.icon} /></svg></div>
+                                    <h3>{card.title}</h3><p>{card.desc}</p>
+                                    <div className="why-tags">{card.tags.map(t => <span key={t}>{t}</span>)}</div>
+                                </article>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                {/* ===== TERRITOIRE ===== */}
+<section style={{ background: '#07111F', padding: '5rem 0 4rem', overflow: 'hidden' }} aria-label="Lionel Blanchet développeur web — zone d'intervention">
+    <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 32px' }}>
+        <p className="reveal" style={{ fontFamily: "'Outfit', sans-serif", fontSize: '0.78rem', fontWeight: 500, letterSpacing: '0.22em', textTransform: 'uppercase', color: '#0099CC', marginBottom: '2.5rem', textAlign: 'center' }}>
+            Je travaille avec vous
+        </p>
+        <div className="reveal reveal-delay-1" style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'baseline', gap: '0 3rem', justifyContent: 'center' }}>
+            {[
+                { name: 'Rochefort', size: 'clamp(2.8rem, 7vw, 7rem)', opacity: 1 },
+                { name: 'La Rochelle', size: 'clamp(2rem, 5vw, 5rem)', opacity: 0.45 },
+                { name: 'Saintes', size: 'clamp(1.6rem, 4vw, 4rem)', opacity: 0.35 },
+                { name: 'Royan', size: 'clamp(1.4rem, 3.5vw, 3.5rem)', opacity: 0.28 },
+            ].map(city => (
+                <span key={city.name} style={{
+                    fontFamily: "'Syne', sans-serif",
+                    fontSize: city.size,
+                    fontWeight: 800,
+                    letterSpacing: '-0.03em',
+                    color: `rgba(255,255,255,${city.opacity})`,
+                    lineHeight: 1.05,
+                    cursor: 'default',
+                }}>{city.name}</span>
+            ))}
+        </div>
+        <p className="reveal reveal-delay-2" style={{ fontFamily: "'Outfit', sans-serif", fontSize: '0.85rem', color: 'rgba(255,255,255,0.2)', textAlign: 'center', marginTop: '2rem', letterSpacing: '0.1em' }}>
+            et partout en France en remote
+        </p>
+    </div>
+</section>
+
+                {/* ===== CTA ===== */}
+                <section className="cta-section" aria-labelledby="about-cta-title">
+                    <div className="cta-bg-mesh" aria-hidden="true"></div>
+                    <div className="container">
+                        <div className="cta-content reveal">
+                            <h2 id="about-cta-title">Transformons votre vision en <span className="text-gradient-light">réalité digitale</span></h2>
+                            <p>Mon parcours atypique allie rigueur industrielle et passion du web. Discutons de votre projet.</p>
+                            <div className="cta-actions">
+                                <Link href="/contact" className="btn btn-primary btn-large"><span>Discuter de mon projet</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7" /></svg></Link>
+                                <Link href="/portfolio" className="btn btn-glass btn-large"><span>Voir mes réalisations</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" /><circle cx="12" cy="12" r="3" /></svg></Link>
                             </div>
                         </div>
                     </div>

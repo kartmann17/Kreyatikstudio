@@ -60,6 +60,7 @@ class ArticleController extends Controller
             $destination = $publicPath . '/' . $imageName;
             $uploadSuccess = move_uploaded_file($image->getPathname(), $destination);
             if ($uploadSuccess) {
+                chmod($destination, 0644);
                 $validated['image'] = 'images/articles/' . $imageName;
             }
         }
@@ -132,6 +133,7 @@ class ArticleController extends Controller
             $destination = $publicPath . '/' . $imageName;
             $uploadSuccess = move_uploaded_file($image->getPathname(), $destination);
             if ($uploadSuccess) {
+                chmod($destination, 0644);
                 $validated['image'] = 'images/articles/' . $imageName;
             }
         }

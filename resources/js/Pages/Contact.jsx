@@ -297,11 +297,11 @@ export default function Contact({ seo }) {
                                             </div>
                                             <div className="flex justify-between">
                                                 <span>Samedi</span>
-                                                <span>9h00 - 19h00</span>
+                                                <span>9h00 - 12h00</span>
                                             </div>
                                             <div className="flex justify-between">
                                                 <span>Dimanche</span>
-                                                <span>9h00 - 19h00</span>
+                                                <span className="text-red-500 font-medium">Fermé</span>
                                             </div>
                                         </div>
                                     </div>
